@@ -7,7 +7,7 @@ package controller.action;
  * Abstract class for Action.
  *
  */
-public abstract class AbstractAction {
+public abstract class AbstractAction implements Action {
 
     /**
      * @param type
@@ -25,4 +25,5 @@ public abstract class AbstractAction {
     public ActionType getType() {
         return this.type;
     }
+
 }
