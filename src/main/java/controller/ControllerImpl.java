@@ -37,13 +37,11 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final boolean initSimulation() {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public final void startSimulation() {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -53,7 +51,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final void setDayDuration(final DayDuration duration) {
-        // TODO Auto-generated method stub
+        this.settings.setDayDuration(duration);
     }
 
     @Override

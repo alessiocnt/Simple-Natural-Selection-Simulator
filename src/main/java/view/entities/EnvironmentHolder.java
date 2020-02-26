@@ -1,5 +1,8 @@
 package view.entities;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Simple class that mantain the information for 
  * setting up the environment.
@@ -86,5 +89,13 @@ public class EnvironmentHolder {
      */
     public void setFoodVariation(final int foodVariation) {
         this.foodVariation = foodVariation;
+    }
+
+    @Override
+    public final String toString() {
+        return List.of(this.entityDimension, this.entitySpeed, this.entityQuantity, this.foodQuantity, this.foodVariation)
+                .stream()
+                .map((x) -> x.toString())
+                .collect(Collectors.joining(",", "[", "]"));
     }
 }
