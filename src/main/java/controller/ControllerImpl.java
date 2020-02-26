@@ -68,15 +68,12 @@ public class ControllerImpl implements Controller {
         }
 
         public void run() {
-            long lastTime = System.currentTimeMillis();
             while (this.running /*TODO uncomment && !model.isSimulationOver()*/) {
-                final long current = System.currentTimeMillis();
-                final int elapsed = (int) (current - lastTime);
+                final long startTime = System.currentTimeMillis();
                 update();
                 render();
-
-                //waitForNextFrame(dayDuration, elapsed);
-
+                final int elapsedTime = (int) (System.currentTimeMillis() - startTime);
+                //waitForNextFrame(dayDuration, elapsedTime);
             }
         }
 
@@ -84,12 +81,16 @@ public class ControllerImpl implements Controller {
 
         private void update() {
             // TODO Auto-generated method stub
-            System.out.println("Aggiorno");
+            //model.update();
+            System.out.println("Update");
         }
+
         private void render() {
             // TODO Auto-generated method stub
-            System.out.println("Renderizzo");
+            //view.render();
+            System.out.println("Render");
         }
+
         private void waitForNextFrame(final DayDuration dayDuration, final int elapsed) {
             int timeUntilNextLoop = (dayDuration.getDuration() * 1000 / UPDATES_IN_A_DAY) - elapsed;
             try {
@@ -97,6 +98,15 @@ public class ControllerImpl implements Controller {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+
+        public void stopSimulationLoop() {
+            this.running = false;
+        }
+
+        public void resumeSimulationLoop() {
+            this.running = true;
+            super.start();
         }
     }
 }
