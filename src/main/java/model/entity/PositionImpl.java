@@ -17,48 +17,49 @@ public class PositionImpl implements Position {
     }
 
     /**
-     * @return the X value of the position.
+     * {@inheritDoc}
      */
+    @Override
     public double getX() {
         return this.position.getX();
     }
 
     /**
-     * @param x
-     *         the x value of the position to set.
+     * {@inheritDoc}
      */
+    @Override
     public void setX(final double x) {
         this.setPosition(x, this.position.getY());
     }
 
     /**
-     * @return the Y value of the position.
+     * {@inheritDoc}
      */
+    @Override
     public double getY() {
         return this.position.getY();
     }
 
     /**
-     * @param y
-     *         the y value of the position to set.
+     * {@inheritDoc}
      */
+    @Override
     public void setY(final double y) {
         this.setPosition(this.position.getX(), y);
     }
 
     /**
-     * @return the Position in a 2D space.
+     * {@inheritDoc}
      */
+    @Override
     public Position getPosition() {
         return this;
     }
 
     /**
-     * @param x
-     *        the x value of the position to set.
-     * @param y
-     *        the y value of the position to set.
+     * {@inheritDoc}
      */
+    @Override
     public void setPosition(final double x, final double y) {
         this.position.setLocation(x, y);
     }

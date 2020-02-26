@@ -20,16 +20,17 @@ public class EnergyImpl implements Energy {
     }
 
     /**
-     * @return the energy value.
+     * {@inheritDoc}
      */
+    @Override
     public int getEnergy() {
         return energyLevel;
     }
 
     /**
-     * @param energy
-     *         the energy value to set.
+     * {@inheritDoc}
      */
+    @Override
     public void setEnergy(final int energy) {
         this.energyLevel = energy;
     }

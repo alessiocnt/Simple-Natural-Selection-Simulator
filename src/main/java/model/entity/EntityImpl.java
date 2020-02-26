@@ -17,35 +17,39 @@ public class EntityImpl implements Entity {
     }
 
     /**
-     * @return the position
+     * {@inheritDoc}
      */
+    @Override
     public Position getPosition() {
         return position;
     }
 
     /**
-     * @param position the position to set
+     * {@inheritDoc}
      */
+    @Override
     public void setPosition(final Position position) {
         this.position = position;
     }
 
     /**
-     * @return the energy
+     * {@inheritDoc}
      */
+    @Override
     public Energy getEnergy() {
         return energy;
     }
 
     /**
-     * @param energy the energy to set
+     * {@inheritDoc}
      */
+    @Override
     public void setEnergy(final Energy energy) {
         this.energy = energy;
     }
 
     /**
-     * toString for an Entity.
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
