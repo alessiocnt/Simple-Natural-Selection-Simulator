@@ -13,9 +13,4 @@ public interface SetupObserver {
      * the holder that need to be set
      */
     void update(EnvironmentHolder holder);
-
-    /**
-     * @return true if the input is valid, false othrewise.
-     */
-    boolean validate();
 }

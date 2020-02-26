@@ -1,9 +1,12 @@
 package view.observers;
 
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextField;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javafx.scene.control.ComboBox;
+import settings.SetupValues;
 import view.entities.EnvironmentHolder;
-import view.utilities.MyAlert;
 
 /**
  * Dimension observer.
@@ -11,32 +14,22 @@ import view.utilities.MyAlert;
  */
 public class DimensionObserver implements SetupObserver{
 
-    private final TextField textField;
+    private final ComboBox<Double> comboBox;
 
     /**
-     * @param textField
-     * the textField that is observed
+     * @param comboBox
+     * the combobox that is observed
      */
-    public DimensionObserver(final TextField textField) {
-        this.textField = textField;
+    public DimensionObserver(final ComboBox<Double> comboBox) {
+        this.comboBox = comboBox;
+        this.comboBox.getItems().addAll(Stream.iterate(SetupValues.DIMENSION.getStart(), (i) -> i + 1)
+                .limit(SetupValues.DIMENSION.getStop())
+                .map((i) -> (double) i)
+                .collect(Collectors.toList()));
     }
 
     @Override
     public final void update(final EnvironmentHolder holder) {
-        if (!this.validate()) {
-            throw new IllegalStateException();
-        }
-        holder.setEntityDimension(Double.valueOf(this.textField.getText()));
-    }
-
-    @Override
-    public final boolean validate() {
-        try {
-            Double.valueOf(this.textField.getText());
-        } catch (NumberFormatException e) {
-            MyAlert.showAlert(AlertType.ERROR, "Dimension error", "Please insert a number in the proper form");
-            return false;
-        }
-        return true;
+        holder.setEntityDimension(this.comboBox.getValue());
     }
 }
