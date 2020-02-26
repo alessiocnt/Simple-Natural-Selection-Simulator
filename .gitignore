@@ -4,5 +4,5 @@ bin/
 out/
 .idea/
 # Ignored, as Gradle Buildship generates it on import / refresh
-.classpath
+#.classpath
 
