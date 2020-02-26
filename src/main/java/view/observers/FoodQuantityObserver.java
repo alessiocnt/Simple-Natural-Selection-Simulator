@@ -21,9 +21,11 @@ public class FoodQuantityObserver implements SetupObserver {
      */
     public FoodQuantityObserver(final ComboBox<Integer> combobox) {
         this.combobox = combobox;
-        this.combobox.getItems().addAll(Stream.iterate(SetupValues.FOODQUANTITY.getStart(), (i) -> i + 1)
-                .limit(SetupValues.FOODQUANTITY.getStop())
+        this.combobox.getItems().addAll(Stream.iterate(SetupValues.FOODQUANTITY.getStart(),
+                                                        (i) -> i != SetupValues.FOODQUANTITY.getStop() + 1,
+                                                        (i) -> i + 1)
                 .collect(Collectors.toList()));
+        this.combobox.getSelectionModel().select(SetupValues.FOODQUANTITY.getDefault());
     }
 
     @Override

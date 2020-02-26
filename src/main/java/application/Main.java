@@ -1,4 +1,4 @@
-package simulator;
+package application;
 
 import controller.Controller;
 import controller.ControllerImpl;
@@ -12,7 +12,7 @@ import view.ViewImpl;
  * Simulator main.
  *
  */
-public class Simulator extends Application {
+public class Main extends Application {
     /**
      * @param args
      * params.

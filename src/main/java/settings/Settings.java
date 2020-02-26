@@ -5,7 +5,7 @@ package settings;
  * This interface allow write.
  *
  */
-public interface Settings extends SettingsHolder{
+public interface Settings extends SettingsHolder {
     /**
      * @param duration
      * the day duration selected.

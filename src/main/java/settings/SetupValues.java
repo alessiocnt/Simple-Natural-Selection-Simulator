@@ -55,7 +55,7 @@ public enum SetupValues {
     /**
      * @return the default value.
      */
-    public int getDefault() {
+    public Integer getDefault() {
         return this.defaultValue;
     }
 }

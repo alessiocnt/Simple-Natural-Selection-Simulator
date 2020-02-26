@@ -12,24 +12,26 @@ import view.entities.EnvironmentHolder;
  * Dimension observer.
  *
  */
-public class DimensionObserver implements SetupObserver{
+public class DimensionObserver implements SetupObserver {
 
-    private final ComboBox<Double> comboBox;
+    private final ComboBox<Double> combobox;
 
     /**
-     * @param comboBox
+     * @param combobox
      * the combobox that is observed
      */
-    public DimensionObserver(final ComboBox<Double> comboBox) {
-        this.comboBox = comboBox;
-        this.comboBox.getItems().addAll(Stream.iterate(SetupValues.DIMENSION.getStart(), (i) -> i + 1)
-                .limit(SetupValues.DIMENSION.getStop())
+    public DimensionObserver(final ComboBox<Double> combobox) {
+        this.combobox = combobox;
+        this.combobox.getItems().addAll(Stream.iterate(SetupValues.DIMENSION.getStart(),
+                                                        (i) -> i != SetupValues.DIMENSION.getStop() + 1,
+                                                        (i) -> i + 1)
                 .map((i) -> (double) i)
                 .collect(Collectors.toList()));
+        this.combobox.getSelectionModel().select((double) SetupValues.DIMENSION.getDefault());
     }
 
     @Override
     public final void update(final EnvironmentHolder holder) {
-        holder.setEntityDimension(this.comboBox.getValue());
+        holder.setEntityDimension(this.combobox.getValue());
     }
 }

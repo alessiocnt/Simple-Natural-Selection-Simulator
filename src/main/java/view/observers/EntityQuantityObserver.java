@@ -11,7 +11,7 @@ import view.entities.EnvironmentHolder;
  * Entity Quantity Observer.
  *
  */
-public class EntityQuantityObserver implements SetupObserver{
+public class EntityQuantityObserver implements SetupObserver {
 
     private final ComboBox<Integer> combobox;
 
@@ -21,9 +21,11 @@ public class EntityQuantityObserver implements SetupObserver{
      */
     public EntityQuantityObserver(final ComboBox<Integer> combobox) {
         this.combobox = combobox;
-        this.combobox.getItems().addAll(Stream.iterate(SetupValues.INITIALQUANTITY.getStart(), (i) -> i + 1)
-        .limit(SetupValues.INITIALQUANTITY.getStop())
+        this.combobox.getItems().addAll(Stream.iterate(SetupValues.INITIALQUANTITY.getStart(),
+                                                        (i) -> i != SetupValues.INITIALQUANTITY.getStop() + 1,
+                                                        (i) -> i + 1)
         .collect(Collectors.toList()));
+        this.combobox.getSelectionModel().select(SetupValues.INITIALQUANTITY.getDefault());
     }
 
     @Override

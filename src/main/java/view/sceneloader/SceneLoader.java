@@ -1,7 +1,7 @@
 package view.sceneloader;
 
 import javafx.stage.Stage;
-import view.entities.SceneType;
+import view.utilities.SceneType;
 
 /**
  * Base interface for SceneLoader.

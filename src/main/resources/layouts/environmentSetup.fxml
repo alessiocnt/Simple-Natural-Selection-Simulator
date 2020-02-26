@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.scenecontroller.SetupController">
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button id="startDefault" fx:id="startDefaultBtn" mnemonicParsing="false" text="Start with default" />
+            <Button id="start" fx:id="startBtn" mnemonicParsing="false" text="Start">
+               <padding>
+                  <Insets bottom="7.0" left="12.0" right="12.0" top="7.0" />
+               </padding></Button>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <center>
+      <HBox spacing="40.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox>
+               <children>
+                  <GridPane hgap="20.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Dimension" />
+                        <Label text="Speed" GridPane.rowIndex="1" />
+                        <Label text="Initial Quantity" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="dimComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="speedComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="quantityComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <GridPane hgap="20.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Food Quantity" />
+                        <Label text="Food Variation" GridPane.rowIndex="1" />
+                        <Label text="Temperature" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="foodQComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="foodVComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="tempComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="50.0" top="50.0" />
+         </padding>
+      </HBox>
+   </center>
+   <top>
+      <VBox id="top" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="setupTitle" text="Enviroment Setup" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
+      </VBox>
+   </top>
+</BorderPane>

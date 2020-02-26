@@ -11,7 +11,7 @@ import view.entities.EnvironmentHolder;
  * Speed Observer.
  *
  */
-public class SpeedObserver implements SetupObserver{
+public class SpeedObserver implements SetupObserver {
 
     private final ComboBox<Double> combobox;
 
@@ -21,10 +21,12 @@ public class SpeedObserver implements SetupObserver{
      */
     public SpeedObserver(final ComboBox<Double> combobox) {
         this.combobox = combobox;
-        this.combobox.getItems().addAll(Stream.iterate(SetupValues.SPEED.getStart(), (i) -> i + 1)
-                .limit(SetupValues.SPEED.getStop())
+        this.combobox.getItems().addAll(Stream.iterate(SetupValues.SPEED.getStart(),
+                                                        (i) -> i != SetupValues.SPEED.getStop() + 1,
+                                                        (i) -> i + 1)
                 .map((i) -> (double) i)
                 .collect(Collectors.toList()));
+        this.combobox.getSelectionModel().select((double) SetupValues.SPEED.getDefault());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package view.entities;
+package view.utilities;
 
 /**
  * Enumeration that contains all the informations about scenes.

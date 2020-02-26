@@ -10,8 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import view.View;
-import view.entities.SceneType;
 import view.scenecontroller.SceneController;
+import view.utilities.SceneType;
 
 /**
  * Implementation of Scene Loader that is responsible of loading the right 
@@ -51,6 +51,7 @@ public class SceneLoaderImpl implements SceneLoader {
             }
 
           stage.setScene(scene);
+          stage.setTitle(sceneType.getTitle());
           stage.setMinWidth(this.view.getController().getSettings().getPrefWindowWidth());
           stage.setMinHeight(this.view.getController().getSettings().getPrefWindowHeight());
           stage.setMaximized(true);
