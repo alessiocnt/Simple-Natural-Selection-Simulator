@@ -3,7 +3,9 @@ package controller;
 
 import model.Model;
 import settings.DayDuration;
+import settings.Settings;
 import settings.SettingsHolder;
+import settings.SettingsImpl;
 import view.View;
 import view.entities.EnvironmentHolder;
 import settings.DayDuration;
@@ -15,6 +17,7 @@ import settings.DayDuration;
 public class ControllerImpl implements Controller {
     private final Model model;
     private final View view;
+    private final Settings settings = new SettingsImpl();
 
     /**
      * @param model
@@ -55,8 +58,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final SettingsHolder getSettings() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.settings;
     }
 
     private class SimulationLoop extends Thread {

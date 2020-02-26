@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import javafx.stage.Stage;
+import view.scenefactory.SceneFactory;
 
 /**
  * View implementation.
@@ -28,6 +29,12 @@ public class ViewImpl implements View {
     @Override
     public final Controller getController() {
         return this.controller;
+    }
+
+    @Override
+    public final SceneFactory getSceneFactory() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
