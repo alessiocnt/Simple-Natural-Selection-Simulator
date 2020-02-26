@@ -4,6 +4,6 @@ package model;
  * Model implementation.
  *
  */
-public class ModelImpl {
+public class ModelImpl implements Model { 
 
 }
