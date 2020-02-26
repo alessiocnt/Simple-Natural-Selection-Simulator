@@ -95,10 +95,13 @@ public class ControllerImpl implements Controller {
 
         private void waitForNextFrame(final DayDuration dayDuration, final int elapsed) {
             int timeUntilNextLoop = (dayDuration.getDuration() * 1000 / UPDATES_IN_A_DAY) - elapsed;
-            try {
-                Thread.sleep(timeUntilNextLoop);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            //the sleep time cannot be < 0, this would cause an exception
+            if (timeUntilNextLoop > 0) {
+                try {
+                    Thread.sleep(timeUntilNextLoop);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
