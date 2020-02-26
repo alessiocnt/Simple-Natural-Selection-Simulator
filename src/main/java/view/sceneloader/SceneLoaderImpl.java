@@ -63,6 +63,7 @@ public class SceneLoaderImpl implements SceneLoader {
 
           SceneController controller = (SceneController) this.loader.getController();
           controller.setSceneFactory(this.view.getSceneFactory());
+          controller.setView(this.view);
         } catch (IOException e) {
             e.printStackTrace();
         }

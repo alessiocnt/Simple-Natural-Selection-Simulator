@@ -9,8 +9,8 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="startDefault" fx:id="startDefaultBtn" mnemonicParsing="false" text="Start with default" />
-            <Button id="start" fx:id="startBtn" mnemonicParsing="false" text="Start">
+            <Button id="startDefault" fx:id="restoreDefaultBtn" mnemonicParsing="false" onAction="#restoreDefault" text="Restore defaults" />
+            <Button id="start" fx:id="startBtn" mnemonicParsing="false" onAction="#startSimulation" text="Start">
                <padding>
                   <Insets bottom="7.0" left="12.0" right="12.0" top="7.0" />
                </padding></Button>

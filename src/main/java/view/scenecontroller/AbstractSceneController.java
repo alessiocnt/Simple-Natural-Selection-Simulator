@@ -1,5 +1,6 @@
 package view.scenecontroller;
 
+import view.View;
 import view.scenefactory.SceneFactory;
 
 /**
@@ -10,6 +11,7 @@ import view.scenefactory.SceneFactory;
 public class AbstractSceneController implements SceneController{
 
     private SceneFactory sceneFactory;
+    private View view;
 
     @Override
     public final void setSceneFactory(final SceneFactory sceneFactory) {
@@ -19,6 +21,16 @@ public class AbstractSceneController implements SceneController{
     @Override
     public final SceneFactory getSceneFactory() {
         return this.sceneFactory;
+    }
+
+    @Override
+    public final void setView(final View view) {
+        this.view = view;
+    }
+
+    @Override
+    public View getView() {
+        return this.view;
     }
 
 }
