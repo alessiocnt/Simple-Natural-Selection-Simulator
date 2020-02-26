@@ -24,6 +24,7 @@ public class ControllerImpl implements Controller {
                 update();
                 render();
                 waitForNextFrame(dayDuration, elapsed);
+                lastTime = current;
             }
         }
 
@@ -31,13 +32,16 @@ public class ControllerImpl implements Controller {
 
         private void update() {
             // TODO Auto-generated method stub
+            System.out.println("Aggiorno");
         }
         private void render() {
             // TODO Auto-generated method stub
+            System.out.println("Renderizzo");
         }
-        private void waitForNextFrame(DayDuration dayDuration, int elapsed) {
+        private void waitForNextFrame(final DayDuration dayDuration, final int elapsed) {
+            int timeUntilNextLoop = (dayDuration.getDuration() * 1000 / UPDATES_IN_A_DAY) - elapsed;
             try {
-                Thread.sleep((dayDuration.getDuration()/UPDATES_IN_A_DAY) - elapsed);
+                Thread.sleep(timeUntilNextLoop);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
