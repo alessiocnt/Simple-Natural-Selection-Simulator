@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
  *
  */
 public class EnvironmentHolder {
-    private double entityDimension;
-    private double entitySpeed;
+    private int entityDimension;
+    private int entitySpeed;
     private int entityQuantity;
     private int foodQuantity;
     private int foodVariation;
@@ -18,7 +18,7 @@ public class EnvironmentHolder {
     /**
      * @return the initial dimention of entities.
      */
-    public double getEntityDimension() {
+    public int getEntityDimension() {
         return entityDimension;
     }
 
@@ -26,7 +26,7 @@ public class EnvironmentHolder {
      * @param entityDimension
      * set the initial dimention of entities.
      */
-    public void setEntityDimension(final double entityDimension) {
+    public void setEntityDimension(final int entityDimension) {
         this.entityDimension = entityDimension;
     }
 
@@ -41,7 +41,7 @@ public class EnvironmentHolder {
      * @param entitySpeed
      * set the initial speed of entities
      */
-    public void setEntitySpeed(final double entitySpeed) {
+    public void setEntitySpeed(final int entitySpeed) {
         this.entitySpeed = entitySpeed;
     }
 

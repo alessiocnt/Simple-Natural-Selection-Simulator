@@ -14,20 +14,19 @@ import view.entities.EnvironmentHolder;
  */
 public class DimensionObserver implements SetupObserver {
 
-    private final ComboBox<Double> combobox;
+    private final ComboBox<Integer> combobox;
 
     /**
      * @param combobox
      * the combobox that is observed
      */
-    public DimensionObserver(final ComboBox<Double> combobox) {
+    public DimensionObserver(final ComboBox<Integer> combobox) {
         this.combobox = combobox;
         this.combobox.getItems().addAll(Stream.iterate(SetupValues.DIMENSION.getStart(),
                                                         (i) -> i != SetupValues.DIMENSION.getStop() + 1,
                                                         (i) -> i + 1)
-                .map((i) -> (double) i)
                 .collect(Collectors.toList()));
-        this.combobox.getSelectionModel().select((double) SetupValues.DIMENSION.getDefault());
+        this.combobox.getSelectionModel().select(SetupValues.DIMENSION.getDefault());
     }
 
     @Override

@@ -10,7 +10,7 @@ public enum SetupValues {
     /**
      * Dimension of entities.
      */
-    DIMENSION(1, 6, 3),
+    DIMENSION(50, 200, 100),
     /**
      * Speed of entities.
      */

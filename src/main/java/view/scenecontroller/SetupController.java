@@ -28,10 +28,10 @@ public class SetupController extends AbstractSceneController {
     private Button restoreDefaultBtn;
 
     @FXML
-    private ComboBox<Double> dimComboBox;
+    private ComboBox<Integer> dimComboBox;
 
     @FXML
-    private ComboBox<Double> speedComboBox;
+    private ComboBox<Integer> speedComboBox;
 
     @FXML
     private ComboBox<Integer> foodQComboBox;

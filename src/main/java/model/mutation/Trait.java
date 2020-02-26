@@ -2,15 +2,14 @@ package model.mutation;
 
 /**
  * Interface that describes an entity trait.
- * @param <X> 
- * type of value described in the trait.
  *
  */
-public interface Trait<X> {
+public interface Trait  {
     /**
      * @return the value that describe the trait.
+     * 
      */
-    X getValue();
+    int getValue();
     /**
      * @return the food consuption of the trait.
      */
