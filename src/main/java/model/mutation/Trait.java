@@ -11,9 +11,9 @@ public interface Trait  {
      */
     int getValue();
     /**
-     * @return the food consuption of the trait.
+     * @return the food consumption of the trait.
      */
-    int getFoodConsuption();
+    int getFoodConsumption();
     /**
      * @return the mutation rarity of the trait.
      */
