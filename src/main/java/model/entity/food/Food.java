@@ -2,7 +2,7 @@ package model.entity.food;
 
 import model.entity.Energy;
 import model.entity.EntityImpl;
-import model.entity.Position;
+import model.environment.position.Position;
 
 public class Food extends EntityImpl {
 
@@ -13,18 +13,8 @@ public class Food extends EntityImpl {
      * @param energy
      *          The current Food energy
      */
-    public Food(final Position position, final Energy energy) {
-        super(position, energy);
-    }
-
-    /**
-     * @param position
-     *          The Food position
-     * @throws UnsupportedOperationException
-     */
-    @Override
-    public void setPosition(final Position position) {
-        throw new UnsupportedOperationException(EXCEPTIONMESSAGE);
+    public Food(final Energy energy) {
+        super(energy);
     }
 
     /**
@@ -42,7 +32,7 @@ public class Food extends EntityImpl {
      */
     @Override
     public String toString() {
-        return "Food= [position=" + this.getPosition() +  ", energy=" + this.getEnergy() + "]";
+        return "Food= [energy=" + this.getEnergy() + "]";
     }
 
 }

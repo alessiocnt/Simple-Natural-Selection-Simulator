@@ -1,35 +1,16 @@
 package model.entity;
 
+
 public class EntityImpl implements Entity {
 
-    private Position position;
     private Energy energy;
 
     /**
-     * @param position
-     *          The current Entity position
      * @param energy
      *          The current Entity energy
      */
-    public EntityImpl(final Position position, final Energy energy) {
-        this.position = position;
+    public EntityImpl(final Energy energy) {
         this.energy = energy;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Position getPosition() {
-        return position;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setPosition(final Position position) {
-        this.position = position;
     }
 
     /**
@@ -53,7 +34,7 @@ public class EntityImpl implements Entity {
      */
     @Override
     public String toString() {
-        return "Entity= [position=" + position + ", energy=" + energy + "]";
+        return "Entity= [energy=" + energy + "]";
     }
 
 }
