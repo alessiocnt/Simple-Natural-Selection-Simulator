@@ -2,7 +2,7 @@ package model.entity.food;
 
 import model.entity.Energy;
 import model.entity.EntityImpl;
-import model.entity.Position;
+import model.environment.position.Position;
 
 public class Food extends EntityImpl {
 

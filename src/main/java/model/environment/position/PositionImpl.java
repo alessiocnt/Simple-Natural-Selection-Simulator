@@ -1,4 +1,4 @@
-package model.entity;
+package model.environment.position;
 
 import java.awt.geom.Point2D;
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model.entity;
+package model.environment.position;
 
 
 /**
