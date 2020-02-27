@@ -39,7 +39,11 @@ public enum Direction {
     /**
      * SOUTHWEST.
      */
-    SOUTHWEST(-1, -1);
+    SOUTHWEST(-1, -1),
+    /**
+     * STOP.
+     */
+    STOP(0, 0);
 
     private int xAxis;
     private int yAxis;
