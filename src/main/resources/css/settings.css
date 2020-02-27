@@ -17,3 +17,22 @@
     -fx-text-fill: #ecf0f1;
     -fx-font-style: italic;
 }
+
+#saveBtn {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: #ecf0f1;
+}
+
+#cancelBtn {
+	-fx-background-color: #c0392b;
+	-fx-text-fill: #ecf0f1;
+}
+
+.combo-box {
+    -fx-background-color: transparent;  
+    -fx-border-color: #ecf0f1;
+}
+
+.combo-box .cell:selected {
+    -fx-text-fill: #ecf0f1;
+}

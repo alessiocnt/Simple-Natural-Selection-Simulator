@@ -1,5 +1,8 @@
 package model.mutation;
 
+import model.entity.Energy;
+import model.entity.organism.Organism;
+
 /**
  * Interface that describes an entity trait.
  *
@@ -11,9 +14,11 @@ public interface Trait  {
      */
     int getValue();
     /**
-     * @return the food consuption of the trait.
+     * @return the food consumption of the trait.
+     * @param organism
+     * organism.
      */
-    int getFoodConsuption();
+    Energy getFoodConsumption(Organism organism);
     /**
      * @return the mutation rarity of the trait.
      */

@@ -7,6 +7,7 @@ import controller.action.strategy.EatLogics;
 import controller.action.strategy.EatLogicsImpl;
 import controller.action.strategy.MoveLogics;
 import controller.action.strategy.MoveLogicsImpl;
+
 import model.entity.organism.Organism;
 import model.environment.DayPeriod;
 import model.environment.Environment;
@@ -33,8 +34,13 @@ public class DayAction extends AbstractAction {
     }
 
     @Override
-    public void perform(Organism organism) {
+    public void perform(final Organism organism) {
         // TODO Auto-generated method stub
+
     }
 
+    private boolean isEnergyEnoughtToMove(final Organism organism) {
+       //return organism.
+        return true;
+    }
 }
