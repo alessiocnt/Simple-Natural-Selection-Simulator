@@ -1,4 +1,4 @@
-package model.enviroment;
+package model.environment;
 
 import java.util.Iterator;
 import java.util.Optional;
@@ -10,7 +10,7 @@ import model.entity.organism.Organism;
 /**
  * Represent the enviroment in which Organisms and Food are contained.
  */
-public interface Enviroment {
+public interface Environment {
     /*/**
      * Add an organism to the enviroment.
      * @param organism

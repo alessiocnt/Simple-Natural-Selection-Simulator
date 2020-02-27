@@ -1,11 +1,11 @@
-package model.enviroment.enviromentfactory;
+package model.environment.environmentfactory;
 
-import model.enviroment.BasicEnviroment;
+import model.environment.BasicEnvironment;
 
 /**
  * Models a factory for a BasicEnviroment.
  */
-public interface BasicEnviromentFactory {
+public interface BasicEnvironmentFactory {
 
     /**
      * Creates a BasicEnviroment.
@@ -15,5 +15,5 @@ public interface BasicEnviromentFactory {
      *      how much will the quantity of food be modified everyday
      * @return a BasicEnviroment
      */
-    BasicEnviroment createBasicEnviroment(int initialFoodQuantity, int dailyFoodModification);
+    BasicEnvironment createBasicEnviroment(int initialFoodQuantity, int dailyFoodModification);
 }

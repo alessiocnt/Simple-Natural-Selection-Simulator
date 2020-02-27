@@ -1,4 +1,4 @@
-package model.enviroment;
+package model.environment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,7 @@ import java.util.Optional;
 import model.entity.Position;
 import model.entity.food.Food;
 
-public abstract class AbstractEnviroment implements Enviroment {
+public abstract class AbstractEnvironment implements Environment {
 //TODO implements methods that need the organism interface to work
     private final Map<Position, Food> foods = new HashMap<>();
 
