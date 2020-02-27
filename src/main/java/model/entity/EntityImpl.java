@@ -1,5 +1,7 @@
 package model.entity;
 
+import model.environment.position.Position;
+
 public class EntityImpl implements Entity {
 
     private Position position;

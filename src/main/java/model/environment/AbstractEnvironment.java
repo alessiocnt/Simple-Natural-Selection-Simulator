@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-import model.entity.Position;
 import model.entity.food.Food;
+import model.environment.position.Position;
 
 public abstract class AbstractEnvironment implements Environment {
 //TODO implements methods that need the organism interface to work

@@ -3,6 +3,8 @@
  */
 package model.entity;
 
+import model.environment.position.Position;
+
 /**
  * Interface that defines an Entity which can populate the environment.
  *
