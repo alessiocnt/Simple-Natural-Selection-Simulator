@@ -27,6 +27,12 @@ public interface Energy {
     void addEnergy(Energy energy);
 
     /**
+     * @param energy
+     *         the energy value that will be detracted to the current energy value.
+     */
+    void detractEnergy(Energy energy);
+
+    /**
      * @param a
      *      first element of the comparison
      * @param b

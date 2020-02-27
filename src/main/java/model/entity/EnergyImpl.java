@@ -42,6 +42,15 @@ public class EnergyImpl implements Energy {
     public void addEnergy(final Energy energy) {
         this.energyLevel += energy.getEnergy();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void detractEnergy(final Energy energy) {
+        this.energyLevel -= energy.getEnergy();
+    }
+
     /**
      * {@inheritDoc}
      */
