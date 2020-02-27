@@ -1,7 +1,9 @@
 package model.environment;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 
 import model.entity.food.Food;
 import model.entity.organism.Organism;
@@ -11,6 +13,17 @@ import model.environment.position.Position;
  * Represent the environment in which Organisms and Food are contained.
  */
 public interface Environment {
+
+    /**
+     * @return the number of organisms inside the Environment
+     */
+    int getCurrendOrganismQuantity();
+
+    /**
+     * @return the quantity of food inside the Environment
+     */
+    int getCurrentFoodQuantity();
+
     /**
      * Add an organism to the environment.
      * @param organism
@@ -24,8 +37,10 @@ public interface Environment {
      *      the father organism
      * @param son
      *      the new organisms
+     * @throws NoSuchElementException
+     *      if the father doesn't exists
      */
-    void addOrganism(Organism father, Organism...son);
+    void addOrganism(Organism father, Organism...son) throws NoSuchElementException;
 
     /**
      * Add a piece of food to the environment.
@@ -44,8 +59,10 @@ public interface Environment {
      *      the offset of the y-axis
      * @throws OutOfEnviromentException
      *      if the Organism tries to exit the Environment 
+     * @throws NoSuchElementException
+     *      if the organism doesn't exists
      */
-    void moveOrganism(Organism organism, int xOffset, int yOffset) throws OutOfEnviromentException;
+    void moveOrganism(Organism organism, int xOffset, int yOffset) throws OutOfEnviromentException, NoSuchElementException;
 
     /**
      * Removes an organism from the environment.
@@ -68,17 +85,19 @@ public interface Environment {
 
     /**
      * @param position
-     *      the position of the organism required
-     * @return an optional containing the organism or an empty one if the position was empty
+     *      the position of the organisms required
+     * @return an optional containing a set of the organisms or an empty one if the position was empty
      */
-    Optional<Organism> getOrganism(Position position);
+    Optional<Set<Organism>> getOrganisms(Position position);
 
     /**
      * @param organism
      *      the organism that requires the food piece
      * @return an optional containing the food or an empty one if the position was empty
+     * @throws NoSuchElementException
+     *      if the Organism doesn't exists 
      */
-    Optional<Food> getFood(Organism organism);
+    Optional<Food> getFood(Organism organism) throws NoSuchElementException;
 
     /**
      * @param position
@@ -88,7 +107,7 @@ public interface Environment {
     Optional<Food> getFood(Position position);
 
     /**
-     * Removes every entity from the environment.
+     * Removes every food piece from the environment.
      */
     void clear();
 }
