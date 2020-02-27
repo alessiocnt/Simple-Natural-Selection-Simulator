@@ -1,16 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.scenecontroller.SettingsController">
    <top>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox id="top" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Settings" />
+            <Label styleClass="settingTitle" text="Settings" />
          </children>
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
       </VBox>
    </top>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button id="cancelBtn" fx:id="cancelBtn" mnemonicParsing="false" onAction="#exitSettings" text="Cancel">
+               <padding>
+                  <Insets bottom="6.0" left="10.0" right="10.0" top="6.0" />
+               </padding>
+            </Button>
+            <Button id="saveBtn" fx:id="saveBtn" mnemonicParsing="false" onAction="#saveSettings" text="Save">
+               <padding>
+                  <Insets bottom="6.0" left="10.0" right="10.0" top="6.0" />
+               </padding>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox>
+               <children>
+                  <GridPane hgap="20.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Day Duration" />
+                        <ComboBox fx:id="dayDurComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="50.0" top="50.0" />
+         </padding>
+      </HBox>
+   </center>
 </BorderPane>

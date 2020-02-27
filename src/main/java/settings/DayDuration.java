@@ -6,17 +6,20 @@ package settings;
  */
 public enum DayDuration {
     /**
-     * Slow, 15 seconds.
+     * Fast, 2 seconds.
      */
-    SLOW(15, "Slow"),
+    FAST(2, "Fast"),
+
     /**
      * Normal, 6 seconds.
      */
     NORMAL(6, "Normal"),
+
     /**
-     * Fast, 2 seconds.
+     * Slow, 15 seconds.
      */
-    FAST(2, "Fast");
+    SLOW(15, "Slow");
+
 
     private final int duration;
     private final String name;
@@ -38,5 +41,12 @@ public enum DayDuration {
      */
     public String toString() {
         return this.name;
+    }
+
+    /**
+     * @return the default value.
+     */
+    public static DayDuration getDefualt() {
+        return DayDuration.NORMAL;
     }
 }
