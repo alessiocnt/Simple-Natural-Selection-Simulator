@@ -7,7 +7,6 @@ import java.util.EnumMap;
 
 import model.entity.Energy;
 import model.entity.EntityImpl;
-import model.environment.position.Position;
 import model.mutation.Trait;
 import model.mutation.TraitType;
 
@@ -19,8 +18,8 @@ public class OrganismImpl extends EntityImpl implements Organism {
 
     private EnumMap<TraitType, Trait> traits;
 
-    protected OrganismImpl(final Position position, final Energy energy, final EnumMap<TraitType, Trait> traits) {
-        super(position, energy);
+    protected OrganismImpl(final Energy energy, final EnumMap<TraitType, Trait> traits) {
+        super(energy);
         this.traits = traits;
     }
 
@@ -37,7 +36,7 @@ public class OrganismImpl extends EntityImpl implements Organism {
      */
     @Override
     public String toString() {
-        return "Organism= [position=" + this.getPosition() + ", energy=" + this.getEnergy() + ", traits=" + this.getTraits() + "]";
+        return "Organism= [energy=" + this.getEnergy() + ", traits=" + this.getTraits() + "]";
     }
 
 }

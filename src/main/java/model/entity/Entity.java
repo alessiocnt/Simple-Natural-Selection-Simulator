@@ -3,28 +3,11 @@
  */
 package model.entity;
 
-import model.environment.position.Position;
-
 /**
  * Interface that defines an Entity which can populate the environment.
  *
  */
 public interface Entity {
-
-    /**
-     * Represents the entity position.
-     * 
-     * @return the current position.
-     */
-    Position getPosition();
-
-    /**
-     * Set the entity position.
-     * 
-     * @param position 
-     *          to set
-     */
-    void setPosition(Position position);
 
     /**
      * Represents the entity energy.
