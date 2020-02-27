@@ -7,13 +7,13 @@ public enum TraitType {
     /**
      * Speed.
      */
-    SPEED(AffectMovement.YES, MutationRarity.RARE),
+    SPEED(AffectMovement.YES, MutationRarity.COMMON),
 
     /**
      * Dimension.
      */
 
-    DIMENSION(AffectMovement.YES, MutationRarity.RARE),
+    DIMENSION(AffectMovement.YES, MutationRarity.NORMAL),
     /**
      * Food Radar.
      */

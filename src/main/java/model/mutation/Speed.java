@@ -3,11 +3,15 @@ package model.mutation;
 /**
  * Speed trait.
  */
-public class Speed extends AbstractTrait {
+public class Speed extends AbstractTrait implements MutableTrait {
 
     private static final int MULTIPLIER = 5;
 
-    Speed(final int value) {
+    /**
+     * @param value
+     * the Speed value
+     */
+    public Speed(final int value) {
         super(value, (organism) -> {
             return value * Speed.MULTIPLIER;
         });

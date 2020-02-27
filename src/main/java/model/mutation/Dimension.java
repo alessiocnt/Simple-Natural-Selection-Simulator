@@ -3,11 +3,15 @@ package model.mutation;
 /**
  * Dimension trait.
  */
-public class Dimension extends AbstractTrait {
+public class Dimension extends AbstractTrait implements MutableTrait {
 
     private static final double MULTIPLIER = 0.1;
 
-    Dimension(final int value) {
+    /**
+     * @param value
+     * the dimension value;
+     */
+    public Dimension(final int value) {
         super(value, (organism) -> {
             return ((Double) (value * Dimension.MULTIPLIER)).intValue();
         });
