@@ -4,7 +4,7 @@ package model.mutation;
  * Children Quantity Trait.
  *
  */
-public class ChildrenQuantity extends AbstractTrait implements MutableTrait {
+public class ChildrenQuantity extends AbstractTrait {
 
     private static final int MULTIPLIER = 10;
 

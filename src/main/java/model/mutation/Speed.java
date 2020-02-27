@@ -3,7 +3,7 @@ package model.mutation;
 /**
  * Speed trait.
  */
-public class Speed extends AbstractTrait implements MutableTrait {
+public class Speed extends AbstractTrait {
 
     private static final int MULTIPLIER = 5;
 

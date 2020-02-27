@@ -3,7 +3,7 @@ package model.mutation;
 /**
  * Dimension trait.
  */
-public class Dimension extends AbstractTrait implements MutableTrait {
+public class Dimension extends AbstractTrait{
 
     private static final double MULTIPLIER = 0.1;
 
