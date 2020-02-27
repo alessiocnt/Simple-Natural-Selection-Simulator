@@ -1,5 +1,7 @@
 package model.mutation;
 
+import model.entity.Energy;
+import model.entity.EnergyImpl;
 import model.entity.organism.Organism;
 
 /**
@@ -21,7 +23,7 @@ public abstract class AbstractTrait implements Trait {
     }
 
     @Override
-    public final int getFoodConsumption(final Organism organism) {
-        return this.foodConsumption.getConsumption(organism);
+    public final Energy getFoodConsumption(final Organism organism) {
+        return new EnergyImpl(this.foodConsumption.getConsumption(organism));
     }
 }

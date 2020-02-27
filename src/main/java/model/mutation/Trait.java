@@ -1,5 +1,6 @@
 package model.mutation;
 
+import model.entity.Energy;
 import model.entity.organism.Organism;
 
 /**
@@ -17,7 +18,7 @@ public interface Trait  {
      * @param organism
      * organism.
      */
-    int getFoodConsumption(Organism organism);
+    Energy getFoodConsumption(Organism organism);
     /**
      * @return the mutation rarity of the trait.
      */
