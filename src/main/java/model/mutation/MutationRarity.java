@@ -16,7 +16,7 @@ public enum MutationRarity {
     /**
      * Rare.
      */
-    RARE(0.25),
+    RARE(0.20),
     /**
      * Normal.
      */
