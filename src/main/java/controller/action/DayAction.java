@@ -50,7 +50,6 @@ public class DayAction extends AbstractAction {
             eatLogic.eat(organism, environment.getFood(organism).get());
             environment.removeFood(environment.getFood(organism).get());
         }
-        tryToRemoveOrganism(organism);
     }
 
     private boolean isEnergyEnoughtToMove(final Organism organism) {
