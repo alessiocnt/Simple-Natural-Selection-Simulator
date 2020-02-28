@@ -1,12 +1,10 @@
 package model.mutation;
 
-import java.util.function.Predicate;
 
 import model.entity.Energy;
 import model.entity.EnergyImpl;
 import model.entity.organism.Organism;
 import model.mutation.foodconsumption.strategy.FoodConsumptionFunc;
-import model.mutation.utilities.CheckUtil;
 
 /**
  * Abstract class for trait.
@@ -22,11 +20,9 @@ public abstract class AbstractTrait implements Trait {
      * @param foodConsumption
      * the strategy for calculate the foodConsumption.
      * @param checkValue
-     * the supplier, for controlling the validity of the value.
-     * 
+     * the predicate, for controlling the validity of the value.
      */
-    AbstractTrait(final int value, final FoodConsumptionFunc foodConsumption, final Predicate<Integer> checkValue) {
-        CheckUtil.check(() -> checkValue.test(value), new IllegalArgumentException());
+    AbstractTrait(final int value, final FoodConsumptionFunc foodConsumption) {
         this.value = value;
         this.foodConsumption = foodConsumption;
     }

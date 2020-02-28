@@ -1,6 +1,7 @@
 package model.mutation;
 
 import model.mutation.foodconsumption.strategy.Multiplier;
+import model.mutation.utilities.CheckUtil;
 
 /**
  * Dimension trait.
@@ -14,7 +15,8 @@ public class Dimension extends AbstractTrait {
      * the dimension value;
      */
     public Dimension(final int value) {
-        super(value, new Multiplier(value, Dimension.MULTIPLIER), (x) -> x > 0);
+        super(value, new Multiplier(value, Dimension.MULTIPLIER));
+        CheckUtil.check(() -> value > 0, new IllegalArgumentException());
     }
 
     @Override
