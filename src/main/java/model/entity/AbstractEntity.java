@@ -1,7 +1,7 @@
 package model.entity;
 
 
-public class EntityImpl implements Entity {
+public abstract class AbstractEntity implements Entity {
 
     private Energy energy;
 
@@ -9,7 +9,7 @@ public class EntityImpl implements Entity {
      * @param energy
      *          The current Entity energy
      */
-    public EntityImpl(final Energy energy) {
+    public AbstractEntity(final Energy energy) {
         this.energy = energy;
     }
 

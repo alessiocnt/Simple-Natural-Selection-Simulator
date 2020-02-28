@@ -6,7 +6,7 @@ package model.entity.organism;
 import java.util.EnumMap;
 
 import model.entity.Energy;
-import model.entity.EntityImpl;
+import model.entity.AbstractEntity;
 import model.mutation.Trait;
 import model.mutation.TraitType;
 
@@ -14,7 +14,7 @@ import model.mutation.TraitType;
  * Class that models an Organism.
  *
  */
-public class OrganismImpl extends EntityImpl implements Organism {
+public class OrganismImpl extends AbstractEntity implements Organism {
 
     private EnumMap<TraitType, Trait> traits;
 

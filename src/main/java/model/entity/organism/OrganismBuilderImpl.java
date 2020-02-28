@@ -6,7 +6,6 @@ package model.entity.organism;
 import java.util.EnumMap;
 
 import model.entity.Energy;
-import model.environment.position.Position;
 import model.mutation.Trait;
 import model.mutation.TraitType;
 
