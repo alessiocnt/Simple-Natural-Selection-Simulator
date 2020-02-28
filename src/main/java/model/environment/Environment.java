@@ -41,7 +41,7 @@ public interface Environment {
      * @throws NoSuchElementException
      *      if the father doesn't exists
      */
-    void addOrganism(Organism father, Organism...son) throws NoSuchElementException;
+    void addOrganism(Organism father, Organism son) throws NoSuchElementException;
 
     /**
      * Add a piece of food to the environment.

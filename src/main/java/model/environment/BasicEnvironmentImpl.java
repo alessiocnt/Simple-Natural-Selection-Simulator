@@ -28,10 +28,6 @@ public class BasicEnvironmentImpl extends AbstractEnvironment implements BasicEn
         //deletes all current food in the environment
         super.clear();
         this.morningFoodQuantity -= this.dailyFoodQuantityModification;
-        for (int i = 0; i < this.getMorningFoodQuantity(); i++) {
-            //TODO add a food from the food builder
-            //super.addFood(/*HERE*/);
-        }
     }
 
     /**

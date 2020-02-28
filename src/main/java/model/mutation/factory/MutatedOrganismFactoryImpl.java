@@ -1,6 +1,7 @@
 package model.mutation.factory;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,7 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
 
     @Override
     public final Organism createMutated(final Organism organism) {
+        Objects.requireNonNull(organism);
         Map<TraitType, Trait> traits = organism.getTraits();
         Map<TraitType, Trait> mutatedTraits = traits.entrySet().stream()
                                     .filter((entrySet) -> !entrySet.getValue().getRarity().equals(MutationRarity.NOMUTATION))

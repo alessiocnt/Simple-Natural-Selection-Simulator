@@ -14,4 +14,9 @@ public interface Model {
      *      the controller of day/night in the simulation
      */
     void update(DayCicle dayCicle);
+
+    /**
+     * @return true if the simulation is over
+     */
+    boolean isSimulationOver();
 }
