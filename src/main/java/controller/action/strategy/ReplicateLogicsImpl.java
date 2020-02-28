@@ -47,4 +47,12 @@ public class ReplicateLogicsImpl implements ReplicateLogics {
     public int getNumberOfChild(final Organism organism) {
         return organism.getTraits().get(TraitType.CHILDRENQUANTITY).getValue();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void detractConsumptionForReplication(final Organism organism, final Energy energyToDetract) {
+        organism.getEnergy().detractEnergy(energyToDetract);
+    }
 }

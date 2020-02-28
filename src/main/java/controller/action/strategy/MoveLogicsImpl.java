@@ -74,6 +74,7 @@ public class MoveLogicsImpl implements MoveLogics {
      */
     private Direction getRandomDirection() {
         Collections.shuffle(this.directions);
+        //System.out.println(this.directions.get(0));
         return this.directions.get(0);
     }
 
