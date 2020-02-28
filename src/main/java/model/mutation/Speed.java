@@ -14,7 +14,7 @@ public class Speed extends AbstractTrait {
      * the Speed value
      */
     public Speed(final int value) {
-        super(value, new Multiplier(value, Speed.MULTIPLIER));
+        super(value, new Multiplier(value, Speed.MULTIPLIER), (x) -> x > 0);
     }
 
     @Override

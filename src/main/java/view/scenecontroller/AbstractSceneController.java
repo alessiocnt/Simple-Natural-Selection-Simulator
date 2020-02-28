@@ -8,7 +8,7 @@ import view.scenefactory.SceneFactory;
  * sceneFactory.
  *
  */
-public class AbstractSceneController implements SceneController{
+public class AbstractSceneController implements SceneController {
 
     private SceneFactory sceneFactory;
     private View view;
@@ -29,7 +29,7 @@ public class AbstractSceneController implements SceneController{
     }
 
     @Override
-    public View getView() {
+    public final View getView() {
         return this.view;
     }
 

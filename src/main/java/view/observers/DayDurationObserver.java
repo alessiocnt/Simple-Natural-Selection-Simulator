@@ -8,7 +8,7 @@ import view.View;
 /**
  * Day Duration observer.
  */
-public class DayDurationObserver implements SettingsObserver{
+public class DayDurationObserver implements SettingsObserver {
 
     private final ComboBox<DayDuration> combobox;
 

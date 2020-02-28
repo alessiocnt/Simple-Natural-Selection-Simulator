@@ -14,7 +14,7 @@ public class Dimension extends AbstractTrait {
      * the dimension value;
      */
     public Dimension(final int value) {
-        super(value, new Multiplier(value, Dimension.MULTIPLIER));
+        super(value, new Multiplier(value, Dimension.MULTIPLIER), (x) -> x > 0);
     }
 
     @Override

@@ -15,7 +15,7 @@ public class ChildrenQuantity extends AbstractTrait {
      * children quantity.
      */
     public ChildrenQuantity(final int value) {
-        super(value, new Multiplier(value, ChildrenQuantity.MULTIPLIER));
+        super(value, new Multiplier(value, ChildrenQuantity.MULTIPLIER), (x) -> x > 0);
     }
 
     @Override
