@@ -1,16 +1,16 @@
 package model.entity.food;
 
 import model.entity.Energy;
-import model.entity.EntityImpl;
+import model.entity.AbstractEntity;
 
-public class Food extends EntityImpl {
+public class Food extends AbstractEntity {
 
     private static final String EXCEPTIONMESSAGE = "Operation not supported for type Food.";
     /**
      * @param energy
      *          The current Food energy
      */
-    public Food(final Energy energy) {
+    protected Food(final Energy energy) {
         super(energy);
     }
 
