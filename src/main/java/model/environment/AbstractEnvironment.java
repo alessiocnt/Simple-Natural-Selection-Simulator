@@ -183,4 +183,14 @@ public abstract class AbstractEnvironment implements Environment {
         return position;
     }
 
+    /**
+     * A Sting representation of an AbstractEnvironment.
+     */
+    @Override
+    public String toString() {
+        return "AbstractEnvironment [xDimension=" + xDimension + ", yDimension=" + yDimension + ", currentFoodQuantity="
+                + currentFoodQuantity + ", currentOrganismQuantity=" + currentOrganismQuantity + ", foods=" + foods
+                + ", organisms=" + organisms + "]";
+    }
+
 }
