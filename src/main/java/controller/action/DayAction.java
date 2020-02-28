@@ -39,27 +39,40 @@ public class DayAction extends AbstractAction {
      */
     @Override
     public void perform(final Organism organism) {
-        tryToRemoveOrganism(organism);
-        try {
-            Pair<Integer, Integer> movementVectorPair = moveLogic.calculateVectorDirection(organism);
-            environment.moveOrganism(organism, movementVectorPair.getX(), movementVectorPair.getY());
-        } catch (Exception OutOfEnviromentException) {
-            System.out.println("Out of environment, can't move.");
-        }
-        if (eatLogic.canEat(organism, environment.getFood(organism))) {
-            eatLogic.eat(organism, environment.getFood(organism).get());
-            environment.removeFood(environment.getFood(organism).get());
+        if (!tryToRemoveOrganism(organism)) {
+            try {
+                Pair<Integer, Integer> movementVectorPair = moveLogic.calculateVectorDirection(organism);
+                environment.moveOrganism(organism, movementVectorPair.getX(), movementVectorPair.getY());
+            } catch (Exception OutOfEnviromentException) {
+                System.out.println("Out of environment, can't move.");
+            }
+            if (eatLogic.canEat(organism, environment.getFood(organism))) {
+                eatLogic.eat(organism, environment.getFood(organism).get());
+                environment.removeFood(environment.getFood(organism).get());
+            }
         }
     }
 
+    /**
+     * @param organism the Organism
+     * @return True if the Energy is enough for movement
+     *         False instead.
+     */
     private boolean isEnergyEnoughtToMove(final Organism organism) {
         return Energy.greater(organism.getEnergy(), moveLogic.computeConsumptionForMovement(organism))
                 || organism.getEnergy().equals(moveLogic.computeConsumptionForMovement(organism));
     }
 
-    private void tryToRemoveOrganism(final Organism organism) {
+    /**
+     * @param organism the Organism to try to remove
+     * @return True if the Organism is removed.
+     *         False instead.
+     */
+    private boolean tryToRemoveOrganism(final Organism organism) {
         if (!isEnergyEnoughtToMove(organism)) {
             environment.removeOrganism(organism);
+            return true;
         }
+        return false;
     }
 }
