@@ -9,8 +9,8 @@ import controller.action.strategy.MoveLogics;
 import controller.action.strategy.MoveLogicsImpl;
 import model.entity.Energy;
 import model.entity.organism.Organism;
-import model.environment.DayPeriod;
 import model.environment.Environment;
+import model.environment.daycicle.DayPeriod;
 import utilities.Pair;
 
 /**

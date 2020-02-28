@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import model.entity.food.Food;
 import model.entity.organism.Organism;
+import model.environment.exceptions.OutOfEnviromentException;
 import model.environment.position.Position;
 import model.environment.position.PositionImpl;
 
