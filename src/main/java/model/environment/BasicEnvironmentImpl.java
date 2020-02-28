@@ -33,4 +33,13 @@ public class BasicEnvironmentImpl extends AbstractEnvironment implements BasicEn
             //super.addFood(/*HERE*/);
         }
     }
+
+    /**
+     * A Sting representation of a BasicEnvironment.
+     */
+    @Override
+    public String toString() {
+        return super.toString() + "BasicEnvironmentImpl [morningFoodQuantity=" + morningFoodQuantity + ", dailyFoodQuantityModification="
+                + dailyFoodQuantityModification + "]";
+    }
 }

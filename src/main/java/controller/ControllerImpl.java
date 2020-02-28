@@ -2,6 +2,8 @@ package controller;
 
 
 import model.Model;
+import model.environment.daycicle.DayCicle;
+import model.environment.daycicle.DayCicleImpl;
 import settings.DayDuration;
 import settings.Settings;
 import settings.SettingsHolder;
@@ -62,6 +64,7 @@ public class ControllerImpl implements Controller {
     private class SimulationLoop extends Thread {
         private static final int UPDATES_IN_A_DAY = 100;
         private volatile boolean running;
+        private DayCicle dayCicle = new DayCicleImpl(UPDATES_IN_A_DAY);
 
         public SimulationLoop() {
             this.running = true;
@@ -81,7 +84,7 @@ public class ControllerImpl implements Controller {
 
         private void update() {
             // TODO Auto-generated method stub
-            //model.update();
+            //model.update(dayCicle);
             System.out.println("Update");
         }
 
