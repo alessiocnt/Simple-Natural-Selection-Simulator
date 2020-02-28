@@ -69,7 +69,8 @@ public abstract class AbstractEnvironment implements Environment {
        Objects.requireNonNull(father);
        Objects.requireNonNull(son);
        Position pos = findOrganismPosition(father);
-       this.organisms.get(pos).add(son);
+       Set<Organism> s = this.organisms.get(pos);
+       s.add(son);
        this.currentOrganismQuantity++;
    }
 
