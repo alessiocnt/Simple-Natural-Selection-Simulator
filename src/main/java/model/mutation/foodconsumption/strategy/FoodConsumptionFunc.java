@@ -1,4 +1,4 @@
-package model.mutation;
+package model.mutation.foodconsumption.strategy;
 
 import model.entity.organism.Organism;
 
