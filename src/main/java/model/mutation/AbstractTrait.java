@@ -3,6 +3,7 @@ package model.mutation;
 import model.entity.Energy;
 import model.entity.EnergyImpl;
 import model.entity.organism.Organism;
+import model.mutation.foodconsumption.strategy.FoodConsumptionFunc;
 
 /**
  * Abstract class for trait.
