@@ -44,17 +44,24 @@ public final class SettingsImpl implements Settings {
     public int getWindowWidth() {
         return this.selectedRes.getX().intValue();
     }
+
     @Override
     public int getWindowHeight() {
         return this.selectedRes.getY().intValue();
     }
+
     @Override
     public int getPrefWindowWidth() {
         return this.prefRes.getX();
     }
+
     @Override
     public int getPrefWindowHeight() {
         return this.prefRes.getY();
     }
 
+    @Override
+    public String toString() {
+        return "[Res: " + this.selectedRes + ", " + "Day Duration: " + this.dayDuration + "]";
+    }
 }

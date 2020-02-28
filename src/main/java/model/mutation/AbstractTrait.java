@@ -26,6 +26,7 @@ public abstract class AbstractTrait implements Trait {
     public final Energy getFoodConsumption(final Organism organism) {
         return new EnergyImpl(this.foodConsumption.getConsumption(organism));
     }
+
     @Override
     public final String toString() {
         return "Value: " + this.getValue() + ", Rarity: " + this.getRarity();
