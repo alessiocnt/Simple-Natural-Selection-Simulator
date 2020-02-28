@@ -3,7 +3,7 @@
  */
 package controller.action;
 
-import model.environment.DayPeriod;
+import model.environment.daycicle.DayPeriod;
 
 /**
  * Abstract class for Action.

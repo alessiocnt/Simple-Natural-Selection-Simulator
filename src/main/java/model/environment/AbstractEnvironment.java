@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import model.entity.food.Food;
 import model.entity.organism.Organism;
+import model.environment.exceptions.OutOfEnviromentException;
 import model.environment.position.Position;
 import model.environment.position.PositionImpl;
 
@@ -180,6 +181,16 @@ public abstract class AbstractEnvironment implements Environment {
             throw(new NoSuchElementException(organism + " not found"));
         }
         return position;
+    }
+
+    /**
+     * A Sting representation of an AbstractEnvironment.
+     */
+    @Override
+    public String toString() {
+        return "AbstractEnvironment [xDimension=" + xDimension + ", yDimension=" + yDimension + ", currentFoodQuantity="
+                + currentFoodQuantity + ", currentOrganismQuantity=" + currentOrganismQuantity + ", foods=" + foods
+                + ", organisms=" + organisms + "]";
     }
 
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model.environment;
+package model.environment.daycicle;
 
 /**
  * Types of Action.

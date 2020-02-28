@@ -8,7 +8,6 @@ import model.entity.EnergyImpl;
 import model.entity.organism.Organism;
 import model.entity.organism.OrganismBuilder;
 import model.entity.organism.OrganismBuilderImpl;
-import model.environment.position.PositionImpl;
 import model.mutation.ChildrenQuantity;
 import model.mutation.Dimension;
 import model.mutation.MutationRarity;
@@ -24,19 +23,15 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
     @Override
     public final Organism createMutated(final Organism organism) {
         Map<TraitType, Trait> traits = organism.getTraits();
-        //---STAMPE DI PROVA------
-        traits.entrySet().forEach((x) -> System.out.println(x.getValue().getValue()));
-        //---
         Map<TraitType, Trait> mutatedTraits = traits.entrySet().stream()
-        .filter((entrySet) -> !entrySet.getValue().getRarity().equals(MutationRarity.NOMUTATION))
-        .collect(Collectors.toMap((entrySet) -> entrySet.getKey(),
-                (entrySet) -> this.getMutatedTrait(entrySet.getKey(), entrySet.getValue().getValue())));
-        //---
-        //---STAMPE DI PROVA------
-        System.out.println("Mutato");
-        mutatedTraits.entrySet().forEach((x) -> System.out.println(x.getKey().toString() + "-" + x.getValue().getValue()));
-        //final OrganismBuilder organismBuilder = new OrganismBuilderImpl();
-        return null;
+                                    .filter((entrySet) -> !entrySet.getValue().getRarity().equals(MutationRarity.NOMUTATION))
+                                    .collect(Collectors.toMap((entrySet) -> entrySet.getKey(),
+                                    (entrySet) -> this.getMutatedTrait(entrySet.getKey(), entrySet.getValue().getValue())));
+        final OrganismBuilder organismBuilder = new OrganismBuilderImpl(
+                                    new EnergyImpl(mutatedTraits.getOrDefault(TraitType.DIMENSION, new Dimension(100)).getValue()));
+        mutatedTraits.entrySet().forEach((entrySet) -> organismBuilder.trait(entrySet.getKey(), entrySet.getValue()));
+        Organism mutatedOrganism = organismBuilder.build();
+        return mutatedOrganism;
     }
     //MAIN DI PROVA
     public static void main(String...strings ) {
@@ -46,7 +41,11 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
         organismBuilder.trait(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(1));
         Organism x = organismBuilder.build();
         MutatedOrganismFactory factory = new MutatedOrganismFactoryImpl();
-        factory.createMutated(x);
+        Organism children = factory.createMutated(x);
+        if (x != children) {
+            System.out.println(x);
+            System.out.println(children);
+        }
     }
 
     private Trait getMutatedTrait(final TraitType type, final int value) {

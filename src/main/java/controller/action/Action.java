@@ -4,7 +4,7 @@
 package controller.action;
 
 import model.entity.organism.Organism;
-import model.environment.DayPeriod;
+import model.environment.daycicle.DayPeriod;
 
 /**
  * Interface that models an Action.

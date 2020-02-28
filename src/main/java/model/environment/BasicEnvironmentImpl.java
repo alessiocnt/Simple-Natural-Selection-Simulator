@@ -6,7 +6,7 @@ public class BasicEnvironmentImpl extends AbstractEnvironment implements BasicEn
     private int morningFoodQuantity;
     private final int dailyFoodQuantityModification;
 
-    public BasicEnvironmentImpl(final int xDimension, final int yDimension, final int morningFoodQuantity, final int dailyFoodQuantityModification) {
+    protected BasicEnvironmentImpl(final int xDimension, final int yDimension, final int morningFoodQuantity, final int dailyFoodQuantityModification) {
         super(xDimension, yDimension);
         this.morningFoodQuantity = morningFoodQuantity;
         this.dailyFoodQuantityModification = dailyFoodQuantityModification;
@@ -32,5 +32,14 @@ public class BasicEnvironmentImpl extends AbstractEnvironment implements BasicEn
             //TODO add a food from the food builder
             //super.addFood(/*HERE*/);
         }
+    }
+
+    /**
+     * A Sting representation of a BasicEnvironment.
+     */
+    @Override
+    public String toString() {
+        return super.toString() + "BasicEnvironmentImpl [morningFoodQuantity=" + morningFoodQuantity + ", dailyFoodQuantityModification="
+                + dailyFoodQuantityModification + "]";
     }
 }
