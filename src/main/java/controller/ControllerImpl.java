@@ -71,7 +71,7 @@ public class ControllerImpl implements Controller {
         }
 
         public void run() {
-            while (this.running /*TODO uncomment && !model.isSimulationOver()*/) {
+            while (this.running && !model.isSimulationOver()) {
                 final long startTime = System.currentTimeMillis();
                 update();
                 render();

@@ -1,6 +1,5 @@
 package model.environment;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -66,14 +65,12 @@ public abstract class AbstractEnvironment implements Environment {
     /**
      * {@inheritDoc}
      */
-   public void addOrganism(final Organism father, final Organism...son) throws NoSuchElementException {
+   public void addOrganism(final Organism father, final Organism son) throws NoSuchElementException {
        Objects.requireNonNull(father);
        Objects.requireNonNull(son);
-       //TODO find a better way to get the Position
        Position pos = findOrganismPosition(father);
-       Set<Organism> value = this.organisms.get(pos);
-       Collections.addAll(value, son);
-       this.currentOrganismQuantity += son.length;
+       this.organisms.get(pos).add(son);
+       this.currentOrganismQuantity++;
    }
 
     /**
@@ -171,6 +168,7 @@ public abstract class AbstractEnvironment implements Environment {
     }
 
     private Position findOrganismPosition(final Organism organism) {
+        //TODO find a better way to get the Position
         Position position = new PositionImpl(-1, -1);
         this.organisms.forEach((k, v) -> {
             if (v.contains(organism)) {
