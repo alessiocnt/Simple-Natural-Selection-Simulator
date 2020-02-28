@@ -26,27 +26,24 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
         Map<TraitType, Trait> mutatedTraits = traits.entrySet().stream()
                                     .filter((entrySet) -> !entrySet.getValue().getRarity().equals(MutationRarity.NOMUTATION))
                                     .collect(Collectors.toMap((entrySet) -> entrySet.getKey(),
-                                    (entrySet) -> this.getMutatedTrait(entrySet.getKey(), entrySet.getValue().getValue())));
+                                                (entrySet) -> this.getMutatedTrait(entrySet.getKey(), entrySet.getValue().getValue())));
         final OrganismBuilder organismBuilder = new OrganismBuilderImpl(
                                     new EnergyImpl(mutatedTraits.getOrDefault(TraitType.DIMENSION, new Dimension(100)).getValue()));
         mutatedTraits.entrySet().forEach((entrySet) -> organismBuilder.trait(entrySet.getKey(), entrySet.getValue()));
         Organism mutatedOrganism = organismBuilder.build();
         return mutatedOrganism;
     }
-    //MAIN DI PROVA
-    public static void main(String...strings ) {
-        OrganismBuilder organismBuilder = new OrganismBuilderImpl(new EnergyImpl(100));
-        organismBuilder.trait(TraitType.SPEED, new Speed(5));
-        organismBuilder.trait(TraitType.DIMENSION, new Dimension(100));
-        organismBuilder.trait(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(1));
-        Organism x = organismBuilder.build();
-        MutatedOrganismFactory factory = new MutatedOrganismFactoryImpl();
-        Organism children = factory.createMutated(x);
-        if (x != children) {
-            System.out.println(x);
-            System.out.println(children);
-        }
-    }
+
+    /*
+     * //MAIN DI PROVA public static void main(String...strings ) { OrganismBuilder
+     * organismBuilder = new OrganismBuilderImpl(new EnergyImpl(100));
+     * organismBuilder.trait(TraitType.SPEED, new Speed(5));
+     * organismBuilder.trait(TraitType.DIMENSION, new Dimension(100));
+     * organismBuilder.trait(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(1));
+     * Organism x = organismBuilder.build(); MutatedOrganismFactory factory = new
+     * MutatedOrganismFactoryImpl(); Organism children = factory.createMutated(x);
+     * if (x != children) { System.out.println(x); System.out.println(children); } }
+     */
 
     private Trait getMutatedTrait(final TraitType type, final int value) {
         Trait newTrait = null;
@@ -56,7 +53,6 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
             final double variationPercentage = rnd.nextDouble() / (value > 1 ? 2 : 1);
             //Se il numero estratto é minore della percentuale allora significa che muto
             do {
-                System.out.println("Provo" + type);
                 if (rnd.nextBoolean()) {
                     //Se é true segno positivo
                     newValue = (int) Math.round(value + value * variationPercentage);
