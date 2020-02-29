@@ -1,13 +1,10 @@
 package view.scenecontroller.simulationstrategy;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
@@ -23,9 +20,10 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
     private final GraphicsContext graphics;
     private final int environmentX;
     private final int environmentY;
-    private final double entityX;
-    private final double entityY;
-    private Dimension screenSize;
+    private double xAxisScaleFactor;
+    private double yAxisScaleFactor;
+    private double canvasWidth;
+    private double canvasHeight;
 
 
     /**
@@ -41,17 +39,17 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
         this.graphics = graphics;
         this.environmentX = environmentX;
         this.environmentY = environmentY;
-        this.entityX = getEntityX();
-        this.entityY = getEntityY();
+        this.xAxisScaleFactor = getXScaleFactor();
+        this.yAxisScaleFactor = getYScaleFactor();
     }
 
 
-    private double getEntityX() {
-        return this.screenSize.getWidth() / this.environmentX;
+    private double getXScaleFactor() {
+        return this.canvasWidth / this.environmentX;
     }
 
-    private double getEntityY() {
-        return this.screenSize.getHeight() / this.environmentY;
+    private double getYScaleFactor() {
+        return this.canvasHeight / this.environmentY;
     }
 
     /**
@@ -66,22 +64,22 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public GraphicsContext getUpdatedGraphicsContext() {
-        return update();
-    }
-
-    private GraphicsContext update() {
-        /*for (Entry<Position, Food> entry : foods) {
+    public void update() {
+        this.graphics.setFill(Color.BEIGE);
+        this.graphics.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+        this.graphics.fill();
+        // TODO when ever
+        for (Entry<Position, Food> entry : foods) {
             this.graphics.setFill(Color.DARKGREEN);
-            this.graphics.fillRect(entry.getKey().getX(), entry.getKey().getY(), this.entityX, this.entityY);
+            this.graphics.fillRect(entry.getKey().getX() * this.xAxisScaleFactor, 
+                    entry.getKey().getY() * this.yAxisScaleFactor, this.xAxisScaleFactor, this.yAxisScaleFactor);
         }
 
         for (Entry<Position, Organism> entry : organisms) {
             this.graphics.setFill(getOrganismColor(entry.getValue()));
-            this.graphics.fillOval(entry.getKey().getX(), entry.getKey().getY(), 
-                    this.entityX * getOrganismDimension(entry.getValue()), this.entityY * getOrganismDimension(entry.getValue()));
-        }*/
+            this.graphics.fillOval(entry.getKey().getX() * this.xAxisScaleFactor, entry.getKey().getY() * this.yAxisScaleFactor, 
+                    this.xAxisScaleFactor * getOrganismDimension(entry.getValue()), this.yAxisScaleFactor * getOrganismDimension(entry.getValue()));
+        }
 
         // colore organism
         this.graphics.setFill(Color.RED);
@@ -89,31 +87,28 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
         // colore food
         this.graphics.setFill(Color.DARKGREEN);
         this.graphics.fillRect(65, 23, 25, 25);
-
-        return this.graphics;
     }
 
     private Color getOrganismColor(final Organism organism) {
-        // TODO fallo con strategy, per ora è solo una prova per colorare
-        return Color.rgb(organism.getTraits().get(TraitType.SPEED).getValue() * 50, 0, 0);
+        final int speedMult = 50;
+        final int childMult = 20;
+        return Color.rgb(organism.getTraits().get(TraitType.SPEED).getValue() * speedMult, 0, 
+                organism.getTraits().get(TraitType.CHILDRENQUANTITY).getValue() * childMult);
     }
 
 
-    private double getOrganismDimension(final Organism o) {
-        return o.getTraits().get(TraitType.DIMENSION).getValue() / 100 / 2;
+    private double getOrganismDimension(final Organism organism) {
+        return organism.getTraits().get(TraitType.DIMENSION).getValue() / 100;
     }
 
     /**
-     * Tells logics what is the canvas dimensions.
-     * @param screenSize
-     *      the screenSize
+     * {@inheritDoc}
      */
     @Override
-    public void setCanvasDimension(final Dimension screenSize) {
-        this.screenSize = screenSize;
+    public void setCanvasDimension(final double width, final double height) {
+        this.canvasWidth = width;
+        this.canvasHeight = height;
+        this.xAxisScaleFactor = getXScaleFactor();
+        this.yAxisScaleFactor = getYScaleFactor();
     }
-
-
-
-
 }

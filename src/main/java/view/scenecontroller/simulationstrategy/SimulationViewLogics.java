@@ -3,6 +3,7 @@ package view.scenecontroller.simulationstrategy;
 import java.util.Set;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 import java.awt.Dimension;
 import java.util.Map.Entry;
@@ -25,7 +26,17 @@ public interface SimulationViewLogics {
      */
     void setEntities(Set<Entry<Position, Food>> foods, Set<Entry<Position, Organism>> organisms);
 
-    GraphicsContext getUpdatedGraphicsContext();
+    /**
+     * Updates the canvas.
+     */
+    void update();
 
-    void setCanvasDimension(Dimension screenSize); 
+    /**
+     * Tells logics what is the canvas dimensions.
+     * @param width
+     *      the canvas width
+     * @param height
+     *      the canvas height
+     */
+    void setCanvasDimension(double width, double height);
 }

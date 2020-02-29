@@ -26,7 +26,6 @@ public class Main extends Application {
         final View view = new ViewImpl(primaryStage);
         final Controller controller = new ControllerImpl(new ModelImpl(), view);
         view.launch(controller);
-        //view.render(null, null);
     }
 
 }

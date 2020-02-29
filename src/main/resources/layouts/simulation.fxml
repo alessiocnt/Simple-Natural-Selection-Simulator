@@ -6,8 +6,25 @@
 <?import javafx.scene.layout.*?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Canvas id="canvas" fx:id="canvas" height="200.0" width="200.0" />
-   </children>
-</Pane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <Canvas id="canvas" fx:id="canvas" height="300.0" width="600.0" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <HBox prefHeight="50.0" prefWidth="600.0" snapToPixel="false" BorderPane.alignment="CENTER">
+         <children>
+            <Button id="stopBtn" fx:id="stopBtn" mnemonicParsing="false" prefHeight="100.0" prefWidth="800.0" text="Resume/Pause" />
+            <Button id="backBtn" fx:id="backBtn" mnemonicParsing="false" prefHeight="100.0" prefWidth="800.0" text="Back" />
+            <Button id="settingBtn" fx:id="settingBtn" mnemonicParsing="false" prefHeight="100.0" prefWidth="800.0" text="Settings" />
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <HBox prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="800.0" prefWidth="1600.0" text="Currently alive organisms:" />
+            <Label id="aliveLbl" fx:id="aliveLbl" prefHeight="800.0" prefWidth="1600.0" />
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
