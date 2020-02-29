@@ -4,9 +4,6 @@ import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.TextField;
-
-import java.awt.Toolkit;
 import java.util.Map.Entry;
 
 import model.entity.food.Food;
@@ -28,6 +25,7 @@ public class SimulationController extends AbstractSceneController {
 
     private SimulationViewLogics logics;
 
+    @FXML
     private void initialize() {
         System.out.println(this.canvas);
         this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), 100, 100);

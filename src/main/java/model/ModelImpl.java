@@ -1,13 +1,17 @@
 package model;
 
 import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import controller.action.ActionController;
+import model.entity.food.Food;
 import model.entity.food.FoodBuilder;
 import model.entity.organism.Organism;
 import model.environment.BasicEnvironment;
 import model.environment.daycicle.DayCicle;
 import model.environment.daycicle.DayPeriod;
+import model.environment.position.Position;
 
 /**
  * Model implementation.
@@ -50,5 +54,17 @@ public class ModelImpl implements Model {
     @Override
     public boolean isSimulationOver() {
         return this.environment.getCurrendOrganismQuantity() == 0;
+    }
+
+    @Override
+    public Set<Entry<Position, Food>> getFoods() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<Entry<Position, Organism>> getOrganisms() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }
