@@ -39,7 +39,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final boolean initSimulation() {
-        return false;
+        return true;
     }
 
     @Override
@@ -90,7 +90,7 @@ public class ControllerImpl implements Controller {
 
         private void render() {
             // TODO Auto-generated method stub
-            //view.render();
+            view.render(model.getFoods(), model.getOrganisms());
             System.out.println("Render");
         }
 
