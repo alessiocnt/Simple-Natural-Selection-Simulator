@@ -1,5 +1,7 @@
 package model.mutation;
 
+import settings.SetupValues;
+
 /**
  * Types of trait.
  */
@@ -7,13 +9,13 @@ public enum TraitType {
     /**
      * Speed.
      */
-    SPEED(AffectMovement.YES, MutationRarity.COMMON),
+    SPEED(AffectMovement.YES, MutationRarity.COMMON, SetupValues.SPEED),
 
     /**
      * Dimension.
      */
 
-    DIMENSION(AffectMovement.YES, MutationRarity.NORMAL),
+    DIMENSION(AffectMovement.YES, MutationRarity.NORMAL, SetupValues.DIMENSION),
     /**
      * Food Radar.
      */
@@ -22,14 +24,16 @@ public enum TraitType {
     /**
      * Children quantity.
      */
-    CHILDRENQUANTITY(AffectMovement.NO, MutationRarity.RARE);
+    CHILDRENQUANTITY(AffectMovement.NO, MutationRarity.RARE, SetupValues.CHILDRENQUANTITY);
 
     private AffectMovement affectMovement;
     private MutationRarity rarity;
+    private SetupValues values;
 
-    TraitType(final AffectMovement affectMovement, final MutationRarity rarity) {
+    TraitType(final AffectMovement affectMovement, final MutationRarity rarity, final SetupValues values) {
         this.affectMovement = affectMovement;
         this.rarity = rarity;
+        this.values = values;
     }
 
     /**
@@ -44,6 +48,13 @@ public enum TraitType {
      */
     public MutationRarity getRarity() {
         return this.rarity;
+    }
+
+    /**
+     * @return the range of value that trait can assume.
+     */
+    public SetupValues getValues() {
+        return this.values;
     }
 
 }

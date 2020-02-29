@@ -15,6 +15,7 @@ import model.mutation.MutationRarity;
 import model.mutation.Speed;
 import model.mutation.Trait;
 import model.mutation.TraitType;
+import settings.SetupValues;
 
 /**
  * Children factory.
@@ -30,39 +31,31 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
                                     .collect(Collectors.toMap((entrySet) -> entrySet.getKey(),
                                                 (entrySet) -> this.getMutatedTrait(entrySet.getKey(), entrySet.getValue().getValue())));
         final OrganismBuilder organismBuilder = new OrganismBuilderImpl(
-                                    new EnergyImpl(mutatedTraits.getOrDefault(TraitType.DIMENSION, new Dimension(100)).getValue()));
+                                    new EnergyImpl(mutatedTraits.getOrDefault(TraitType.DIMENSION,
+                                            new Dimension(SetupValues.DIMENSION.getDefault())).getValue()));
         mutatedTraits.entrySet().forEach((entrySet) -> organismBuilder.trait(entrySet.getKey(), entrySet.getValue()));
         Organism mutatedOrganism = organismBuilder.build();
         return mutatedOrganism;
     }
 
-    /*
-     * //MAIN DI PROVA public static void main(String...strings ) { OrganismBuilder
-     * organismBuilder = new OrganismBuilderImpl(new EnergyImpl(100));
-     * organismBuilder.trait(TraitType.SPEED, new Speed(5));
-     * organismBuilder.trait(TraitType.DIMENSION, new Dimension(100));
-     * organismBuilder.trait(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(1));
-     * Organism x = organismBuilder.build(); MutatedOrganismFactory factory = new
-     * MutatedOrganismFactoryImpl(); Organism children = factory.createMutated(x);
-     * if (x != children) { System.out.println(x); System.out.println(children); } }
-     */
-
     private Trait getMutatedTrait(final TraitType type, final int value) {
+        Objects.requireNonNull(type);
+        Objects.requireNonNull(value);
         Trait newTrait = null;
         final Random rnd = new Random();
         int newValue = value;
         if (rnd.nextDouble() < type.getRarity().getPercentage()) {
             final double variationPercentage = rnd.nextDouble() / (value > 1 ? 2 : 1);
-            //Se il numero estratto é minore della percentuale allora significa che muto
+            //If the random number is lower than the rarity percentage, the trait mutate.
             do {
                 if (rnd.nextBoolean()) {
-                    //Se é true segno positivo
+                    //If true the sign is positive.
                     newValue = (int) Math.round(value + value * variationPercentage);
                 } else {
-                    //Segno negativo
+                    //If false the sign is negative.
                     newValue = (int) Math.round(value - value * variationPercentage);
                 }
-            } while (newValue <= 0);
+            } while (newValue < type.getValues().getStart() || newValue > type.getValues().getStop());
 
         }
         switch (type) {
@@ -76,6 +69,8 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
                     newTrait = new ChildrenQuantity(newValue);
                 break;
             default:
+                    /* If no one can handle the request instead of returning null, 
+                    *  it throw a runtime exception. */
                     throw new IllegalArgumentException();
         }
         return newTrait;

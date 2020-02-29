@@ -1,7 +1,6 @@
 package model.mutation;
 
 import model.mutation.foodconsumption.strategy.Multiplier;
-import model.mutation.utilities.CheckUtil;
 
 /**
  * Speed trait.
@@ -15,8 +14,7 @@ public class Speed extends AbstractTrait {
      * the Speed value
      */
     public Speed(final int value) {
-        super(value, new Multiplier(value, Speed.MULTIPLIER));
-        CheckUtil.check(() -> value > 0, new IllegalArgumentException());
+        super(value, new Multiplier(value, Speed.MULTIPLIER), TraitType.SPEED);
     }
 
     @Override

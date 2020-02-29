@@ -1,9 +1,7 @@
 package settings;
 
 /**
- * Range of value available in the setup scene
- * and default value.
- *
+ * Range of value of traits and properties.
  */
 public enum SetupValues {
 
@@ -26,7 +24,11 @@ public enum SetupValues {
     /**
      * Food variation every morning.
      */
-    FOODVARIATION(-5, 5, 0);
+    FOODVARIATION(-5, 5, 0),
+    /**
+     * Children quantity.
+     */
+    CHILDRENQUANTITY(1, 10, 1);
 
     private final int start;
     private final int stop;

@@ -23,4 +23,8 @@ public interface Trait  {
      * @return the mutation rarity of the trait.
      */
     MutationRarity getRarity();
+    /**
+     * @return the type of the trait.
+     */
+    TraitType getType();
 }

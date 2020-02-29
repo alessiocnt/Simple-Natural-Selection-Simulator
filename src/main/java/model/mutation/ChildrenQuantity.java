@@ -1,11 +1,9 @@
 package model.mutation;
 
 import model.mutation.foodconsumption.strategy.Multiplier;
-import model.mutation.utilities.CheckUtil;
 
 /**
  * Children Quantity Trait.
- *
  */
 public class ChildrenQuantity extends AbstractTrait {
 
@@ -16,8 +14,7 @@ public class ChildrenQuantity extends AbstractTrait {
      * children quantity.
      */
     public ChildrenQuantity(final int value) {
-        super(value, new Multiplier(value, ChildrenQuantity.MULTIPLIER));
-        CheckUtil.check(() -> value > 0, new IllegalArgumentException());
+        super(value, new Multiplier(value, ChildrenQuantity.MULTIPLIER), TraitType.CHILDRENQUANTITY);
     }
 
     @Override
