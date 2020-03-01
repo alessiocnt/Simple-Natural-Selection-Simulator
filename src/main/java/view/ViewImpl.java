@@ -1,6 +1,7 @@
 package view;
 
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 
 import controller.Controller;
@@ -30,7 +31,6 @@ public class ViewImpl implements View {
     public ViewImpl(final Stage stage) {
         this.stage = stage;
         this.sceneFactory = new SceneFactoryImpl(this.stage, this);
-        this.simulationController = new SimulationController();
     }
 
     @Override 
@@ -54,7 +54,16 @@ public class ViewImpl implements View {
      */
     @Override
     public void render(final Set<Entry<Position, Food>> foods, final Set<Entry<Position, Organism>> organisms) {
+        Objects.requireNonNull(this.simulationController);
         this.simulationController.render(foods, organisms);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setSimulationController(final SimulationController simulationController) {
+        this.simulationController = simulationController;
     }
 
 }

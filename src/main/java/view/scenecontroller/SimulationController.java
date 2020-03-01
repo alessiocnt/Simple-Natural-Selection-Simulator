@@ -26,7 +26,7 @@ public class SimulationController extends AbstractSceneController {
     private Canvas canvas;
 
     @FXML
-    private Button stopBtn;
+    private Button startStopBtn;
 
     @FXML
     private Button backBtn;
@@ -46,11 +46,18 @@ public class SimulationController extends AbstractSceneController {
     private SimulationViewLogics logics;
 
     @FXML
+    private void startStop() {
+        System.out.println(this.getView());
+        this.getView().setSimulationController(this);
+        this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), 100, 100);
+        this.getView().getController().startSimulation();
+                /*(int) this.getView().getController().getEnvironmentDimension().getX(),
+                (int) this.getView().getController().getEnvironmentDimension().getY());*/
+    }
+
+    @FXML
     private void initialize() {
         System.out.println("Wassup " + this.canvas.getHeight());
-        this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), 100, 100);
-          /*(int) this.getView().getController().getEnvironmentDimension().getX(),
-          (int) this.getView().getController().getEnvironmentDimension().getY());*/
     }
 
     /**
@@ -62,13 +69,9 @@ public class SimulationController extends AbstractSceneController {
      *                      organisms that will be displayed
      */
     public void render(final Set<Entry<Position, Food>> foods, final Set<Entry<Position, Organism>> organisms) {
-        System.out.println("a" + this.getView());
-        System.out.println(this.getView().getController());
-        System.out.println(this.getView().getController().getSettings());
-        System.out.println(this.getView().getController().getSettings().getPrefWindowHeight());
         this.canvas.setWidth(this.getView().getController().getSettings().getPrefWindowWidth());
         this.canvas.setHeight(this.getView().getController().getSettings().getPrefWindowHeight()
-               - this.top.getPrefHeight() - this.bottom.getPrefHeight());
+               - this.top.getHeight() - this.bottom.getHeight());
         this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
         this.logics.setEntities(foods, organisms);
         this.logics.update();

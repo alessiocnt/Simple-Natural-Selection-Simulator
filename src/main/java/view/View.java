@@ -7,6 +7,7 @@ import controller.Controller;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
+import view.scenecontroller.SimulationController;
 import view.scenefactory.SceneFactory;
 
 /**
@@ -29,6 +30,13 @@ public interface View {
      * @return the current sceneFactory.
      */
     SceneFactory getSceneFactory();
+
+    /**
+     * Sets the simulation controller.
+     * @param simulationController
+     *      the SimulationController
+     */
+    void setSimulationController(SimulationController simulationController);
 
     /**
      * Renders the simulation canvas.

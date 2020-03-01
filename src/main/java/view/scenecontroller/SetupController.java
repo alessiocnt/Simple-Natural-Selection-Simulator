@@ -72,7 +72,6 @@ public class SetupController extends AbstractSceneController {
         if (this.getView().getController().initSimulation()) {
             //Initialization is ok, so open the simulation scene.
             this.getSceneFactory().openSimulation();
-            this.getView().getController().startSimulation();
         } else {
             MyAlert.showAlert(AlertType.ERROR, "Error", "Something went wrong, retry!");
         }

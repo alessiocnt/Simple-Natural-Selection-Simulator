@@ -46,8 +46,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final void startSimulation() {
-        //this.simulationLoop.start();
-        this.view.render(null, null);
+        this.simulationLoop.start();
     }
 
     @Override
@@ -94,7 +93,8 @@ public class ControllerImpl implements Controller {
 
         private void render() {
             // TODO Auto-generated method stub
-            view.render(model.getFoods(), model.getOrganisms());
+            //view.render(model.getFoods(), model.getOrganisms());
+            view.render(null, null);
             System.out.println("Render");
         }
 

@@ -12,7 +12,7 @@
    <bottom>
       <HBox id="top" fx:id="top" prefHeight="50.0" prefWidth="600.0" snapToPixel="false" BorderPane.alignment="CENTER">
          <children>
-            <Button id="stopBtn" fx:id="stopBtn" mnemonicParsing="false" prefHeight="100.0" prefWidth="800.0" text="Resume/Pause" />
+            <Button id="startStopBtn" fx:id="startStopBtn" mnemonicParsing="false" onAction="#startStop" prefHeight="100.0" prefWidth="800.0" text="Start/Stop" />
             <Button id="backBtn" fx:id="backBtn" mnemonicParsing="false" prefHeight="100.0" prefWidth="800.0" text="Back" />
             <Button id="settingsBtn" fx:id="settingsBtn" mnemonicParsing="false" prefHeight="100.0" prefWidth="800.0" text="Settings" />
          </children>

@@ -25,15 +25,15 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
     private double canvasWidth;
     private double canvasHeight;
 
-
     /**
      * Creates a new SimulationViewLogicsImpl.
+     * 
      * @param graphics
-     *      the Canvas graphics context
+     *                         the Canvas graphics context
      * @param environmentX
-     *      x-axis dimension of the environment
+     *                         x-axis dimension of the environment
      * @param environmentY
-     *      y-axis dimension of the environment
+     *                         y-axis dimension of the environment
      */
     public SimulationViewLogicsImpl(final GraphicsContext graphics, final int environmentX, final int environmentY) {
         this.graphics = graphics;
@@ -42,7 +42,6 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
         this.xAxisScaleFactor = getXScaleFactor();
         this.yAxisScaleFactor = getYScaleFactor();
     }
-
 
     private double getXScaleFactor() {
         return this.canvasWidth / this.environmentX;
@@ -67,37 +66,35 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
     public void update() {
         this.graphics.setFill(Color.BLACK);
         this.graphics.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
-        // TODO when ever
-        /*
-         * for (Entry<Position, Food> entry : foods) {
-         * this.graphics.setFill(Color.DARKGREEN);
-         * this.graphics.fillRect(entry.getKey().getX() * this.xAxisScaleFactor,
-         * entry.getKey().getY() * this.yAxisScaleFactor, this.xAxisScaleFactor,
-         * this.yAxisScaleFactor); }
-         * 
-         * for (Entry<Position, Organism> entry : organisms) {
-         * this.graphics.setFill(getOrganismColor(entry.getValue()));
-         * this.graphics.fillOval(entry.getKey().getX() * this.xAxisScaleFactor,
-         * entry.getKey().getY() * this.yAxisScaleFactor, this.xAxisScaleFactor *
-         * getOrganismDimension(entry.getValue()), this.yAxisScaleFactor *
-         * getOrganismDimension(entry.getValue())); }
-         */
+        for (Entry<Position, Food> entry : foods) {
+            this.graphics.setFill(Color.DARKGREEN);
+            this.graphics.fillRect(entry.getKey().getX() * this.xAxisScaleFactor, 
+                    entry.getKey().getY() * this.yAxisScaleFactor,
+                    this.xAxisScaleFactor, this.yAxisScaleFactor);
+        }
 
-        // colore organism
-        this.graphics.setFill(Color.RED);
-        this.graphics.fillOval(0, 0, 50, 50);
-        // colore food
-        this.graphics.setFill(Color.DARKGREEN);
-        this.graphics.fillRect(65, 23, 25, 25);
+        for (Entry<Position, Organism> entry : organisms) {
+            this.graphics.setFill(getOrganismColor(entry.getValue()));
+            this.graphics.fillOval(entry.getKey().getX() * this.xAxisScaleFactor, 
+                    entry.getKey().getY() * this.yAxisScaleFactor,
+                    this.xAxisScaleFactor * getOrganismDimension(entry.getValue()),
+                    this.yAxisScaleFactor * getOrganismDimension(entry.getValue()));
+        }
+
+        /*
+         * // colore organism this.graphics.setFill(Color.RED);
+         * this.graphics.fillOval(0, 0, 50, 50); // colore food
+         * this.graphics.setFill(Color.DARKGREEN); this.graphics.fillRect(65, 23, 25,
+         * 25);
+         */
     }
 
     private Color getOrganismColor(final Organism organism) {
         final int speedMult = 50;
         final int childMult = 20;
-        return Color.rgb(organism.getTraits().get(TraitType.SPEED).getValue() * speedMult, 0, 
+        return Color.rgb(organism.getTraits().get(TraitType.SPEED).getValue() * speedMult, 0,
                 organism.getTraits().get(TraitType.CHILDRENQUANTITY).getValue() * childMult);
     }
-
 
     private double getOrganismDimension(final Organism organism) {
         return organism.getTraits().get(TraitType.DIMENSION).getValue() / 100;
