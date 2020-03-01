@@ -11,11 +11,12 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import view.View;
 import view.scenecontroller.SceneController;
+import view.scenecontroller.SimulationController;
 import view.utilities.SceneType;
 
 /**
- * Implementation of Scene Loader that is responsible of loading the right 
- * scene in the current stage.
+ * Implementation of Scene Loader that is responsible of loading the right scene
+ * in the current stage.
  *
  */
 public class SceneLoaderImpl implements SceneLoader {
@@ -26,7 +27,7 @@ public class SceneLoaderImpl implements SceneLoader {
 
     /**
      * @param view
-     * Current view
+     *                 Current view
      */
     public SceneLoaderImpl(final View view) {
         this.view = view;
@@ -45,25 +46,32 @@ public class SceneLoaderImpl implements SceneLoader {
             if (this.sceneCache.containsKey(sceneType)) {
                 scene = this.sceneCache.get(sceneType).get();
             } else {
-               scene = new Scene(root);
-               scene.getStylesheets().add(ClassLoader.getSystemResource(sceneType.getCssPath()).toExternalForm());
-               this.sceneCache.put(sceneType, Optional.of(scene));
+                scene = new Scene(root);
+                scene.getStylesheets().add(ClassLoader.getSystemResource(sceneType.getCssPath()).toExternalForm());
+                this.sceneCache.put(sceneType, Optional.of(scene));
             }
 
-          stage.setScene(scene);
-          stage.setTitle(sceneType.getTitle());
-          stage.setMinWidth(this.view.getController().getSettings().getPrefWindowWidth());
-          stage.setMinHeight(this.view.getController().getSettings().getPrefWindowHeight());
-          stage.setMaximized(true);
-          stage.setResizable(true);
+            stage.setScene(scene);
+            stage.setTitle(sceneType.getTitle());
+            stage.setMinWidth(this.view.getController().getSettings().getPrefWindowWidth());
+            stage.setMinHeight(this.view.getController().getSettings().getPrefWindowHeight());
+            stage.setMaximized(true);
+            stage.setResizable(true);
 
-          if (!stage.isShowing()) {
-              stage.show();
-          }
+            if (!stage.isShowing()) {
+                stage.show();
+            }
 
-          SceneController controller = (SceneController) this.loader.getController();
-          controller.setSceneFactory(this.view.getSceneFactory());
-          controller.setView(this.view);
+            SceneController controller = (SceneController) this.loader.getController();
+            controller.setSceneFactory(this.view.getSceneFactory());
+            controller.setView(this.view);
+            switch (sceneType) {
+            case SIMULATION:
+                ((SimulationController) controller).initSimulationController();
+                break;
+            default:
+                break;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

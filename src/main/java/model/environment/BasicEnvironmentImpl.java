@@ -1,6 +1,8 @@
 package model.environment;
 
-
+/**
+ * Represent a simple environment. 
+ */
 public class BasicEnvironmentImpl extends AbstractEnvironment implements BasicEnvironment {
 
     private int morningFoodQuantity;

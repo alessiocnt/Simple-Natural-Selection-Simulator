@@ -2,15 +2,10 @@ package view.scenecontroller.simulationstrategy;
 
 import java.util.Set;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-
-import java.awt.Dimension;
-import java.util.Map.Entry;
-
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
+import utilities.Pair;
 
 /**
  * Interface that models the logic to display entities on screen.
@@ -24,7 +19,7 @@ public interface SimulationViewLogics {
      * @param organisms
      *      organisms that will be displayed
      */
-    void setEntities(Set<Entry<Position, Food>> foods, Set<Entry<Position, Organism>> organisms);
+    void setEntities(Set<Pair<Position, Food>> foods, Set<Pair<Position, Organism>> organisms);
 
     /**
      * Updates the canvas.

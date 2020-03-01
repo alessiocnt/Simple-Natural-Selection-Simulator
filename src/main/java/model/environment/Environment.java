@@ -9,6 +9,7 @@ import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.exceptions.OutOfEnviromentException;
 import model.environment.position.Position;
+import utilities.Pair;
 
 /**
  * Represent the environment in which Organisms and Food are contained.
@@ -106,6 +107,16 @@ public interface Environment {
      * @return an optional containing the food or an empty one if the position was empty
      */
     Optional<Food> getFood(Position position);
+
+    /**
+     * @return an Entry of each Food and its position in the environment
+     */
+    Set<Pair<Position, Food>> getPositionFoods();
+
+    /**
+     * @return an Entry of each Organism and its position in the environment
+     */
+    Set<Pair<Position, Organism>> getPositionOrganisms();
 
     /**
      * @return the environment dimension

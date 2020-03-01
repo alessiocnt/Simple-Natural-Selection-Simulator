@@ -44,7 +44,7 @@ public class DayAction extends AbstractAction {
                 Pair<Integer, Integer> movementVectorPair = moveLogic.calculateVectorDirection(organism);
                 environment.moveOrganism(organism, movementVectorPair.getX(), movementVectorPair.getY());
             } catch (Exception OutOfEnviromentException) {
-                System.out.println("Out of environment, can't move.");
+                System.out.println("Out of environment, can't move." + organism);
             }
             if (eatLogic.canEat(organism, environment.getFood(organism))) {
                 eatLogic.eat(organism, environment.getFood(organism).get());

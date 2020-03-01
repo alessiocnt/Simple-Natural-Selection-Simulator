@@ -1,12 +1,12 @@
 package view;
 
-import java.util.Map.Entry;
 import java.util.Set;
 
 import controller.Controller;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
+import utilities.Pair;
 import view.scenecontroller.SimulationController;
 import view.scenefactory.SceneFactory;
 
@@ -45,6 +45,6 @@ public interface View {
      * @param organisms
      *      organisms in the environment 
      */
-    void render(Set<Entry<Position, Food>> foods, Set<Entry<Position, Organism>> organisms);
+    void render(Set<Pair<Position, Food>> foods, Set<Pair<Position, Organism>> organisms);
 
 }

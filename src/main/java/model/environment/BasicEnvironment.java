@@ -15,5 +15,4 @@ public interface BasicEnvironment extends Environment {
      * Tells the Environment that it's a new day.
      */
     void nextDay();
-
 }

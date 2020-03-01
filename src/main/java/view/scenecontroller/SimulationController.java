@@ -8,11 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
-import java.util.Map.Entry;
-
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
+import utilities.Pair;
 import view.scenecontroller.simulationstrategy.SimulationViewLogics;
 import view.scenecontroller.simulationstrategy.SimulationViewLogicsImpl;
 
@@ -47,19 +46,29 @@ public class SimulationController extends AbstractSceneController {
 
     @FXML
     private void startStop() {
-        System.out.println(this.getView());
-        this.getView().setSimulationController(this);
-        this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), 100, 100);
-        this.getView().getController().startSimulation();
-                /*(int) this.getView().getController().getEnvironmentDimension().getX(),
-                (int) this.getView().getController().getEnvironmentDimension().getY());*/
+        this.getView().getController().startStopSimulation();
     }
 
     @FXML
-    private void initialize() {
-        System.out.println("Wassup " + this.canvas.getHeight());
+    private void backClick() {
+        this.getSceneFactory().openSetup();
     }
 
+    @FXML
+    private void settingsClick() {
+        this.getSceneFactory().openSettings();
+    }
+
+    /**
+     * Initializes the simulation controller.
+     */
+    public void initSimulationController() {
+        this.getView().setSimulationController(this);
+        this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), 100, 100);
+        /*(int) this.getView().getController().getEnvironmentDimension().getX(),
+        (int) this.getView().getController().getEnvironmentDimension().getY());*/
+        this.getView().getController().startStopSimulation();
+    }
     /**
      * Updates the canvas with Environment parameters.
      * 
@@ -68,7 +77,7 @@ public class SimulationController extends AbstractSceneController {
      * @param organisms
      *                      organisms that will be displayed
      */
-    public void render(final Set<Entry<Position, Food>> foods, final Set<Entry<Position, Organism>> organisms) {
+    public void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
         this.canvas.setWidth(this.getView().getController().getSettings().getPrefWindowWidth());
         this.canvas.setHeight(this.getView().getController().getSettings().getPrefWindowHeight()
                - this.top.getHeight() - this.bottom.getHeight());

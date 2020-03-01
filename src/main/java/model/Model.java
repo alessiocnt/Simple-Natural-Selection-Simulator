@@ -1,12 +1,13 @@
 package model;
 
-import java.util.Map.Entry;
 import java.util.Set;
 
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.daycicle.DayCicle;
 import model.environment.position.Position;
+import utilities.Pair;
+import view.entities.EnvironmentHolder;
 
 /**
  * Model interface.
@@ -26,12 +27,19 @@ public interface Model {
      */
     boolean isSimulationOver();
 
-    Set<Entry<Position, Food>> getFoods();
+    Set<Pair<Position, Food>> getFoods();
 
-    Set<Entry<Position, Organism>> getOrganisms();
+    Set<Pair<Position, Organism>> getOrganisms();
 
     /**
      * @return the environment dimension
      */
     Position getEnvironmentDimension();
+
+    /**
+     * Maintains the data needed for the Environment to be created.
+     * @param holder
+     *      the data holder
+     */
+    void prepareEnvironment(EnvironmentHolder holder);
 }

@@ -22,16 +22,6 @@ public interface Controller {
     boolean initSimulation();
 
     /**
-     * Method to start simulation.
-     */
-    void startSimulation();
-
-    /**
-     * Method to stop simulation.
-     */
-    void stopSimulation();
-
-    /**
      * @param duration
      * the duration of the day to be set in Settings.
      */
@@ -46,4 +36,9 @@ public interface Controller {
      * @return the environment dimension
      */
     Position getEnvironmentDimension();
+
+    /**
+     * Method that starts the simulation if it's paused, or pauses it if it's running.
+     */
+    void startStopSimulation();
 }

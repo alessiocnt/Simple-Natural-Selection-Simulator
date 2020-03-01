@@ -16,6 +16,7 @@ import model.entity.organism.Organism;
 import model.environment.exceptions.OutOfEnviromentException;
 import model.environment.position.Position;
 import model.environment.position.PositionImpl;
+import utilities.Pair;
 
 public abstract class AbstractEnvironment implements Environment {
 //TODO what if the environment is full?
@@ -104,6 +105,7 @@ public abstract class AbstractEnvironment implements Environment {
                 || newPosition.getY() < 0 || newPosition.getY() > this.yDimension) {
             throw(new OutOfEnviromentException());
         }
+        this.organisms.get(this.findOrganismPosition(organism)).add(organism);
     }
 
     /**
@@ -114,7 +116,8 @@ public abstract class AbstractEnvironment implements Environment {
         this.organisms.values().stream()
                 .filter(orgSet -> orgSet.contains(organism))
                 .collect(Collectors.toList())
-                .get(0).remove(organism);
+                .get(0)
+                .remove(organism);
         this.currentOrganismQuantity--;
     }
 
@@ -157,6 +160,27 @@ public abstract class AbstractEnvironment implements Environment {
     @Override
     public Optional<Food> getFood(final Position position) {
         return Optional.ofNullable(this.foods.get(position));
+    }
+
+    /**
+     * @return an Entry of each Food and its position in the environment
+     */
+    public Set<Pair<Position, Food>> getPositionFoods() {
+        Set<Pair<Position, Food>> s = this.foods.entrySet().stream()
+                .map(e -> new Pair<>(e.getKey(), e.getValue()))
+                .collect(Collectors.toSet());
+        return s;
+    }
+
+    /**
+     * @return an Entry of each Organism and its position in the environment
+     */
+    public Set<Pair<Position, Organism>> getPositionOrganisms() {
+        Set<Pair<Position, Organism>> s = this.organisms.entrySet().stream()
+                .filter(e -> e.getValue().iterator().hasNext())
+                .map(e -> new Pair<>(e.getKey(), e.getValue().iterator().next()))
+                .collect(Collectors.toSet());
+        return s;
     }
 
     /**

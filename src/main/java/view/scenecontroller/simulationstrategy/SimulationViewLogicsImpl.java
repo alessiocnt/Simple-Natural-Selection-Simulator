@@ -1,6 +1,5 @@
 package view.scenecontroller.simulationstrategy;
 
-import java.util.Map.Entry;
 import java.util.Set;
 
 import javafx.scene.canvas.GraphicsContext;
@@ -9,14 +8,15 @@ import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
 import model.mutation.TraitType;
+import utilities.Pair;
 
 /**
  * Class that defines the logic to display entities on screen.
  */
 public class SimulationViewLogicsImpl implements SimulationViewLogics {
 
-    private Set<Entry<Position, Food>> foods;
-    private Set<Entry<Position, Organism>> organisms;
+    private Set<Pair<Position, Food>> foods;
+    private Set<Pair<Position, Organism>> organisms;
     private final GraphicsContext graphics;
     private final int environmentX;
     private final int environmentY;
@@ -55,7 +55,7 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
      * {@inheritDoc}
      */
     @Override
-    public void setEntities(final Set<Entry<Position, Food>> foods, final Set<Entry<Position, Organism>> organisms) {
+    public void setEntities(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
         this.foods = foods;
         this.organisms = organisms;
     }
@@ -64,21 +64,21 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
      * {@inheritDoc}
      */
     public void update() {
-        this.graphics.setFill(Color.BLACK);
+        this.graphics.setFill(Color.BEIGE);
         this.graphics.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
-        for (Entry<Position, Food> entry : foods) {
+        for (Pair<Position, Food> entry : foods) {
             this.graphics.setFill(Color.DARKGREEN);
-            this.graphics.fillRect(entry.getKey().getX() * this.xAxisScaleFactor, 
-                    entry.getKey().getY() * this.yAxisScaleFactor,
+            this.graphics.fillRect(entry.getX().getX() * this.xAxisScaleFactor, 
+                    entry.getX().getY() * this.yAxisScaleFactor,
                     this.xAxisScaleFactor, this.yAxisScaleFactor);
         }
 
-        for (Entry<Position, Organism> entry : organisms) {
-            this.graphics.setFill(getOrganismColor(entry.getValue()));
-            this.graphics.fillOval(entry.getKey().getX() * this.xAxisScaleFactor, 
-                    entry.getKey().getY() * this.yAxisScaleFactor,
-                    this.xAxisScaleFactor * getOrganismDimension(entry.getValue()),
-                    this.yAxisScaleFactor * getOrganismDimension(entry.getValue()));
+        for (Pair<Position, Organism> entry : organisms) {
+            this.graphics.setFill(getOrganismColor(entry.getY()));
+            this.graphics.fillOval(entry.getX().getX() * this.xAxisScaleFactor, 
+                    entry.getX().getY() * this.yAxisScaleFactor,
+                    this.xAxisScaleFactor * getOrganismDimension(entry.getY()),
+                    this.yAxisScaleFactor * getOrganismDimension(entry.getY()));
         }
 
         /*

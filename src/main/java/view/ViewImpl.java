@@ -1,6 +1,5 @@
 package view;
 
-import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
 
@@ -9,6 +8,7 @@ import javafx.stage.Stage;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
+import utilities.Pair;
 import view.scenecontroller.SimulationController;
 import view.scenefactory.SceneFactory;
 import view.scenefactory.SceneFactoryImpl;
@@ -53,7 +53,7 @@ public class ViewImpl implements View {
      * {@inheritDoc}
      */
     @Override
-    public void render(final Set<Entry<Position, Food>> foods, final Set<Entry<Position, Organism>> organisms) {
+    public void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
         Objects.requireNonNull(this.simulationController);
         this.simulationController.render(foods, organisms);
     }

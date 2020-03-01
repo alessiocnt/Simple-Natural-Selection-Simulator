@@ -11,7 +11,6 @@ import settings.SettingsHolder;
 import settings.SettingsImpl;
 import view.View;
 import view.entities.EnvironmentHolder;
-import settings.DayDuration;
 
 /**
  * Controller implementation.
@@ -36,7 +35,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final void setEnvironmentInitialValues(final EnvironmentHolder holder) {
-        // TODO Auto-generated method stub
+        this.model.prepareEnvironment(holder);
     }
 
     @Override
@@ -44,14 +43,20 @@ public class ControllerImpl implements Controller {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void startSimulation() {
+    public void startStopSimulation() {
+        this.simulationLoop.startStop();
         this.simulationLoop.start();
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void stopSimulation() {
-        this.simulationLoop.stopSimulationLoop();
+    public Position getEnvironmentDimension() {
+        return this.model.getEnvironmentDimension();
     }
 
     @Override
@@ -65,12 +70,12 @@ public class ControllerImpl implements Controller {
     }
 
     private class SimulationLoop extends Thread {
-        private static final int UPDATES_IN_A_DAY = 100;
+        private static final int UPDATES_IN_A_DAY = 10;
         private volatile boolean running;
         private DayCicle dayCicle = new DayCicleImpl(UPDATES_IN_A_DAY);
 
         SimulationLoop() {
-            this.running = true;
+            this.running = false;
         }
 
         public void run() {
@@ -83,19 +88,14 @@ public class ControllerImpl implements Controller {
             }
         }
 
-
-
         private void update() {
             // TODO Auto-generated method stub
-            //model.update(dayCicle);
-            System.out.println("Update");
+            model.update(dayCicle);
         }
 
         private void render() {
             // TODO Auto-generated method stub
-            //view.render(model.getFoods(), model.getOrganisms());
-            view.render(null, null);
-            System.out.println("Render");
+            view.render(model.getFoods(), model.getOrganisms());
         }
 
         private void waitForNextFrame(final DayDuration dayDuration, final int elapsed) {
@@ -110,22 +110,9 @@ public class ControllerImpl implements Controller {
             }
         }
 
-        public void stopSimulationLoop() {
-            this.running = false;
+        public void startStop() {
+            this.running = !this.running;
         }
-
-        public void resumeSimulationLoop() {
-            this.running = true;
-            super.start();
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Position getEnvironmentDimension() {
-        return this.model.getEnvironmentDimension();
     }
 }
 
