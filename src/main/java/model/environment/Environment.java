@@ -90,7 +90,7 @@ public interface Environment {
      *      the position of the organisms required
      * @return an optional containing a set of the organisms or an empty one if the position was empty
      */
-    Optional<Set<Organism>> getOrganisms(Position position);
+    Optional<Organism> getOrganisms(Position position);
 
     /**
      * @param organism

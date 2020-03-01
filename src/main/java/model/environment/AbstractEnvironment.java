@@ -1,7 +1,5 @@
 package model.environment;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -9,6 +7,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import model.entity.food.Food;
@@ -25,8 +24,8 @@ public abstract class AbstractEnvironment implements Environment {
     private final int yDimension;
     private int currentFoodQuantity = 0;
     private int currentOrganismQuantity = 0;
-    private final Map<Position, Food> foods = new HashMap<>();
-    private final Map<Position, Set<Organism>> organisms = new HashMap<>();
+    private final Map<Position, Food> foods = new ConcurrentHashMap<>();
+    private final Map<Position, Organism> organisms = new ConcurrentHashMap<>();
 
     /**
      * 
@@ -57,9 +56,7 @@ public abstract class AbstractEnvironment implements Environment {
     public void addOrganism(final Organism organism) {
         Objects.requireNonNull(organism);
         Position organismPosition = this.getEmptyPosition();
-        Set<Organism> value = new HashSet<>();
-        value.add(organism);
-        this.organisms.put(organismPosition, value);
+        this.organisms.put(organismPosition, organism);
         this.currentOrganismQuantity++;
     }
 
@@ -69,9 +66,8 @@ public abstract class AbstractEnvironment implements Environment {
    public void addOrganism(final Organism father, final Organism son) throws NoSuchElementException {
        Objects.requireNonNull(father);
        Objects.requireNonNull(son);
-       Position pos = findOrganismPosition(father);
-       Set<Organism> s = this.organisms.get(pos);
-       s.add(son);
+       Position pos = this.getEmptyPosition();
+       this.organisms.put(pos, son);
        this.currentOrganismQuantity++;
    }
 
@@ -102,10 +98,14 @@ public abstract class AbstractEnvironment implements Environment {
         Position position = findOrganismPosition(organism);
         Position newPosition = new PositionImpl(position.getX() + xOffset, position.getY() + yOffset);
         if (newPosition.getX() < 0 || newPosition.getX() > this.xDimension
-                || newPosition.getY() < 0 || newPosition.getY() > this.yDimension) {
+                || newPosition.getY() < 0 || newPosition.getY() > this.yDimension || this.organisms.get(newPosition) != null) {
+            System.out.println(newPosition);
             throw(new OutOfEnviromentException());
         }
-        this.organisms.get(this.findOrganismPosition(organism)).add(organism);
+        System.out.println("Removing " + organism);
+        this.removeOrganism(organism);
+        System.out.println("Adding " + organism);
+        this.organisms.put(newPosition, organism);
     }
 
     /**
@@ -113,11 +113,14 @@ public abstract class AbstractEnvironment implements Environment {
      */
     public void removeOrganism(final Organism organism) {
         Objects.requireNonNull(organism);
-        this.organisms.values().stream()
-                .filter(orgSet -> orgSet.contains(organism))
-                .collect(Collectors.toList())
-                .get(0)
-                .remove(organism);
+        Iterator<Organism> i = this.getOrganisms();
+        while (i.hasNext()) {
+            if (i.next().equals(organism)) {
+                i.remove();
+                break;
+            }
+        }
+        this.organisms.values().removeIf(value -> value.equals(organism));
         this.currentOrganismQuantity--;
     }
 
@@ -135,16 +138,14 @@ public abstract class AbstractEnvironment implements Environment {
      * {@inheritDoc}
      */
     public Iterator<Organism> getOrganisms() {
-        Set<Organism> org = new HashSet<>();
-        this.organisms.values().forEach(org::addAll);
-        return org.iterator();
+        return this.organisms.values().iterator();
     }
 
     /**
      * {@inheritDoc}
      */
-    public Optional<Set<Organism>> getOrganisms(final Position position) {
-        return Optional.of(this.organisms.get(position));
+    public Optional<Organism> getOrganisms(final Position position) {
+        return Optional.ofNullable(this.organisms.get(position));
     }
     /**
      * {@inheritDoc}
@@ -176,11 +177,9 @@ public abstract class AbstractEnvironment implements Environment {
      * @return an Entry of each Organism and its position in the environment
      */
     public Set<Pair<Position, Organism>> getPositionOrganisms() {
-        Set<Pair<Position, Organism>> s = this.organisms.entrySet().stream()
-                .filter(e -> e.getValue().iterator().hasNext())
-                .map(e -> new Pair<>(e.getKey(), e.getValue().iterator().next()))
+        return this.organisms.entrySet().stream()
+                .map(e -> new Pair<>(e.getKey(), e.getValue()))
                 .collect(Collectors.toSet());
-        return s;
     }
 
     /**
@@ -196,7 +195,7 @@ public abstract class AbstractEnvironment implements Environment {
         //TODO find a better way to get the Position
         Position position = new PositionImpl(-1, -1);
         this.organisms.forEach((k, v) -> {
-            if (v.contains(organism)) {
+            if (v.equals(organism)) {
                 position.setPosition(k.getX(), k.getY());
             }
         });
