@@ -65,6 +65,16 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
+    public final void setWidth(final int width) {
+        this.settings.setWidth(width);
+    }
+
+    @Override
+    public final void setHeight(final int height) {
+        this.settings.setHeight(height);
+    }
+
+    @Override
     public final SettingsHolder getSettings() {
         return this.settings;
     }
@@ -114,5 +124,6 @@ public class ControllerImpl implements Controller {
             this.running = !this.running;
         }
     }
+
 }
 

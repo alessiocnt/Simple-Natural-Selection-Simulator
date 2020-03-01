@@ -43,5 +43,6 @@ public class SettingsController extends AbstractSceneController {
     @FXML
     private void saveSettings() {
         this.observers.forEach((observer) -> observer.update(this.getView()));
+        this.getView().getSceneFactory().openSimulation();
     }
 }

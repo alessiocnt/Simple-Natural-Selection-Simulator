@@ -41,4 +41,15 @@ public interface Controller {
      * Method that starts the simulation if it's paused, or pauses it if it's running.
      */
     void startStopSimulation();
+
+    /**
+     * @param width
+     * Width to set.
+     */
+    void setWidth(int width);
+    /**
+     * @param height
+     * height to set.
+     */
+    void setHeight(int height);
 }
