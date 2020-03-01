@@ -14,7 +14,7 @@ public final class SettingsImpl implements Settings {
     private static final int PREFHEIGHT = 768;
     private Pair<Double, Double> selectedRes;
     private final Pair<Integer, Integer> prefRes = new Pair<>(PREFWIDTH, PREFHEIGHT);
-    private DayDuration dayDuration = DayDuration.NORMAL;
+    private DayDuration dayDuration = DayDuration.getDefualt();
 
     /**
      * Constructor.

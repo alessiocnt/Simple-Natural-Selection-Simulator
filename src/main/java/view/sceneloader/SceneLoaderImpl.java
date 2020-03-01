@@ -38,8 +38,6 @@ public class SceneLoaderImpl implements SceneLoader {
         this.loader.setLocation(ClassLoader.getSystemResource(sceneType.getFxmlPath()));
         try {
             Region root = this.loader.load();
-            root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
-                    this.view.getController().getSettings().getWindowHeight());
 
             root.widthProperty().addListener((obs, oldVal, newVal) -> {
                 this.view.getController().setWidth(newVal.intValue());
@@ -48,11 +46,17 @@ public class SceneLoaderImpl implements SceneLoader {
             root.heightProperty().addListener((obs, oldVal, newVal) -> {
                 this.view.getController().setHeight(newVal.intValue());
             });
-
+            //If the scene is already in cache, set the cached scene.
             final Scene scene;
             if (this.sceneCache.containsKey(sceneType)) {
                 scene = this.sceneCache.get(sceneType).get();
+                //Set the actual resolution to the root.
+                ((Region) scene.getRoot()).setPrefSize(this.view.getController().getSettings().getWindowWidth(),
+                        this.view.getController().getSettings().getWindowHeight());
             } else {
+                //If the scene isn't in the cache, then create a new one, with the current root.
+                root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
+                        this.view.getController().getSettings().getWindowHeight());
                 scene = new Scene(root);
                 scene.getStylesheets().add(ClassLoader.getSystemResource(sceneType.getCssPath()).toExternalForm());
                 this.sceneCache.put(sceneType, Optional.of(scene));
