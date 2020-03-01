@@ -108,6 +108,11 @@ public interface Environment {
     Optional<Food> getFood(Position position);
 
     /**
+     * @return the environment dimension
+     */
+    Position getDimension();
+
+    /**
      * Removes every food piece from the environment.
      */
     void clear();

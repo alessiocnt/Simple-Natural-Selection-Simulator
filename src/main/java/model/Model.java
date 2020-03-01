@@ -29,4 +29,9 @@ public interface Model {
     Set<Entry<Position, Food>> getFoods();
 
     Set<Entry<Position, Organism>> getOrganisms();
+
+    /**
+     * @return the environment dimension
+     */
+    Position getEnvironmentDimension();
 }

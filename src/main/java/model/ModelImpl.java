@@ -53,18 +53,33 @@ public class ModelImpl implements Model {
      */
     @Override
     public boolean isSimulationOver() {
-        return this.environment.getCurrendOrganismQuantity() == 0;
+        //return this.environment.getCurrendOrganismQuantity() == 0;
+        return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<Entry<Position, Food>> getFoods() {
         // TODO Auto-generated method stub
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<Entry<Position, Organism>> getOrganisms() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Position getEnvironmentDimension() {
+        return this.environment.getDimension();
     }
 }

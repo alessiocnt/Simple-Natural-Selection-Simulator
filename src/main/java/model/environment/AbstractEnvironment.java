@@ -183,6 +183,13 @@ public abstract class AbstractEnvironment implements Environment {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public Position getDimension() {
+        return new PositionImpl(this.xDimension, this.yDimension);
+    }
+
+    /**
      * A Sting representation of an AbstractEnvironment.
      */
     @Override

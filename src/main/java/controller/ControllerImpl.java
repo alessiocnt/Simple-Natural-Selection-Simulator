@@ -4,6 +4,7 @@ package controller;
 import model.Model;
 import model.environment.daycicle.DayCicle;
 import model.environment.daycicle.DayCicleImpl;
+import model.environment.position.Position;
 import settings.DayDuration;
 import settings.Settings;
 import settings.SettingsHolder;
@@ -20,6 +21,7 @@ public class ControllerImpl implements Controller {
     private final Model model;
     private final View view;
     private final Settings settings = new SettingsImpl();
+    private final SimulationLoop simulationLoop = new SimulationLoop();
 
     /**
      * @param model
@@ -44,11 +46,13 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final void startSimulation() {
+        //this.simulationLoop.start();
+        this.view.render(null, null);
     }
 
     @Override
     public final void stopSimulation() {
-        // TODO Auto-generated method stub
+        this.simulationLoop.stopSimulationLoop();
     }
 
     @Override
@@ -66,7 +70,7 @@ public class ControllerImpl implements Controller {
         private volatile boolean running;
         private DayCicle dayCicle = new DayCicleImpl(UPDATES_IN_A_DAY);
 
-        public SimulationLoop() {
+        SimulationLoop() {
             this.running = true;
         }
 
@@ -76,7 +80,7 @@ public class ControllerImpl implements Controller {
                 update();
                 render();
                 final int elapsedTime = (int) (System.currentTimeMillis() - startTime);
-                //waitForNextFrame(dayDuration, elapsedTime);
+                waitForNextFrame(settings.getDayDuration(), elapsedTime);
             }
         }
 
@@ -114,6 +118,14 @@ public class ControllerImpl implements Controller {
             this.running = true;
             super.start();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Position getEnvironmentDimension() {
+        return this.model.getEnvironmentDimension();
     }
 }
 

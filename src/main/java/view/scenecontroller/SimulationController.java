@@ -4,6 +4,10 @@ import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+
 import java.util.Map.Entry;
 
 import model.entity.food.Food;
@@ -21,21 +25,33 @@ public class SimulationController extends AbstractSceneController {
     @FXML
     private Canvas canvas;
 
-    private boolean initialized = false;
+    @FXML
+    private Button stopBtn;
+
+    @FXML
+    private Button backBtn;
+
+    @FXML
+    private Button settingsBtn;
+
+    @FXML
+    private Label aliveLbl;
+
+    @FXML
+    private HBox top;
+
+    @FXML
+    private HBox bottom;
 
     private SimulationViewLogics logics;
 
     @FXML
     private void initialize() {
-        System.out.println(this.canvas);
+        System.out.println("Wassup " + this.canvas.getHeight());
         this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), 100, 100);
-        /*
-         * Non abbiamo ancora questi 2 metodi nel controller, per le prove fare 100, 100
-         * this.getView().getController().getEnvironmentX(),
-         * this.getView().getController().getEnvironmentY());
-         */
+          /*(int) this.getView().getController().getEnvironmentDimension().getX(),
+          (int) this.getView().getController().getEnvironmentDimension().getY());*/
     }
-
 
     /**
      * Updates the canvas with Environment parameters.
@@ -46,20 +62,15 @@ public class SimulationController extends AbstractSceneController {
      *                      organisms that will be displayed
      */
     public void render(final Set<Entry<Position, Food>> foods, final Set<Entry<Position, Organism>> organisms) {
-        final double scaleFactor = 0.8;
-        if (!this.initialized) {
-            this.initialized = true;
-            initialize();
-        }
-        /*
-         * TODO Handler per dimensione
-         * this.canvas.setWidth(Toolkit.getDefaultToolkit().getScreenSize().getWidth());
-         * this.canvas.setHeight(Toolkit.getDefaultToolkit().getScreenSize().getHeight()
-         * * scaleFactor);
-         * this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
-         */
+        System.out.println("a" + this.getView());
+        System.out.println(this.getView().getController());
+        System.out.println(this.getView().getController().getSettings());
+        System.out.println(this.getView().getController().getSettings().getPrefWindowHeight());
+        this.canvas.setWidth(this.getView().getController().getSettings().getPrefWindowWidth());
+        this.canvas.setHeight(this.getView().getController().getSettings().getPrefWindowHeight()
+               - this.top.getPrefHeight() - this.bottom.getPrefHeight());
+        this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
         this.logics.setEntities(foods, organisms);
         this.logics.update();
     }
-
 }

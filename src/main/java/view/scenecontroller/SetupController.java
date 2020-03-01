@@ -71,8 +71,8 @@ public class SetupController extends AbstractSceneController {
         //TODO per ora dará errore perche non é stata implementata la parte nel Controller!
         if (this.getView().getController().initSimulation()) {
             //Initialization is ok, so open the simulation scene.
-            this.getView().getController().startSimulation();
             this.getSceneFactory().openSimulation();
+            this.getView().getController().startSimulation();
         } else {
             MyAlert.showAlert(AlertType.ERROR, "Error", "Something went wrong, retry!");
         }

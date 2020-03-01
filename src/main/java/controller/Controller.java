@@ -1,5 +1,6 @@
 package controller;
 
+import model.environment.position.Position;
 import settings.DayDuration;
 import settings.SettingsHolder;
 import view.entities.EnvironmentHolder;
@@ -40,4 +41,9 @@ public interface Controller {
      * @return the settings in read-only.
      */
     SettingsHolder getSettings();
+
+    /**
+     * @return the environment dimension
+     */
+    Position getEnvironmentDimension();
 }

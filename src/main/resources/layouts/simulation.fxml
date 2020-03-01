@@ -10,19 +10,19 @@
       <Canvas id="canvas" fx:id="canvas" height="300.0" width="600.0" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <HBox prefHeight="50.0" prefWidth="600.0" snapToPixel="false" BorderPane.alignment="CENTER">
+      <HBox id="top" fx:id="top" prefHeight="50.0" prefWidth="600.0" snapToPixel="false" BorderPane.alignment="CENTER">
          <children>
             <Button id="stopBtn" fx:id="stopBtn" mnemonicParsing="false" prefHeight="100.0" prefWidth="800.0" text="Resume/Pause" />
             <Button id="backBtn" fx:id="backBtn" mnemonicParsing="false" prefHeight="100.0" prefWidth="800.0" text="Back" />
-            <Button id="settingBtn" fx:id="settingBtn" mnemonicParsing="false" prefHeight="100.0" prefWidth="800.0" text="Settings" />
+            <Button id="settingsBtn" fx:id="settingsBtn" mnemonicParsing="false" prefHeight="100.0" prefWidth="800.0" text="Settings" />
          </children>
       </HBox>
    </bottom>
    <top>
-      <HBox prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <HBox id="bottom" fx:id="bottom" prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="800.0" prefWidth="1600.0" text="Currently alive organisms:" />
-            <Label id="aliveLbl" fx:id="aliveLbl" prefHeight="800.0" prefWidth="1600.0" />
+            <Label prefHeight="40.0" prefWidth="1600.0" text="Currently alive organisms:" />
+            <Label id="aliveLbl" fx:id="aliveLbl" prefHeight="40.0" prefWidth="1600.0" />
          </children>
       </HBox>
    </top>

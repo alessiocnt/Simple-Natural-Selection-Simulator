@@ -65,21 +65,23 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
      * {@inheritDoc}
      */
     public void update() {
-        this.graphics.setFill(Color.BEIGE);
+        this.graphics.setFill(Color.BLACK);
         this.graphics.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
-        this.graphics.fill();
         // TODO when ever
-        for (Entry<Position, Food> entry : foods) {
-            this.graphics.setFill(Color.DARKGREEN);
-            this.graphics.fillRect(entry.getKey().getX() * this.xAxisScaleFactor, 
-                    entry.getKey().getY() * this.yAxisScaleFactor, this.xAxisScaleFactor, this.yAxisScaleFactor);
-        }
-
-        for (Entry<Position, Organism> entry : organisms) {
-            this.graphics.setFill(getOrganismColor(entry.getValue()));
-            this.graphics.fillOval(entry.getKey().getX() * this.xAxisScaleFactor, entry.getKey().getY() * this.yAxisScaleFactor, 
-                    this.xAxisScaleFactor * getOrganismDimension(entry.getValue()), this.yAxisScaleFactor * getOrganismDimension(entry.getValue()));
-        }
+        /*
+         * for (Entry<Position, Food> entry : foods) {
+         * this.graphics.setFill(Color.DARKGREEN);
+         * this.graphics.fillRect(entry.getKey().getX() * this.xAxisScaleFactor,
+         * entry.getKey().getY() * this.yAxisScaleFactor, this.xAxisScaleFactor,
+         * this.yAxisScaleFactor); }
+         * 
+         * for (Entry<Position, Organism> entry : organisms) {
+         * this.graphics.setFill(getOrganismColor(entry.getValue()));
+         * this.graphics.fillOval(entry.getKey().getX() * this.xAxisScaleFactor,
+         * entry.getKey().getY() * this.yAxisScaleFactor, this.xAxisScaleFactor *
+         * getOrganismDimension(entry.getValue()), this.yAxisScaleFactor *
+         * getOrganismDimension(entry.getValue())); }
+         */
 
         // colore organism
         this.graphics.setFill(Color.RED);
