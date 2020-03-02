@@ -2,6 +2,7 @@ package view.scenecontroller;
 
 import java.util.Set;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
@@ -84,12 +85,14 @@ public class SimulationController extends AbstractSceneController {
      *                      organisms that will be displayed
      */
     public void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
-        this.canvas.setWidth(this.getView().getController().getSettings().getWindowWidth());
-        this.canvas.setHeight(this.getView().getController().getSettings().getWindowHeight()
-               - this.top.getHeight() - this.bottom.getHeight());
-        this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
-        this.logics.setEntities(foods, organisms);
-        this.logics.update();
-        //this.aliveLbl.setText(this.logics.getAlive() + "");
+        Platform.runLater(() -> {
+            this.canvas.setWidth(this.getView().getController().getSettings().getWindowWidth());
+            this.canvas.setHeight(this.getView().getController().getSettings().getWindowHeight()
+                   - this.top.getHeight() - this.bottom.getHeight());
+            this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
+            this.logics.setEntities(foods, organisms);
+            this.logics.update();
+            this.aliveLbl.setText(this.logics.getAlive() + "");
+        });
     }
 }

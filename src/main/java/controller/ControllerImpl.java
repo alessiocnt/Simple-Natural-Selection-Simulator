@@ -13,7 +13,6 @@ import settings.SettingsHolder;
 import settings.SettingsImpl;
 import view.View;
 import view.entities.EnvironmentHolder;
-import view.utilities.MyAlert;
 
 /**
  * Controller implementation.
@@ -43,7 +42,6 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final boolean initSimulation() {
-        this.simulationLoop = new SimulationLoop();
         return true;
     }
 
@@ -51,6 +49,7 @@ public class ControllerImpl implements Controller {
      * {@inheritDoc}
      */
     public void startSimulation() {
+        this.simulationLoop = new SimulationLoop();
         this.simulationLoop.start();
     }
 
