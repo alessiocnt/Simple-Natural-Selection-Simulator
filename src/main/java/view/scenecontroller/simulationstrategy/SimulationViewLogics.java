@@ -34,4 +34,10 @@ public interface SimulationViewLogics {
      *      the canvas height
      */
     void setCanvasDimension(double width, double height);
+
+    /**
+     * @return 
+     *      the number of organisms alive
+     */
+    int getAlive();
 }

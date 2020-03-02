@@ -64,7 +64,7 @@ public interface Environment {
      * @throws NoSuchElementException
      *      if the organism doesn't exists
      */
-    void moveOrganism(Organism organism, int xOffset, int yOffset) throws OutOfEnviromentException, NoSuchElementException;
+    void moveOrganism(Organism organism, int xOffset, int yOffset) throws OutOfEnviromentException;
 
     /**
      * Removes an organism from the environment.
@@ -84,13 +84,6 @@ public interface Environment {
      * @return an iterator containing all the organisms inside the environment
      */
     Iterator<Organism> getOrganisms();
-
-    /**
-     * @param position
-     *      the position of the organisms required
-     * @return an optional containing a set of the organisms or an empty one if the position was empty
-     */
-    Optional<Organism> getOrganisms(Position position);
 
     /**
      * @param organism

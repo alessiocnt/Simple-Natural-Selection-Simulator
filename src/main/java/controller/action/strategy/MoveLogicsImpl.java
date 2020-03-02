@@ -40,6 +40,7 @@ public class MoveLogicsImpl implements MoveLogics {
     @Override
     public Pair<Integer, Integer> calculateVectorDirection(final Organism organism) {
         Direction currentDirection;
+        this.directionVector = new Pair<>(0, 0);
         for (int i = 0; i < organism.getTraits().get(TraitType.SPEED).getValue(); i++) {
             currentDirection = this.getRandomDirection();
             this.directionVector = new Pair<>(directionVector.getX() + currentDirection.getXVariation(),

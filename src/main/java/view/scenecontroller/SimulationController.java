@@ -84,5 +84,6 @@ public class SimulationController extends AbstractSceneController {
         this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
         this.logics.setEntities(foods, organisms);
         this.logics.update();
+        //this.aliveLbl.setText(this.logics.getAlive() + "");
     }
 }

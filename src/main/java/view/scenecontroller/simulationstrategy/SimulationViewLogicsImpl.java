@@ -77,7 +77,7 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
             this.graphics.setFill(getOrganismColor(entry.getY()));
             this.graphics.fillOval(entry.getX().getX() * this.xAxisScaleFactor, 
                     entry.getX().getY() * this.yAxisScaleFactor,
-                    this.xAxisScaleFactor * getOrganismDimension(entry.getY()),
+                    this.xAxisScaleFactor *  getOrganismDimension(entry.getY()),
                     this.yAxisScaleFactor * getOrganismDimension(entry.getY()));
         }
 
@@ -97,7 +97,7 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
     }
 
     private double getOrganismDimension(final Organism organism) {
-        return organism.getTraits().get(TraitType.DIMENSION).getValue() / 100;
+        return ((double) organism.getTraits().get(TraitType.DIMENSION).getValue()) / 100;
     }
 
     /**
@@ -109,5 +109,13 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
         this.canvasHeight = height;
         this.xAxisScaleFactor = getXScaleFactor();
         this.yAxisScaleFactor = getYScaleFactor();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getAlive() {
+        return this.organisms.size();
     }
 }

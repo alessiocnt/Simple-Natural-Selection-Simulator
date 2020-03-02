@@ -99,12 +99,10 @@ public class ControllerImpl implements Controller {
         }
 
         private void update() {
-            // TODO Auto-generated method stub
             model.update(dayCicle);
         }
 
         private void render() {
-            // TODO Auto-generated method stub
             view.render(model.getFoods(), model.getOrganisms());
         }
 

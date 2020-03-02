@@ -38,7 +38,6 @@ public class ModelImpl implements Model {
      */
     @Override
     public void update(final DayCicle dayCicle) {
-        // TODO Auto-generated method stub
         dayCicle.nextTick();
         // Updates the environment food
         updateEnvironmentFood(dayCicle.getCurrentDayMoment());
@@ -65,8 +64,7 @@ public class ModelImpl implements Model {
      */
     @Override
     public boolean isSimulationOver() {
-        //return this.environment.getCurrendOrganismQuantity() == 0;
-        return false;
+        return this.environment.getCurrendOrganismQuantity() == 0;
     }
 
     /**
@@ -106,8 +104,7 @@ public class ModelImpl implements Model {
 
     private void initEnvironment(final int entityQuantity, final double entitySpeed, final int entityDimension) {
         FoodBuilder foodBuilder = new FoodBuilderImpl();
-        // TODO energia per l'organismo???
-        OrganismBuilder organismBuilder = new OrganismBuilderImpl(new EnergyImpl(100000));
+        OrganismBuilder organismBuilder = new OrganismBuilderImpl(new EnergyImpl(10000));
         // TODO speed e' int o double???
         organismBuilder.trait(TraitType.SPEED, new Speed((int) entitySpeed));
         organismBuilder.trait(TraitType.DIMENSION, new Dimension(entityDimension));
