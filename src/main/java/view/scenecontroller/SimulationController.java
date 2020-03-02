@@ -74,6 +74,11 @@ public class SimulationController extends AbstractSceneController {
         final int height = 100;
         this.getView().setSimulationController(this);
         this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), width, height);
+        //Initialize the canvas dimension.
+        this.canvas.setWidth(this.getView().getController().getSettings().getWindowWidth());
+        this.canvas.setHeight(this.getView().getController().getSettings().getWindowHeight()
+                  - this.top.getHeight() - this.bottom.getHeight());
+        this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
         /*(int) this.getView().getController().getEnvironmentDimension().getX(),
         (int) this.getView().getController().getEnvironmentDimension().getY());*/
         this.getView().getController().startSimulation();
@@ -88,13 +93,20 @@ public class SimulationController extends AbstractSceneController {
      */
     public void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
         Platform.runLater(() -> {
-            this.canvas.setWidth(this.getView().getController().getSettings().getWindowWidth());
-            this.canvas.setHeight(this.getView().getController().getSettings().getWindowHeight()
-                   - this.top.getHeight() - this.bottom.getHeight());
-            this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
             this.logics.setEntities(foods, organisms);
             this.logics.update();
             this.aliveLbl.setText(this.logics.getAlive() + "");
         });
+    }
+
+    /**
+     * Adjust canvas dimension.
+     */
+    public void adjustCanvas() {
+         this.canvas.setWidth(this.getView().getController().getSettings().getWindowWidth());
+         this.canvas.setHeight(this.getView().getController().getSettings().getWindowHeight()
+                   - this.top.getHeight() - this.bottom.getHeight());
+         this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
+         this.logics.update();
     }
 }

@@ -43,7 +43,7 @@ public class EnvironmentHolder {
     /**
      * @return the initial speed of entities
      */
-    public double getEntitySpeed() {
+    public int getEntitySpeed() {
         return entitySpeed;
     }
 

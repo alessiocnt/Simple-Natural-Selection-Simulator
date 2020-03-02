@@ -34,30 +34,34 @@ public class SceneLoaderImpl implements SceneLoader {
 
     @Override
     public final void setScene(final SceneType sceneType, final Stage stage) {
-        this.loader = new FXMLLoader();
-        this.loader.setLocation(ClassLoader.getSystemResource(sceneType.getFxmlPath()));
         try {
-            Region root = this.loader.load();
-
-            root.widthProperty().addListener((obs, oldVal, newVal) -> {
-                this.view.getController().setWidth(newVal.intValue());
-            });
-
-            root.heightProperty().addListener((obs, oldVal, newVal) -> {
-                this.view.getController().setHeight(newVal.intValue());
-            });
-            //If the scene is already in cache, set the cached scene.
+            final Region root;
             final Scene scene;
+
+            //If the scene is already in cache, set the cached scene.
             if (this.sceneCache.containsKey(sceneType)) {
                 scene = this.sceneCache.get(sceneType).get();
+                this.loader = (FXMLLoader) scene.getUserData();
+                root = (Region) scene.getRoot();
                 //Set the actual resolution to the root.
-                ((Region) scene.getRoot()).setPrefSize(this.view.getController().getSettings().getWindowWidth(),
+                root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
                         this.view.getController().getSettings().getWindowHeight());
             } else {
+                this.loader = new FXMLLoader();
+                this.loader.setLocation(ClassLoader.getSystemResource(sceneType.getFxmlPath()));
+                root = this.loader.load();
+                //Add listener to set the current size in settings.
+                root.widthProperty().addListener((obs, oldVal, newVal) -> {
+                    this.view.getController().setWidth(newVal.intValue());
+                });
+                root.heightProperty().addListener((obs, oldVal, newVal) -> {
+                    this.view.getController().setHeight(newVal.intValue());
+                });
                 //If the scene isn't in the cache, then create a new one, with the current root.
                 root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
                         this.view.getController().getSettings().getWindowHeight());
                 scene = new Scene(root);
+                scene.setUserData(this.loader);
                 scene.getStylesheets().add(ClassLoader.getSystemResource(sceneType.getCssPath()).toExternalForm());
                 this.sceneCache.put(sceneType, Optional.of(scene));
             }
@@ -72,13 +76,21 @@ public class SceneLoaderImpl implements SceneLoader {
                 stage.show();
             }
 
-            SceneController controller = (SceneController) this.loader.getController();
+            final SceneController controller = (SceneController) this.loader.getController();
             controller.setSceneFactory(this.view.getSceneFactory());
             controller.setView(this.view);
 
             switch (sceneType) {
                 case SIMULATION:
-                    ((SimulationController) controller).initSimulationController();
+                    final SimulationController simulationController = ((SimulationController) controller);
+                    simulationController.initSimulationController();
+                    //Add another listener, so when dimension change the canvas will resize properly.
+                    root.widthProperty().addListener((obs, oldVal, newVal) -> {
+                        simulationController.adjustCanvas();
+                    });
+                    root.heightProperty().addListener((obs, oldVal, newVal) -> {
+                        simulationController.adjustCanvas();
+                    });
                     break;
                 default:
                     break;
