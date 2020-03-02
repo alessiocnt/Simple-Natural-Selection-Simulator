@@ -52,4 +52,15 @@ public interface Controller {
      * height to set.
      */
     void setHeight(int height);
+
+    /**
+     * Starts the simulation.
+     */
+    void startSimulation();
+
+    /**
+     * @return
+     *      true if the simulation is currently running
+     */
+    boolean isSimulationRunning();
 }

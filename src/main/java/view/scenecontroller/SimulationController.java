@@ -51,11 +51,17 @@ public class SimulationController extends AbstractSceneController {
 
     @FXML
     private void backClick() {
+        if (this.getView().getController().isSimulationRunning()) {
+            this.getView().getController().startStopSimulation();
+        }
         this.getSceneFactory().openSetup();
     }
 
     @FXML
     private void settingsClick() {
+        if (this.getView().getController().isSimulationRunning()) {
+            this.getView().getController().startStopSimulation();
+        }
         this.getSceneFactory().openSettings();
     }
 
@@ -67,7 +73,7 @@ public class SimulationController extends AbstractSceneController {
         this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), 100, 100);
         /*(int) this.getView().getController().getEnvironmentDimension().getX(),
         (int) this.getView().getController().getEnvironmentDimension().getY());*/
-        this.getView().getController().startStopSimulation();
+        this.getView().getController().startSimulation();
     }
     /**
      * Updates the canvas with Environment parameters.

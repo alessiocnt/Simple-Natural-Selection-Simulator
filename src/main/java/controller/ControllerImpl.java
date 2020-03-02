@@ -1,6 +1,8 @@
 package controller;
 
-
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import model.Model;
 import model.environment.daycicle.DayCicle;
 import model.environment.daycicle.DayCicleImpl;
@@ -11,6 +13,7 @@ import settings.SettingsHolder;
 import settings.SettingsImpl;
 import view.View;
 import view.entities.EnvironmentHolder;
+import view.utilities.MyAlert;
 
 /**
  * Controller implementation.
@@ -20,13 +23,13 @@ public class ControllerImpl implements Controller {
     private final Model model;
     private final View view;
     private final Settings settings = new SettingsImpl();
-    private final SimulationLoop simulationLoop = new SimulationLoop();
+    private SimulationLoop simulationLoop;
 
     /**
      * @param model
-     * model of the app.
+     *                  model of the app.
      * @param view
-     * view of the app.
+     *                  view of the app.
      */
     public ControllerImpl(final Model model, final View view) {
         this.model = model;
@@ -40,7 +43,15 @@ public class ControllerImpl implements Controller {
 
     @Override
     public final boolean initSimulation() {
+        this.simulationLoop = new SimulationLoop();
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void startSimulation() {
+        this.simulationLoop.start();
     }
 
     /**
@@ -49,8 +60,15 @@ public class ControllerImpl implements Controller {
     @Override
     public void startStopSimulation() {
         this.simulationLoop.startStop();
-        this.simulationLoop.start();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public boolean isSimulationRunning() {
+        return this.simulationLoop.running;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -83,9 +101,10 @@ public class ControllerImpl implements Controller {
         private static final int UPDATES_IN_A_DAY = 10;
         private volatile boolean running;
         private DayCicle dayCicle = new DayCicleImpl(UPDATES_IN_A_DAY);
+        private Object mutex = new Object();
 
         SimulationLoop() {
-            this.running = false;
+            this.running = true;
         }
 
         public void run() {
@@ -95,11 +114,28 @@ public class ControllerImpl implements Controller {
                 render();
                 final int elapsedTime = (int) (System.currentTimeMillis() - startTime);
                 waitForNextFrame(settings.getDayDuration(), elapsedTime);
+                synchronized (this.mutex) {
+                    try {
+                        if (!this.running) {
+                            this.mutex.wait();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
 
         private void update() {
             model.update(dayCicle);
+            Platform.runLater(() -> {
+                if (model.isSimulationOver()) {
+                    Alert a = new Alert(AlertType.INFORMATION);
+                    a.setTitle("INFO");
+                    a.setContentText("The simulation is over, everyone is dead.");
+                    a.show();
+                }
+            });
         }
 
         private void render() {
@@ -108,7 +144,7 @@ public class ControllerImpl implements Controller {
 
         private void waitForNextFrame(final DayDuration dayDuration, final int elapsed) {
             int timeUntilNextLoop = (dayDuration.getDuration() * 1000 / UPDATES_IN_A_DAY) - elapsed;
-            //the sleep time cannot be < 0, this would cause an exception
+            // the sleep time cannot be < 0, this would cause an exception
             if (timeUntilNextLoop > 0) {
                 try {
                     Thread.sleep(timeUntilNextLoop);
@@ -120,8 +156,12 @@ public class ControllerImpl implements Controller {
 
         public void startStop() {
             this.running = !this.running;
+            synchronized (this.mutex) {
+                if (this.running) {
+                    this.mutex.notify();
+                }
+            }
         }
     }
 
 }
-

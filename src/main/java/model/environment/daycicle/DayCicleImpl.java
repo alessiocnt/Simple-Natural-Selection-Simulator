@@ -27,8 +27,8 @@ public class DayCicleImpl implements DayCicle {
      */
     @Override
     public DayPeriod getCurrentDayMoment() {
-        // TODO find a better way to return this
-        return elapsedTicks % dayDuration != 1 ? DayPeriod.DAY : DayPeriod.NIGHT;
+        // the last tick is the night
+        return elapsedTicks % dayDuration != dayDuration - 1 ? DayPeriod.DAY : DayPeriod.NIGHT;
     }
 
 }
