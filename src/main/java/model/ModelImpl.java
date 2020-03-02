@@ -96,8 +96,10 @@ public class ModelImpl implements Model {
      */
     @Override
     public void prepareEnvironment(final EnvironmentHolder holder) {
+        final int width = 200;
+        final int height = 100;
         this.environment = new BasicEnvironmentFactoryImpl()
-                .createBasicEnviroment(100, 100, holder.getFoodQuantity(), holder.getFoodVariation());
+                .createBasicEnviroment(width, height, holder.getFoodQuantity(), holder.getFoodVariation());
         initEnvironment(holder.getEntityQuantity(), holder.getEntitySpeed(), holder.getEntityDimension());
         this.actionController = new ActionControllerImpl(this.environment);
     }

@@ -70,8 +70,10 @@ public class SimulationController extends AbstractSceneController {
      * Initializes the simulation controller.
      */
     public void initSimulationController() {
+        final int width = 200;
+        final int height = 100;
         this.getView().setSimulationController(this);
-        this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), 100, 100);
+        this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), width, height);
         /*(int) this.getView().getController().getEnvironmentDimension().getX(),
         (int) this.getView().getController().getEnvironmentDimension().getY());*/
         this.getView().getController().startSimulation();
