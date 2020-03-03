@@ -23,6 +23,7 @@ public class Main extends Application {
 
     @Override
     public final void start(final Stage primaryStage) throws Exception {
+        primaryStage.setMaximized(true);
         final View view = new ViewImpl(primaryStage);
         final Controller controller = new ControllerImpl(new ModelImpl(), view);
         view.launch(controller);
