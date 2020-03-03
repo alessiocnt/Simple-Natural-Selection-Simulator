@@ -86,7 +86,7 @@ public class EnergyImpl implements Energy {
      */
     @Override
     public String toString() {
-        return "" + energyLevel;
+        return String.valueOf(energyLevel);
     }
 
 }

@@ -95,7 +95,7 @@ public class SimulationController extends AbstractSceneController {
         Platform.runLater(() -> {
             this.logics.setEntities(foods, organisms);
             this.logics.update();
-            this.aliveLbl.setText(this.logics.getAlive() + "");
+            this.aliveLbl.setText(String.valueOf(this.logics.getAlive()));
         });
     }
 

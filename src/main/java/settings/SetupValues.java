@@ -20,7 +20,7 @@ public enum SetupValues {
     /**
      * Quantity of food available every morning.
      */
-    FOODQUANTITY(30, 300, 200),
+    FOODQUANTITY(200, 2000, 1750),
     /**
      * Food variation every morning.
      */
@@ -28,7 +28,7 @@ public enum SetupValues {
     /**
      * Children quantity.
      */
-    CHILDRENQUANTITY(1, 10, 1);
+    CHILDRENQUANTITY(1, 3, 1);
 
     private final int start;
     private final int stop;

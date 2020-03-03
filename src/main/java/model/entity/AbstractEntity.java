@@ -1,6 +1,9 @@
 package model.entity;
 
 
+/**
+ * Abstract class to describe Entities.
+ */
 public abstract class AbstractEntity implements Entity {
 
     private Energy energy;

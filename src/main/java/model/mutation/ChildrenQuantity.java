@@ -7,7 +7,7 @@ import model.mutation.foodconsumption.strategy.Multiplier;
  */
 public class ChildrenQuantity extends AbstractTrait {
 
-    private static final int MULTIPLIER = 10;
+    private static final int MULTIPLIER = 20;
 
     /**
      * @param value

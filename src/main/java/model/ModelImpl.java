@@ -21,6 +21,8 @@ import model.mutation.ChildrenQuantity;
 import model.mutation.Dimension;
 import model.mutation.Speed;
 import model.mutation.TraitType;
+import model.utilities.DimensionConverter;
+import settings.SetupValues;
 import utilities.Pair;
 import view.entities.EnvironmentHolder;
 
@@ -104,14 +106,12 @@ public class ModelImpl implements Model {
         this.actionController = new ActionControllerImpl(this.environment);
     }
 
-    private void initEnvironment(final int entityQuantity, final double entitySpeed, final int entityDimension) {
+    private void initEnvironment(final int entityQuantity, final int entitySpeed, final int entityDimension) {
         FoodBuilder foodBuilder = new FoodBuilderImpl();
-        OrganismBuilder organismBuilder = new OrganismBuilderImpl(new EnergyImpl(10000));
-        // TODO speed e' int o double???
-        organismBuilder.trait(TraitType.SPEED, new Speed((int) entitySpeed));
+        OrganismBuilder organismBuilder = new OrganismBuilderImpl(DimensionConverter.toEnergy(entityDimension));
+        organismBuilder.trait(TraitType.SPEED, new Speed(entitySpeed));
         organismBuilder.trait(TraitType.DIMENSION, new Dimension(entityDimension));
-        // TODO quantita' di figli iniziale???
-        organismBuilder.trait(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(1));
+        organismBuilder.trait(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(SetupValues.CHILDRENQUANTITY.getDefault()));
         for (int i = 0; i < this.environment.getMorningFoodQuantity(); i++) {
             this.environment.addFood(foodBuilder.build());
         }

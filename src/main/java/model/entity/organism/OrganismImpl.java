@@ -18,6 +18,12 @@ public class OrganismImpl extends AbstractEntity implements Organism {
 
     private EnumMap<TraitType, Trait> traits;
 
+    /**
+     * @param energy
+     * organism energy.
+     * @param traits
+     * organism traits.
+     */
     protected OrganismImpl(final Energy energy, final EnumMap<TraitType, Trait> traits) {
         super(energy);
         this.traits = traits;

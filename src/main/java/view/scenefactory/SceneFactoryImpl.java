@@ -11,7 +11,6 @@ import view.utilities.SceneType;
  */
 public class SceneFactoryImpl implements SceneFactory {
 
-    private final View view;
     private final Stage stage;
     private final SceneLoader sceneLoader;
     /**
@@ -22,8 +21,7 @@ public class SceneFactoryImpl implements SceneFactory {
      */
     public SceneFactoryImpl(final Stage stage, final View view) {
         this.stage = stage;
-        this.view = view;
-        this.sceneLoader = new SceneLoaderImpl(this.view);
+        this.sceneLoader = new SceneLoaderImpl(view);
     }
 
     @Override

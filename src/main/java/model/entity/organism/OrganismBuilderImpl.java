@@ -6,6 +6,7 @@ package model.entity.organism;
 import java.util.EnumMap;
 
 import model.entity.Energy;
+import model.entity.EnergyImpl;
 import model.mutation.Trait;
 import model.mutation.TraitType;
 
@@ -20,6 +21,10 @@ public class OrganismBuilderImpl implements OrganismBuilder {
     private Energy energy;
     private EnumMap<TraitType, Trait> traits;
 
+    /**
+     * @param energy
+     * organism energy.
+     */
     public OrganismBuilderImpl(final Energy energy) {
         this.energy = energy;
         this.traits = new EnumMap<TraitType, Trait>(TraitType.class);
@@ -40,7 +45,7 @@ public class OrganismBuilderImpl implements OrganismBuilder {
     @Override
     public OrganismImpl build() {
         if (this.energy != null && !this.traits.isEmpty()) {
-            return new OrganismImpl(this.energy, this.traits);
+            return new OrganismImpl(new EnergyImpl(this.energy.getEnergy()), this.traits);
         }
         throw new IllegalArgumentException(EXCEPTIONMESSAGE);
     }

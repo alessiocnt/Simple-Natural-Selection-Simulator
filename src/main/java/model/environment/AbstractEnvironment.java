@@ -1,5 +1,6 @@
 package model.environment;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -17,8 +18,10 @@ import model.environment.position.Position;
 import model.environment.position.PositionImpl;
 import utilities.Pair;
 
+/**
+ * Abstract class to describe environment.
+ */
 public abstract class AbstractEnvironment implements Environment {
-//TODO what if the environment is full?
     private static final Random RND = new Random();
     private final int xDimension;
     private final int yDimension;
@@ -30,7 +33,9 @@ public abstract class AbstractEnvironment implements Environment {
     /**
      * 
      * @param xDimension
+     * x dimension.
      * @param yDimension
+     * y dimension.
      */
     public AbstractEnvironment(final int xDimension, final int yDimension) {
         this.xDimension = xDimension;
@@ -123,7 +128,7 @@ public abstract class AbstractEnvironment implements Environment {
      * {@inheritDoc}
      */
     public Iterator<Organism> getOrganisms() {
-        return this.organisms.keySet().iterator();
+        return new ArrayList<Organism>(this.organisms.keySet()).iterator();
     }
 
     /**

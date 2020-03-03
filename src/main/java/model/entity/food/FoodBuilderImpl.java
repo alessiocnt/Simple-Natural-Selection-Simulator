@@ -12,7 +12,8 @@ import model.entity.EnergyImpl;
  */
 public class FoodBuilderImpl implements FoodBuilder {
 
-    private static final Energy ENERGYVALUE = new EnergyImpl(50);
+    private static final int DEFAULTENERGY = 100;
+    private static final Energy ENERGYVALUE = new EnergyImpl(FoodBuilderImpl.DEFAULTENERGY);
     private Energy energy;
 
     /**

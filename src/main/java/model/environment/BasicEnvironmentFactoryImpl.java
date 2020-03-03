@@ -1,5 +1,8 @@
 package model.environment;
 
+/**
+ * Basic environment factory.
+ */
 public class BasicEnvironmentFactoryImpl implements BasicEnvironmentFactory {
 
     /**

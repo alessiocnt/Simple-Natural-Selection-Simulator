@@ -15,7 +15,6 @@ import model.mutation.MutationRarity;
 import model.mutation.Speed;
 import model.mutation.Trait;
 import model.mutation.TraitType;
-import settings.SetupValues;
 
 /**
  * Children factory.
@@ -30,9 +29,8 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
                                     .filter((entrySet) -> !entrySet.getValue().getRarity().equals(MutationRarity.NOMUTATION))
                                     .collect(Collectors.toMap((entrySet) -> entrySet.getKey(),
                                                 (entrySet) -> this.getMutatedTrait(entrySet.getKey(), entrySet.getValue().getValue())));
-        final OrganismBuilder organismBuilder = new OrganismBuilderImpl(
-                                    new EnergyImpl(mutatedTraits.getOrDefault(TraitType.DIMENSION,
-                                            new Dimension(SetupValues.DIMENSION.getDefault())).getValue()));
+        //Child has the same energy of dad.
+        final OrganismBuilder organismBuilder = new OrganismBuilderImpl(new EnergyImpl(organism.getEnergy().getEnergy()));
         mutatedTraits.entrySet().forEach((entrySet) -> organismBuilder.trait(entrySet.getKey(), entrySet.getValue()));
         Organism mutatedOrganism = organismBuilder.build();
         return mutatedOrganism;
