@@ -5,8 +5,10 @@ import java.util.Set;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 
 import model.entity.food.Food;
@@ -108,5 +110,17 @@ public class SimulationController extends AbstractSceneController {
                    - this.top.getHeight() - this.bottom.getHeight());
          this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
          this.logics.update();
+    }
+
+    /**
+     * Tells SimulationController that the simulation is over.
+     */
+    public void simulationOver() {
+        Platform.runLater(() -> {
+            Alert a = new Alert(AlertType.INFORMATION);
+            a.setTitle("INFO");
+            a.setContentText("The simulation is over, everyone is dead.");
+            a.show();
+        });
     }
 }

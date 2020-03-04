@@ -39,6 +39,11 @@ public interface View {
     void setSimulationController(SimulationController simulationController);
 
     /**
+     * Tells view that the simulation is over.
+     */
+    public void setSimulationOver();
+
+    /**
      * Renders the simulation canvas.
      * @param foods
      *      foods in the environment

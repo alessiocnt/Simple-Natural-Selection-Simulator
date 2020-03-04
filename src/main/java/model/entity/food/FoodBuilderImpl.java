@@ -17,7 +17,7 @@ public class FoodBuilderImpl implements FoodBuilder {
     private Energy energy;
 
     /**
-     * @param energy
+     * Creates a new foodBuilder.
      */
     public FoodBuilderImpl() {
         this.energy = ENERGYVALUE;
@@ -27,8 +27,16 @@ public class FoodBuilderImpl implements FoodBuilder {
      * {@inheritDoc}
      */
     @Override
+    public FoodBuilder setEnergy(final Energy energy) {
+        this.energy = energy;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Food build() {
         return new Food(this.energy);
     }
-
 }

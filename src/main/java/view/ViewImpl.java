@@ -62,6 +62,13 @@ public class ViewImpl implements View {
      * {@inheritDoc}
      */
     @Override
+    public void setSimulationOver() {
+        this.simulationController.simulationOver();
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setSimulationController(final SimulationController simulationController) {
         this.simulationController = simulationController;
     }

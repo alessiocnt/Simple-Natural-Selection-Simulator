@@ -29,7 +29,7 @@ public class BasicEnvironmentImpl extends AbstractEnvironment implements BasicEn
     public void nextDay() {
         //deletes all current food in the environment
         super.clear();
-        this.morningFoodQuantity -= this.dailyFoodQuantityModification;
+        this.morningFoodQuantity += this.dailyFoodQuantityModification;
     }
 
     /**

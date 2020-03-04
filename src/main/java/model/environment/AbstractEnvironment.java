@@ -11,7 +11,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+import model.entity.EnergyImpl;
 import model.entity.food.Food;
+import model.entity.food.FoodBuilderImpl;
 import model.entity.organism.Organism;
 import model.environment.exceptions.OutOfEnviromentException;
 import model.environment.position.Position;
@@ -23,36 +25,34 @@ import utilities.Pair;
  */
 public abstract class AbstractEnvironment implements Environment {
     private static final Random RND = new Random();
-    private final int xDimension;
-    private final int yDimension;
-    private int currentFoodQuantity = 0;
-    private int currentOrganismQuantity = 0;
+    private final int width;
+    private final int height;
     private final Map<Position, Food> foods = new ConcurrentHashMap<>();
     private final Map<Organism, Position> organisms = new ConcurrentHashMap<>();
 
     /**
      * 
-     * @param xDimension
-     * x dimension.
-     * @param yDimension
-     * y dimension.
+     * @param width
+     *      environment width
+     * @param height
+     *      environment height
      */
-    public AbstractEnvironment(final int xDimension, final int yDimension) {
-        this.xDimension = xDimension;
-        this.yDimension = yDimension;
+    public AbstractEnvironment(final int width, final int height) {
+        this.width = width;
+        this.height = height;
     }
 
     /**
      * {@inheritDoc}
      */
     public int getCurrendOrganismQuantity() {
-        return this.currentOrganismQuantity;
+        return this.organisms.keySet().size();
     }
 
     /**{@inheritDoc}
      */
     public int getCurrentFoodQuantity() {
-        return this.currentFoodQuantity;
+        return this.foods.values().size();
     }
 
     /**
@@ -62,7 +62,6 @@ public abstract class AbstractEnvironment implements Environment {
         Objects.requireNonNull(organism);
         Position organismPosition = this.getRandomPosition();
         this.organisms.put(organism, organismPosition);
-        this.currentOrganismQuantity++;
     }
 
     /**
@@ -73,7 +72,6 @@ public abstract class AbstractEnvironment implements Environment {
        Objects.requireNonNull(son);
        Position pos = this.organisms.get(father);
        this.organisms.put(son, pos);
-       this.currentOrganismQuantity++;
    }
 
     /**
@@ -84,12 +82,14 @@ public abstract class AbstractEnvironment implements Environment {
         Objects.requireNonNull(food);
         //putting a food in an empty position
         Position foodPosition = this.getRandomPosition();
-        this.foods.put(foodPosition, food);
-        this.currentFoodQuantity++;
+        this.foods.put(foodPosition, this.foods.get(foodPosition) == null ? food 
+                : new FoodBuilderImpl().setEnergy(
+                    new EnergyImpl(this.foods.get(foodPosition).getEnergy().getEnergy() + food.getEnergy().getEnergy())
+                ).build());
     }
 
     private Position getRandomPosition() {
-        return new PositionImpl(AbstractEnvironment.RND.nextInt(this.xDimension), AbstractEnvironment.RND.nextInt(this.yDimension));
+        return new PositionImpl(AbstractEnvironment.RND.nextInt(this.width), AbstractEnvironment.RND.nextInt(this.height));
     }
 
     /**
@@ -98,8 +98,8 @@ public abstract class AbstractEnvironment implements Environment {
     public void moveOrganism(final Organism organism, final int xOffset, final int yOffset) throws OutOfEnviromentException {
         Position position = this.organisms.get(organism);
         Position newPosition = new PositionImpl(position.getX() + xOffset, position.getY() + yOffset);
-        if (newPosition.getX() < 0 || newPosition.getX() > this.xDimension
-                || newPosition.getY() < 0 || newPosition.getY() > this.yDimension) {
+        if (newPosition.getX() < 0 || newPosition.getX() > this.width
+                || newPosition.getY() < 0 || newPosition.getY() > this.height) {
             throw(new OutOfEnviromentException());
         }
         this.organisms.put(organism, newPosition);
@@ -111,7 +111,6 @@ public abstract class AbstractEnvironment implements Environment {
     public void removeOrganism(final Organism organism) {
         Objects.requireNonNull(organism);
         this.organisms.remove(organism);
-        this.currentOrganismQuantity--;
     }
 
     /**
@@ -121,7 +120,6 @@ public abstract class AbstractEnvironment implements Environment {
     public void removeFood(final Food food) {
         Objects.requireNonNull(food);
         this.foods.values().removeIf(f -> f.equals(food));
-        this.currentFoodQuantity--;
     }
 
     /**
@@ -172,14 +170,13 @@ public abstract class AbstractEnvironment implements Environment {
     @Override
     public void clear() {
         this.foods.clear();
-        this.currentFoodQuantity = 0;
     }
 
     /**
      * {@inheritDoc}
      */
     public Position getDimension() {
-        return new PositionImpl(this.xDimension, this.yDimension);
+        return new PositionImpl(this.width, this.height);
     }
 
     /**
@@ -187,8 +184,8 @@ public abstract class AbstractEnvironment implements Environment {
      */
     @Override
     public String toString() {
-        return "AbstractEnvironment [xDimension=" + xDimension + ", yDimension=" + yDimension + ", currentFoodQuantity="
-                + currentFoodQuantity + ", currentOrganismQuantity=" + currentOrganismQuantity + ", foods=" + foods
+        return "AbstractEnvironment [xDimension=" + width + ", yDimension=" + height + ", currentFoodQuantity="
+                + this.getCurrentFoodQuantity() + ", currentOrganismQuantity=" + this.getCurrendOrganismQuantity() + ", foods=" + foods
                 + ", organisms=" + organisms + "]";
     }
 

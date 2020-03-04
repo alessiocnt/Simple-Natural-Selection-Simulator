@@ -127,14 +127,9 @@ public class ControllerImpl implements Controller {
 
         private void update() {
             model.update(dayCicle);
-            Platform.runLater(() -> {
-                if (model.isSimulationOver()) {
-                    Alert a = new Alert(AlertType.INFORMATION);
-                    a.setTitle("INFO");
-                    a.setContentText("The simulation is over, everyone is dead.");
-                    a.show();
-                }
-            });
+            if (model.isSimulationOver()) {
+                view.setSimulationOver();
+            }
         }
 
         private void render() {
