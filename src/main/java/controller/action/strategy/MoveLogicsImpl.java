@@ -10,8 +10,6 @@ import java.util.List;
 import model.entity.Energy;
 import model.entity.EnergyImpl;
 import model.entity.organism.Organism;
-import model.mutation.TraitType;
-import utilities.Pair;
 
 /**
  * Class that defines the logic for a movement due to the Organism's traits.
@@ -23,31 +21,12 @@ public class MoveLogicsImpl implements MoveLogics {
      * List representing the possible directions where an Organism can move.
      */
     private final List<Direction> directions;
-    private Pair<Integer, Integer> directionVector;
-    private static final Pair<Integer, Integer> ZERODIRECTIONVECTOR = new Pair<>(0, 0);
 
     /**
      * Constructor.
      */
     public MoveLogicsImpl() {
         this.directions = Arrays.asList(Direction.values());
-        this.directionVector = ZERODIRECTIONVECTOR;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Pair<Integer, Integer> calculateVectorDirection(final Organism organism) {
-        Direction currentDirection;
-        this.directionVector = new Pair<>(0, 0);
-        for (int i = 0; i < organism.getTraits().get(TraitType.SPEED).getValue(); i++) {
-            currentDirection = this.getRandomDirection();
-            this.directionVector = new Pair<>(directionVector.getX() + currentDirection.getXVariation(),
-                                              directionVector.getY() + currentDirection.getYVariation());
-        }
-        detractConsumptionForMovement(organism, computeConsumptionForMovement(organism));
-        return this.directionVector;
     }
 
     /**
@@ -66,25 +45,17 @@ public class MoveLogicsImpl implements MoveLogics {
      * {@inheritDoc}
      */
     @Override
-    public Pair<Integer, Integer> getZeroDirectionVector() {
-        return MoveLogicsImpl.ZERODIRECTIONVECTOR;
-    }
-
-    /**
-     * @return a random Direction
-     */
-    private Direction getRandomDirection() {
+    public Direction getRandomDirection() {
         Collections.shuffle(this.directions);
-        //System.out.println(this.directions.get(0));
         return this.directions.get(0);
     }
 
     /**
-     * @param organism the Organism that will perform the movement
-     * @param energyToDetract the energy value that will be spent to perform the movement
+     * {@inheritDoc}
      */
-    private void detractConsumptionForMovement(final Organism organism, final Energy energyToDetract) {
-        organism.getEnergy().detractEnergy(energyToDetract);
+    @Override
+    public void detractConsumptionForMovement(final Organism organism) {
+        organism.getEnergy().detractEnergy(computeConsumptionForMovement(organism));
     }
 
 }

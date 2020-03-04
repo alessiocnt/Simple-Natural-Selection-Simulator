@@ -6,7 +6,6 @@ package controller.action.strategy;
 import java.util.Optional;
 
 import model.entity.Energy;
-import model.entity.EnergyImpl;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.mutation.Trait;

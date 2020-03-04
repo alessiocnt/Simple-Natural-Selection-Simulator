@@ -37,7 +37,6 @@ public class ReplicateLogicsImpl implements ReplicateLogics {
      */
     @Override
     public Energy computeConsumptionForReplication(final Organism organism) {
-        System.out.println(organism.getTraits().get(TraitType.CHILDRENQUANTITY).getFoodConsumption(organism));
         return organism.getTraits().get(TraitType.CHILDRENQUANTITY).getFoodConsumption(organism);
     }
 

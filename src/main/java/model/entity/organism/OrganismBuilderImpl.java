@@ -18,7 +18,7 @@ public class OrganismBuilderImpl implements OrganismBuilder {
 
     private static final String EXCEPTIONMESSAGE = "Argument can not be null.";
 
-    private Energy energy;
+    private final Energy energy;
     private EnumMap<TraitType, Trait> traits;
 
     /**
@@ -27,7 +27,7 @@ public class OrganismBuilderImpl implements OrganismBuilder {
      */
     public OrganismBuilderImpl(final Energy energy) {
         this.energy = energy;
-        this.traits = new EnumMap<TraitType, Trait>(TraitType.class);
+        this.traits = new EnumMap<>(TraitType.class);
     }
 
     /**

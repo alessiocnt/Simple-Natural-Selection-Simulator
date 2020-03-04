@@ -3,6 +3,7 @@
  */
 package controller.action;
 
+import controller.action.strategy.Direction;
 import controller.action.strategy.EatLogics;
 import controller.action.strategy.EatLogicsImpl;
 import controller.action.strategy.MoveLogics;
@@ -11,7 +12,8 @@ import model.entity.Energy;
 import model.entity.organism.Organism;
 import model.environment.Environment;
 import model.environment.daycicle.DayPeriod;
-import utilities.Pair;
+import model.environment.exceptions.OutOfEnviromentException;
+import model.mutation.TraitType;
 
 /**
  * This class performs all the actions that occur in a day-time.
@@ -41,14 +43,18 @@ public class DayAction extends AbstractAction {
     public void perform(final Organism organism) {
         if (!tryToRemoveOrganism(organism)) {
             try {
-                Pair<Integer, Integer> movementVectorPair = moveLogic.calculateVectorDirection(organism);
-                environment.moveOrganism(organism, movementVectorPair.getX(), movementVectorPair.getY());
-            } catch (Exception OutOfEnviromentException) {
-                System.out.println("Out of environment, can't move." + organism);
-            }
-            if (eatLogic.canEat(organism, environment.getFood(organism))) {
-                eatLogic.eat(organism, environment.getFood(organism).get());
-                environment.removeFood(environment.getFood(organism).get());
+                Direction currentDirection;
+                for (int i = 0; i < organism.getTraits().get(TraitType.SPEED).getValue(); i++) {
+                    currentDirection = moveLogic.getRandomDirection();
+                    environment.moveOrganism(organism, currentDirection.getXVariation(), currentDirection.getYVariation());
+                    if (eatLogic.canEat(organism, environment.getFood(organism))) {
+                        eatLogic.eat(organism, environment.getFood(organism).get());
+                        environment.removeFood(environment.getFood(organism).get());
+                    }
+                }
+                moveLogic.detractConsumptionForMovement(organism);
+            } catch (OutOfEnviromentException e) {
+                System.out.println(e.getMessage() + " " + organism);
             }
         }
     }

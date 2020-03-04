@@ -11,6 +11,7 @@ import model.environment.daycicle.DayPeriod;
  */
 public abstract class AbstractAction implements Action {
 
+    private final DayPeriod type;
     /**
      * @param type
      *          the action's type
@@ -19,11 +20,10 @@ public abstract class AbstractAction implements Action {
         this.type = type;
     }
 
-    private final DayPeriod type;
-
     /**
      * {@inheritDoc}
      */
+    @Override
     public DayPeriod getType() {
         return this.type;
     }

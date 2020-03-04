@@ -16,7 +16,7 @@ import model.mutation.TraitType;
  */
 public class OrganismImpl extends AbstractEntity implements Organism {
 
-    private EnumMap<TraitType, Trait> traits;
+    private final EnumMap<TraitType, Trait> traits;
 
     /**
      * @param energy
