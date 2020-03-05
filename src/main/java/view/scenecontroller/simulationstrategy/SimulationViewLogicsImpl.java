@@ -1,5 +1,6 @@
 package view.scenecontroller.simulationstrategy;
 
+import java.util.Collections;
 import java.util.Set;
 
 import javafx.scene.canvas.GraphicsContext;
@@ -15,8 +16,8 @@ import utilities.Pair;
  */
 public class SimulationViewLogicsImpl implements SimulationViewLogics {
 
-    private Set<Pair<Position, Food>> foods;
-    private Set<Pair<Position, Organism>> organisms;
+    private Set<Pair<Position, Food>> foods = Collections.emptySet();
+    private Set<Pair<Position, Organism>> organisms = Collections.emptySet();;
     private final GraphicsContext graphics;
     private final int environmentX;
     private final int environmentY;
