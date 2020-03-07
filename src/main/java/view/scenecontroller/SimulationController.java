@@ -1,6 +1,9 @@
 package view.scenecontroller;
 
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -18,6 +21,7 @@ import javafx.scene.layout.VBox;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
+import model.mutation.TraitType;
 import utilities.Pair;
 import view.scenecontroller.simulationstrategy.SimulationViewLogics;
 import view.scenecontroller.simulationstrategy.SimulationViewLogicsImpl;
@@ -57,6 +61,8 @@ public class SimulationController extends AbstractSceneController {
     private ScrollPane scrollPane;
 
     private SimulationViewLogics logics;
+    private Map<TraitType, XYChart.Series<Number, Number>> graphMap = new EnumMap<>(TraitType.class);
+    private int time = 0;
 
     @FXML
     private void startStop() {
@@ -68,6 +74,9 @@ public class SimulationController extends AbstractSceneController {
         if (this.getView().getController().isSimulationRunning()) {
             this.getView().getController().startStopSimulation();
         }
+        //Reset graphs.
+        time = 0;
+        this.graphMap.clear();
         this.getSceneFactory().openSetup();
     }
 
@@ -87,24 +96,21 @@ public class SimulationController extends AbstractSceneController {
         final int height = 100;
         this.getView().setSimulationController(this);
         this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), width, height);
-
-        this.lateralPane.getChildren().clear();
+        //Create graphs.
         this.createGraphs();
-
         //Initialize the canvas dimension.
         this.adjustCanvas();
         /*(int) this.getView().getController().getEnvironmentDimension().getX(),
         (int) this.getView().getController().getEnvironmentDimension().getY());*/
         this.getView().getController().startSimulation();
-
-    }
+       }
 
     /*
      * ----SOLO UNA PROVA----
      * Prima bisogna mettere apposto il render e il fatto della dipendenza tra View e Model
      * poi probabilmente creo una classe a parte per i grafici, da cui gestisco creazione ed update.
      */
-    private LineChart<Number, Number> createGraph(final String title) {
+    private LineChart<Number, Number> createGraph(final TraitType type) {
         final NumberAxis xAxis = new NumberAxis(); // we are gonna plot against time
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Time/s");
@@ -113,20 +119,29 @@ public class SimulationController extends AbstractSceneController {
         yAxis.setAnimated(false); // axis animations are removed
         //creating the line chart with two axis created above
         final LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setTitle(title);
+        lineChart.setTitle(type.toString());
         //defining a series to display data
-        XYChart.Series<Number, Number> series = new XYChart.Series<>();
+        final XYChart.Series<Number, Number> series;
+        //If the series is already present (for example if U click settings, series aren't deleted).
+        if (this.graphMap.containsKey(type)) {
+            series = this.graphMap.get(type);
+        } else {
+            series = new XYChart.Series<>();
+            this.graphMap.put(type, series);
+        }
         // add series to chart
         lineChart.getData().add(series);
         lineChart.setLegendVisible(false);
+        lineChart.setCreateSymbols(false);
         return lineChart;
     }
 
     private void createGraphs() {
-        final LineChart<Number, Number> lineChart = this.createGraph("Prova");
-        final LineChart<Number, Number> lineChart1 = this.createGraph("Prova1");
-        this.lateralPane.getChildren().add(lineChart);
-        this.lateralPane.getChildren().add(lineChart1);
+        this.lateralPane.getChildren().clear();
+        for (final TraitType trait : TraitType.values()) {
+            final LineChart<Number, Number> lineChart = this.createGraph(trait);
+            this.lateralPane.getChildren().add(lineChart);
+        }
         this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         this.scrollPane.autosize();
     }
@@ -144,6 +159,12 @@ public class SimulationController extends AbstractSceneController {
             this.logics.update();
             this.aliveLbl.setText(String.valueOf(this.logics.getAlive()));
         });
+
+        Map<TraitType, Double> averages = organisms.stream()
+                 .flatMap((x) -> x.getY().getTraits().entrySet().stream())
+                 .collect(Collectors.groupingBy((x) -> x.getKey(), Collectors.averagingInt((x) -> x.getValue().getValue())));
+        averages.entrySet()
+                .forEach((x) -> this.graphMap.get(x.getKey()).getData().add(new XYChart.Data<>(time++, x.getValue())));
     }
 
     /**
