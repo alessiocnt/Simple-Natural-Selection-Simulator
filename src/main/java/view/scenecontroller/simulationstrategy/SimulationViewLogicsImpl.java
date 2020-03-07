@@ -67,14 +67,14 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
     public void update() {
         this.graphics.setFill(Color.BEIGE);
         this.graphics.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
-        for (Pair<Position, Food> entry : foods) {
+        for (final Pair<Position, Food> entry : foods) {
             this.graphics.setFill(Color.DARKGREEN);
             this.graphics.fillRect(entry.getX().getX() * this.xAxisScaleFactor, 
                     entry.getX().getY() * this.yAxisScaleFactor,
                     this.xAxisScaleFactor, this.yAxisScaleFactor);
         }
 
-        for (Pair<Position, Organism> entry : organisms) {
+        for (final Pair<Position, Organism> entry : organisms) {
             this.graphics.setFill(getOrganismColor(entry.getY()));
             this.graphics.fillOval(entry.getX().getX() * this.xAxisScaleFactor, 
                     entry.getX().getY() * this.yAxisScaleFactor,

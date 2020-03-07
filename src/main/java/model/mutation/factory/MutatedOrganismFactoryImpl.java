@@ -24,15 +24,15 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
     @Override
     public final Organism createMutated(final Organism organism) {
         Objects.requireNonNull(organism);
-        Map<TraitType, Trait> traits = organism.getTraits();
-        Map<TraitType, Trait> mutatedTraits = traits.entrySet().stream()
+        final Map<TraitType, Trait> traits = organism.getTraits();
+        final Map<TraitType, Trait> mutatedTraits = traits.entrySet().stream()
                                     .filter((entrySet) -> !entrySet.getValue().getRarity().equals(MutationRarity.NOMUTATION))
                                     .collect(Collectors.toMap((entrySet) -> entrySet.getKey(),
                                                 (entrySet) -> this.getMutatedTrait(entrySet.getKey(), entrySet.getValue().getValue())));
         //Child has the same energy of dad.
         final OrganismBuilder organismBuilder = new OrganismBuilderImpl(new EnergyImpl(organism.getEnergy().getEnergy()));
         mutatedTraits.entrySet().forEach((entrySet) -> organismBuilder.trait(entrySet.getKey(), entrySet.getValue()));
-        Organism mutatedOrganism = organismBuilder.build();
+        final Organism mutatedOrganism = organismBuilder.build();
         return mutatedOrganism;
     }
 

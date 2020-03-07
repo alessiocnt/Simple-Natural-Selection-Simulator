@@ -67,8 +67,6 @@ public class SetupController extends AbstractSceneController {
         this.observers.forEach((observer) -> observer.update(holder));
         MyAlert.showAlert(AlertType.INFORMATION, "START", holder.toString());
         this.getView().getController().setEnvironmentInitialValues(holder);
-
-        //TODO per ora dará errore perche non é stata implementata la parte nel Controller!
         if (this.getView().getController().initSimulation()) {
             //Initialization is ok, so open the simulation scene.
             this.getSceneFactory().openSimulation();

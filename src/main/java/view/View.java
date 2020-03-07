@@ -41,7 +41,7 @@ public interface View {
     /**
      * Tells view that the simulation is over.
      */
-    public void setSimulationOver();
+    void setSimulationOver();
 
     /**
      * Renders the simulation canvas.

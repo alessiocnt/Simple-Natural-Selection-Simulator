@@ -19,7 +19,6 @@ import view.scenefactory.SceneFactoryImpl;
  */
 public class ViewImpl implements View {
 
-    private final Stage stage;
     private Controller controller;
     private final SceneFactory sceneFactory;
     private SimulationController simulationController;
@@ -29,8 +28,7 @@ public class ViewImpl implements View {
      * the stage where tha app run.
      */
     public ViewImpl(final Stage stage) {
-        this.stage = stage;
-        this.sceneFactory = new SceneFactoryImpl(this.stage, this);
+        this.sceneFactory = new SceneFactoryImpl(stage, this);
     }
 
     @Override 
