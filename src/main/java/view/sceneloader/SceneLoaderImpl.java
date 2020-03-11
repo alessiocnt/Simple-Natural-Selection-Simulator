@@ -6,7 +6,13 @@ import java.util.Map;
 import java.util.Optional;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import view.View;
@@ -47,19 +53,10 @@ public class SceneLoaderImpl implements SceneLoader {
                 root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
                         this.view.getController().getSettings().getWindowHeight());
             } else {
+                //If the scene isn't in the cache, then create a new one, with the current root.
                 this.loader = new FXMLLoader();
                 this.loader.setLocation(ClassLoader.getSystemResource(sceneType.getFxmlPath()));
-                root = this.loader.load();
-                //Add listener to set the current size in settings.
-                root.widthProperty().addListener((obs, oldVal, newVal) -> {
-                    this.view.getController().setWidth(newVal.intValue());
-                });
-                root.heightProperty().addListener((obs, oldVal, newVal) -> {
-                    this.view.getController().setHeight(newVal.intValue());
-                });
-                //If the scene isn't in the cache, then create a new one, with the current root.
-                root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
-                        this.view.getController().getSettings().getWindowHeight());
+                root = this.createRoot();
                 scene = new Scene(root);
                 scene.setUserData(this.loader);
                 scene.getStylesheets().add(ClassLoader.getSystemResource(sceneType.getCssPath()).toExternalForm());
@@ -100,4 +97,35 @@ public class SceneLoaderImpl implements SceneLoader {
         }
     }
 
+    private Region createRoot() throws IOException {
+        final Region root = this.loader.load();
+        //Add listener to set the current size in settings.
+        root.widthProperty().addListener((obs, oldVal, newVal) -> {
+            this.view.getController().setWidth(newVal.intValue());
+            this.scaleViews(root);
+        });
+        root.heightProperty().addListener((obs, oldVal, newVal) -> {
+            this.view.getController().setHeight(newVal.intValue());
+            this.scaleViews(root);
+        });
+        root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
+                this.view.getController().getSettings().getWindowHeight());
+        return root;
+    }
+    private void scaleViews(final Parent root) {
+        /*root.getChildrenUnmodifiable().forEach((x) -> {
+            if (x instanceof Parent) {
+                root.getChildrenUnmodifiable().stream().filter((y) -> ((Parent) y).getChildrenUnmodifiable().size() != 0)
+                    .forEach((y) -> {
+                        this.scaleViews((Parent) y);
+                    });
+            }
+            if (x instanceof Label || x instanceof Button || x instanceof ComboBox) {
+                final double scaleFactor = this.view.getController().getSettings().getScaleFactor();
+                ((Control) x).setMinSize(((Control) x).getWidth() * scaleFactor, ((Control) x).getHeight() * scaleFactor);
+                ((Control) x).setStyle("-fx-font-size: 100%;");
+            }
+        });*/
+    }
 }
+

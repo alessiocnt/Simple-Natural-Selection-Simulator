@@ -27,7 +27,7 @@ public final class SettingsImpl implements Settings {
     @Override
     public double getScaleFactor() {
         return Math.min(this.selectedRes.getX() / this.prefRes.getX(),
-                this.selectedRes.getY() / this.selectedRes.getY());
+                this.selectedRes.getY() / this.prefRes.getY());
     }
 
     @Override
