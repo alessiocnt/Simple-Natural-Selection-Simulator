@@ -1,5 +1,6 @@
 package view.scenecontroller;
 
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,7 @@ import javafx.scene.layout.VBox;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
+import model.mutation.TraitType;
 import utilities.Pair;
 import view.scenecontroller.simulationstrategy.SimulationViewLogics;
 import view.scenecontroller.simulationstrategy.SimulationViewLogicsImpl;
@@ -42,6 +44,12 @@ public class SimulationController extends AbstractSceneController {
 
     @FXML
     private Label aliveLbl;
+
+    @FXML
+    private Label aspeedLbl;
+
+    @FXML
+    private Label adimensionLbl;
 
     @FXML
     private HBox top;
@@ -112,15 +120,19 @@ public class SimulationController extends AbstractSceneController {
      *                      organisms that will be displayed
      */
     public void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
+        //Update graphs with new averages.
+        Map<TraitType, Double> averages = organisms.stream()
+                .flatMap((x) -> x.getY().getTraits().entrySet().stream())
+                .collect(Collectors.groupingBy((x) -> x.getKey(), Collectors.averagingInt((x) -> x.getValue().getValue())));
+        this.graphs.update(averages);
+
         Platform.runLater(() -> {
             this.logics.setEntities(foods, organisms);
             this.logics.update();
             this.aliveLbl.setText(String.valueOf(this.logics.getAlive()));
+            this.aspeedLbl.setText(String.format("%.2f", averages.get(TraitType.SPEED)));
+            this.adimensionLbl.setText(String.format("%.2f", averages.get(TraitType.DIMENSION)));
         });
-        //Update graphs with new averages.
-        this.graphs.update(organisms.stream()
-                 .flatMap((x) -> x.getY().getTraits().entrySet().stream())
-                 .collect(Collectors.groupingBy((x) -> x.getKey(), Collectors.averagingInt((x) -> x.getValue().getValue()))));
     }
 
     /**

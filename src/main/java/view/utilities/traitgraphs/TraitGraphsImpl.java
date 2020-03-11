@@ -63,6 +63,7 @@ public class TraitGraphsImpl implements TraitGraphs {
         values.entrySet()
               .forEach((x) -> this.graphMap.get(x.getKey())
                                            .getData()
-                                           .add(new XYChart.Data<>(time++, x.getValue())));
+                                           .add(new XYChart.Data<>(time, x.getValue())));
+        time++;
     }
 }

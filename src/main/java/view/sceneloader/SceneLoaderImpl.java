@@ -6,13 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import view.View;
@@ -74,58 +68,52 @@ public class SceneLoaderImpl implements SceneLoader {
             }
 
             final SceneController controller = (SceneController) this.loader.getController();
-            controller.setSceneFactory(this.view.getSceneFactory());
-            controller.setView(this.view);
-
-            switch (sceneType) {
-                case SIMULATION:
-                    final SimulationController simulationController = ((SimulationController) controller);
-                    simulationController.initSimulationController();
-                    //Add another listener, so when dimension change the canvas will resize properly.
-                    root.widthProperty().addListener((obs, oldVal, newVal) -> {
-                        simulationController.adjustCanvas();
-                    });
-                    root.heightProperty().addListener((obs, oldVal, newVal) -> {
-                        simulationController.adjustCanvas();
-                    });
-                    break;
-                default:
-                    break;
-            }
+            this.initializeScene(controller, sceneType, root);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /*
+     * Initialize scene by call methods, for example in startSimulation we need to call some
+     * methods in order to init the environment view.
+     */
+    private void initializeScene(final SceneController controller, final SceneType sceneType, final Region root) {
+        controller.setSceneFactory(this.view.getSceneFactory());
+        controller.setView(this.view);
+
+        switch (sceneType) {
+            case SIMULATION:
+                final SimulationController simulationController = ((SimulationController) controller);
+                simulationController.initSimulationController();
+                //Add another listener, so when dimension change the canvas will resize properly.
+                root.widthProperty().addListener((obs, oldVal, newVal) -> {
+                    simulationController.adjustCanvas();
+                });
+                root.heightProperty().addListener((obs, oldVal, newVal) -> {
+                    simulationController.adjustCanvas();
+                });
+                break;
+            default:
+                break;
+        }
+    }
+
+    /*
+     * Create root with resolution listener.
+     */
     private Region createRoot() throws IOException {
         final Region root = this.loader.load();
         //Add listener to set the current size in settings.
         root.widthProperty().addListener((obs, oldVal, newVal) -> {
             this.view.getController().setWidth(newVal.intValue());
-            this.scaleViews(root);
         });
         root.heightProperty().addListener((obs, oldVal, newVal) -> {
             this.view.getController().setHeight(newVal.intValue());
-            this.scaleViews(root);
         });
         root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
                 this.view.getController().getSettings().getWindowHeight());
         return root;
-    }
-    private void scaleViews(final Parent root) {
-        /*root.getChildrenUnmodifiable().forEach((x) -> {
-            if (x instanceof Parent) {
-                root.getChildrenUnmodifiable().stream().filter((y) -> ((Parent) y).getChildrenUnmodifiable().size() != 0)
-                    .forEach((y) -> {
-                        this.scaleViews((Parent) y);
-                    });
-            }
-            if (x instanceof Label || x instanceof Button || x instanceof ComboBox) {
-                final double scaleFactor = this.view.getController().getSettings().getScaleFactor();
-                ((Control) x).setMinSize(((Control) x).getWidth() * scaleFactor, ((Control) x).getHeight() * scaleFactor);
-                ((Control) x).setStyle("-fx-font-size: 100%;");
-            }
-        });*/
     }
 }
 

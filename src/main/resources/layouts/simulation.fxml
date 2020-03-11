@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?scenebuilder-stylesheet ../css/simulation.css?>
 
-<BorderPane prefHeight="768.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="view.scenecontroller.SimulationController">
+<BorderPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.scenecontroller.SimulationController">
   <bottom>
     <HBox fx:id="top" prefHeight="50.0" prefWidth="600.0" snapToPixel="false" BorderPane.alignment="CENTER">
       <children>
@@ -27,11 +28,36 @@
     </ScrollPane>
   </right>
   <top>
-    <HBox fx:id="bottom" prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+    <HBox id="dataBox" fx:id="bottom" prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
       <children>
-        <Label prefHeight="40.0" prefWidth="1600.0" text="Currently alive organisms:" />
-        <Label fx:id="aliveLbl" prefHeight="40.0" prefWidth="1600.0" />
+        <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="dataLabel" text="Currently alive organisms:">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></Label>
+        <Label fx:id="aliveLbl" minHeight="-Infinity" minWidth="-Infinity">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin></Label>
+            <Label styleClass="dataLabel" text="Average Speed:">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="aspeedLbl" text="Label">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </Label>
+            <Label styleClass="dataLabel" text="Average Dimension">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="adimensionLbl" text="Label" />
       </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
     </HBox>
   </top>
 </BorderPane>

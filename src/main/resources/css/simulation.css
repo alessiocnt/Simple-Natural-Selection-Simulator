@@ -1,0 +1,13 @@
+.root {
+    -fx-background-color: #16a085;
+    -fx-font-family: "monospace";
+    -fx-font-size: 1.0em;
+}
+
+#dataBox .label {
+    -fx-text-fill: #ecf0f1;
+}
+
+.dataLabel {
+	-fx-font-weight: bold;
+}
