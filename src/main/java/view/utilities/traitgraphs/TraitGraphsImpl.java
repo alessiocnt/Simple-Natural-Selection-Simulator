@@ -28,7 +28,7 @@ public class TraitGraphsImpl implements TraitGraphs {
     private LineChart<Number, Number> createGraph(final TraitType type) {
         final NumberAxis xAxis = new NumberAxis(); // we are gonna plot against time
         final NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Time/s");
+        xAxis.setLabel("Time");
         xAxis.setAnimated(false); // axis animations are removed
         yAxis.setLabel("Value");
         yAxis.setAnimated(false); // axis animations are removed
