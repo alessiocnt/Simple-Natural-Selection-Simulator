@@ -1,8 +1,5 @@
 package controller;
 
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import model.Model;
 import model.environment.daycicle.DayCicle;
 import model.environment.daycicle.DayCicleImpl;
