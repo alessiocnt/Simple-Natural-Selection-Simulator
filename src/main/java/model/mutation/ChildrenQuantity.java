@@ -16,10 +16,4 @@ public class ChildrenQuantity extends AbstractTrait {
     public ChildrenQuantity(final int value) {
         super(value, new Multiplier(value, ChildrenQuantity.MULTIPLIER), TraitType.CHILDRENQUANTITY);
     }
-
-    @Override
-    public final MutationRarity getRarity() {
-        return TraitType.CHILDRENQUANTITY.getRarity();
-    }
-
 }

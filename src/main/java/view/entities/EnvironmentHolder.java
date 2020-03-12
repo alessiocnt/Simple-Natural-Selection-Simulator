@@ -124,7 +124,7 @@ public class EnvironmentHolder {
 
     @Override
     public final String toString() {
-        return List.of(this.entityDimension, this.entitySpeed, this.entityQuantity, this.foodQuantity, this.foodVariation)
+        return List.of(this.entityDimension, this.entitySpeed, this.entityQuantity, this.foodQuantity, this.foodVariation, this.temperature)
                 .stream()
                 .map((x) -> x.toString())
                 .collect(Collectors.joining(",", "[", "]"));

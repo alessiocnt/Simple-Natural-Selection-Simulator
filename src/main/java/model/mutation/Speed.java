@@ -17,8 +17,4 @@ public class Speed extends AbstractTrait {
         super(value, new Multiplier(value, Speed.MULTIPLIER), TraitType.SPEED);
     }
 
-    @Override
-    public final MutationRarity getRarity() {
-        return TraitType.SPEED.getRarity();
-    }
 }

@@ -22,9 +22,9 @@ public class SpeedObserver implements SetupObserver {
     public SpeedObserver(final ComboBox<Integer> combobox) {
         this.combobox = combobox;
         this.combobox.getItems().addAll(Stream.iterate(SetupValues.SPEED.getStart(),
-                                                        (i) -> i != SetupValues.SPEED.getStop() + 1,
-                                                        (i) -> i + 1)
-                .collect(Collectors.toList()));
+                    (i) -> i != SetupValues.SPEED.getStop() + 1,
+                    (i) -> i + 1)
+                    .collect(Collectors.toList()));
         this.combobox.getSelectionModel().select(SetupValues.SPEED.getDefault());
     }
 

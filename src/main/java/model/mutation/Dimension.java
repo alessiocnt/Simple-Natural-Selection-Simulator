@@ -17,9 +17,4 @@ public class Dimension extends AbstractTrait {
         super(value, new Multiplier(value, Dimension.MULTIPLIER), TraitType.DIMENSION);
     }
 
-    @Override
-    public final MutationRarity getRarity() {
-        return TraitType.DIMENSION.getRarity();
-    }
-
 }

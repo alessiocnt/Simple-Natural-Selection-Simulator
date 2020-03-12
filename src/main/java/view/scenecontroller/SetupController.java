@@ -14,6 +14,7 @@ import view.observers.FoodQuantityObserver;
 import view.observers.FoodVariationObserver;
 import view.observers.SetupObserver;
 import view.observers.SpeedObserver;
+import view.observers.TemperatureObserver;
 import view.utilities.MyAlert;
 
 /**
@@ -57,7 +58,8 @@ public class SetupController extends AbstractSceneController {
                 new SpeedObserver(this.speedComboBox),
                 new FoodQuantityObserver(this.foodQComboBox),
                 new FoodVariationObserver(this.foodVComboBox),
-                new EntityQuantityObserver(this.quantityComboBox)));
+                new EntityQuantityObserver(this.quantityComboBox),
+                new TemperatureObserver(this.temperatureComboBox)));
     }
 
     @FXML

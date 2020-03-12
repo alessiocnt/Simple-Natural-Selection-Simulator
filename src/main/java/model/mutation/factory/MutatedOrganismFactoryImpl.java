@@ -11,6 +11,7 @@ import model.entity.organism.OrganismBuilder;
 import model.entity.organism.OrganismBuilderImpl;
 import model.mutation.ChildrenQuantity;
 import model.mutation.Dimension;
+import model.mutation.FoodRadar;
 import model.mutation.MutationRarity;
 import model.mutation.Speed;
 import model.mutation.Trait;
@@ -30,9 +31,15 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
                                     .collect(Collectors.toMap((entrySet) -> entrySet.getKey(),
                                                 (entrySet) -> this.getMutatedTrait(entrySet.getKey(), entrySet.getValue().getValue())));
         //Child has the same energy of dad.
-        final OrganismBuilder organismBuilder = new OrganismBuilderImpl(new EnergyImpl(organism.getEnergy().getEnergy()));
+        final OrganismBuilder organismBuilder = new OrganismBuilderImpl(new EnergyImpl(organism.getEnergy().getEnergy()))
+                                                .setEnvironmentKnowledge(organism.getEnvironmentKnowledge());
+        //Insert mutate trait.
         mutatedTraits.entrySet().forEach((entrySet) -> organismBuilder.setTrait(entrySet.getKey(), entrySet.getValue()));
-        final Organism mutatedOrganism = organismBuilder.setEnvironmentKnowledge(organism.getEnvironmentKnowledge()).build();
+        //Insert also not mutable trait in children.
+        organism.getTraits().entrySet().stream()
+            .filter((x) -> x.getKey().getRarity().equals(MutationRarity.NOMUTATION))
+            .forEach((x) -> organismBuilder.setTrait(x.getKey(), x.getValue()));
+        final Organism mutatedOrganism = organismBuilder.build();
         return mutatedOrganism;
     }
 
@@ -65,6 +72,9 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
                 break;
             case CHILDRENQUANTITY:
                     newTrait = new ChildrenQuantity(newValue);
+                break;
+            case FOODRADAR:
+                    newTrait = new FoodRadar(newValue);
                 break;
             default:
                     /* If no one can handle the request instead of returning null, 

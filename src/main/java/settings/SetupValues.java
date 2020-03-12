@@ -32,11 +32,15 @@ public enum SetupValues {
     /**
      * Food radar values.
      */
-    FOODRADAR(0, 2, 1),
+    FOODRADAR(1, 3, 1),
     /**
      * Temperature of environment.
      */
-    TEMPERATURE(20, 30, 25);
+    TEMPERATURE(5, 30, 20),
+    /**
+     * Temperature Sensibility hasn't value.
+     */
+    TEMPERATURESENSIBILITY(0, 0, 0);
 
     private final int start;
     private final int stop;

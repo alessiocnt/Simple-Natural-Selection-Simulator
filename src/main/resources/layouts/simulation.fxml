@@ -38,6 +38,12 @@
                <HBox.margin>
                   <Insets right="40.0" />
                </HBox.margin></Label>
+            <Label styleClass="dataLabel" text="Temperature: " />
+            <Label fx:id="temperatureLbl" text="Label">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </Label>
             <Label styleClass="dataLabel" text="Average Speed:">
                <HBox.margin>
                   <Insets right="10.0" />

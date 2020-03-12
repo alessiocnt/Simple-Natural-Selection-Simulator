@@ -17,7 +17,9 @@ import model.environment.position.Position;
 import model.environment.temperature.TemperatureImpl;
 import model.mutation.ChildrenQuantity;
 import model.mutation.Dimension;
+import model.mutation.FoodRadar;
 import model.mutation.Speed;
+import model.mutation.TemperatureSensibility;
 import model.mutation.TraitType;
 import model.utilities.DimensionConverter;
 import settings.SetupValues;
@@ -113,6 +115,8 @@ public class ModelImpl implements Model {
         organismBuilder.setTrait(TraitType.SPEED, new Speed(entitySpeed));
         organismBuilder.setTrait(TraitType.DIMENSION, new Dimension(entityDimension));
         organismBuilder.setTrait(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(SetupValues.CHILDRENQUANTITY.getDefault()));
+        organismBuilder.setTrait(TraitType.FOODRADAR, new FoodRadar(SetupValues.FOODRADAR.getDefault()));
+        organismBuilder.setTrait(TraitType.TEMPERATURESENSIBILITY, new TemperatureSensibility());
         for (int i = 0; i < this.environment.getMorningFoodQuantity(); i++) {
             this.environment.addFood(foodBuilder.build());
         }

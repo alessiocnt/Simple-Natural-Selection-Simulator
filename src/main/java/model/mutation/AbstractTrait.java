@@ -54,4 +54,9 @@ public abstract class AbstractTrait implements Trait {
     public final TraitType getType() {
         return this.type;
     }
+
+    @Override
+    public final MutationRarity getRarity() {
+        return type.getRarity();
+    }
 }

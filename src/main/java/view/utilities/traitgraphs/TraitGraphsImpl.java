@@ -7,6 +7,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
+import model.mutation.MutationRarity;
 import model.mutation.TraitType;
 
 /**
@@ -20,8 +21,10 @@ public class TraitGraphsImpl implements TraitGraphs {
     public final void load(final Pane root) {
         root.getChildren().clear();
         for (final TraitType trait : TraitType.values()) {
-            final LineChart<Number, Number> lineChart = this.createGraph(trait);
-            root.getChildren().add(lineChart);
+            if (!trait.getRarity().equals(MutationRarity.NOMUTATION)) {
+                final LineChart<Number, Number> lineChart = this.createGraph(trait);
+                root.getChildren().add(lineChart);
+            }
         }
     }
 

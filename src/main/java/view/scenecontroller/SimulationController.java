@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
+import model.mutation.MutationRarity;
 import model.mutation.TraitType;
 import utilities.Pair;
 import view.scenecontroller.simulationstrategy.SimulationViewLogics;
@@ -50,6 +51,9 @@ public class SimulationController extends AbstractSceneController {
 
     @FXML
     private Label adimensionLbl;
+
+    @FXML
+    private Label temperatureLbl;
 
     @FXML
     private HBox top;
@@ -119,17 +123,21 @@ public class SimulationController extends AbstractSceneController {
      */
     public void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
         //Update graphs with new averages.
-        Map<TraitType, Double> averages = organisms.stream()
-                .flatMap((x) -> x.getY().getTraits().entrySet().stream())
-                .collect(Collectors.groupingBy((x) -> x.getKey(), Collectors.averagingInt((x) -> x.getValue().getValue())));
-        Platform.runLater(() -> {
-            this.logics.setEntities(foods, organisms);
-            this.logics.update();
-            this.aliveLbl.setText(String.valueOf(this.logics.getAlive()));
-            this.aspeedLbl.setText(String.format("%.2f", averages.get(TraitType.SPEED)));
-            this.adimensionLbl.setText(String.format("%.2f", averages.get(TraitType.DIMENSION)));
-            this.graphs.update(averages);
-        });
+        if (!organisms.isEmpty()) {
+            Map<TraitType, Double> averages = organisms.stream()
+                    .flatMap((x) -> x.getY().getTraits().entrySet().stream())
+                    .filter((x) -> !x.getKey().getRarity().equals(MutationRarity.NOMUTATION))
+                    .collect(Collectors.groupingBy((x) -> x.getKey(), Collectors.averagingInt((x) -> x.getValue().getValue())));
+            Platform.runLater(() -> {
+                this.logics.setEntities(foods, organisms);
+                this.logics.update();
+                this.aliveLbl.setText(String.valueOf(this.logics.getAlive()));
+                this.aspeedLbl.setText(String.format("%.2f", averages.get(TraitType.SPEED)));
+                this.adimensionLbl.setText(String.format("%.2f", averages.get(TraitType.DIMENSION)));
+                this.temperatureLbl.setText(String.format("%.2f", organisms.stream().findAny().get().getY().getEnvironmentKnowledge().getTemperature().getValue()));
+                this.graphs.update(averages);
+            });
+        }
     }
 
     /**

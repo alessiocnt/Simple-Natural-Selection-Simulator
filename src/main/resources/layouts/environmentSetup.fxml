@@ -67,7 +67,7 @@
                         <Label text="Temperature" GridPane.rowIndex="2" />
                         <ComboBox fx:id="foodQComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
                         <ComboBox fx:id="foodVComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="tempComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="temperatureComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children>
