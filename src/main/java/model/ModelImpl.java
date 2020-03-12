@@ -90,10 +90,7 @@ public class ModelImpl implements Model {
         return this.environment.getDimension();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public OrganismEnvironmentHolder getOrganismEnvironmentHolder() {
+    private OrganismEnvironmentHolder getOrganismEnvironmentHolder() {
         return this.environment;
     }
 
@@ -120,7 +117,7 @@ public class ModelImpl implements Model {
             this.environment.addFood(foodBuilder.build());
         }
         for (int i = 0; i < entityQuantity; i++) {
-            this.environment.addOrganism(organismBuilder.build());
+            this.environment.addOrganism(organismBuilder.setEnvironmentKnowledge(this.getOrganismEnvironmentHolder()).build());
         }
     }
 }
