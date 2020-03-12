@@ -5,18 +5,19 @@ import java.util.Set;
 
 import controller.action.ActionController;
 import controller.action.ActionControllerImpl;
-import model.entity.EnergyImpl;
 import model.entity.food.Food;
 import model.entity.food.FoodBuilder;
 import model.entity.food.FoodBuilderImpl;
 import model.entity.organism.Organism;
 import model.entity.organism.OrganismBuilder;
 import model.entity.organism.OrganismBuilderImpl;
+import model.environment.AdvancedEnvironment;
 import model.environment.BasicEnvironment;
-import model.environment.BasicEnvironmentFactoryImpl;
+import model.environment.EnvironmentFactoryImpl;
 import model.environment.daycicle.DayCicle;
 import model.environment.daycicle.DayPeriod;
 import model.environment.position.Position;
+import model.environment.temperature.TemperatureImpl;
 import model.mutation.ChildrenQuantity;
 import model.mutation.Dimension;
 import model.mutation.Speed;
@@ -32,7 +33,7 @@ import view.entities.EnvironmentHolder;
  */
 public class ModelImpl implements Model {
 
-    private BasicEnvironment environment;
+    private AdvancedEnvironment environment;
     private ActionController actionController;
 
     /**
@@ -100,8 +101,8 @@ public class ModelImpl implements Model {
     public void prepareEnvironment(final EnvironmentHolder holder) {
         final int width = 200;
         final int height = 100;
-        this.environment = new BasicEnvironmentFactoryImpl()
-                .createBasicEnviroment(width, height, holder.getFoodQuantity(), holder.getFoodVariation());
+        this.environment = new EnvironmentFactoryImpl()
+                .createAdvancedEnviroment(width, height, holder.getFoodQuantity(), holder.getFoodVariation(), new TemperatureImpl(holder.getTemperature()));
         initEnvironment(holder.getEntityQuantity(), holder.getEntitySpeed(), holder.getEntityDimension());
         this.actionController = new ActionControllerImpl(this.environment);
     }

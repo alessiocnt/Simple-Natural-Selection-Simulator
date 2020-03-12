@@ -31,6 +31,19 @@ public abstract class AbstractEnvironment implements Environment {
     private final Map<Organism, Position> organisms = new ConcurrentHashMap<>();
 
     /**
+     * @return the environment foods
+     */
+    protected Map<Position, Food> getFoodsMap() {
+        return this.foods;
+    }
+
+    /**
+     * @return the environment organisms
+     */
+    protected Map<Organism, Position> getOrganismsMap() {
+        return this.organisms;
+    }
+    /**
      * 
      * @param width
      *      environment width

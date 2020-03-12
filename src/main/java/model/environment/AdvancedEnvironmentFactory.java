@@ -1,9 +1,8 @@
 package model.environment;
 
-/**
- * Models a factory for a BasicEnvironment.
- */
-public interface BasicEnvironmentFactory {
+import model.environment.temperature.Temperature;
+
+public interface AdvancedEnvironmentFactory {
 
     /**
      * Creates a BasicEnvironment.
@@ -15,7 +14,10 @@ public interface BasicEnvironmentFactory {
      *      the food quantity for the first morning
      * @param dailyFoodQuantityModification
      *      how much will the quantity of food be modified every morning
-     * @return a BasicEnviroment
+     * @param temperature
+     *      the initial temperature of the environment
+     * @return a AdvancedEnvironment
      */
-    BasicEnvironment createBasicEnviroment(int xDimension, int yDimension, int morningFoodQuantity, int dailyFoodQuantityModification);
+    AdvancedEnvironment createBasicEnviroment(int xDimension, int yDimension, int morningFoodQuantity, int dailyFoodQuantityModification,
+            Temperature temperature);
 }

@@ -13,8 +13,8 @@ import model.entity.organism.Organism;
 import model.entity.organism.OrganismBuilder;
 import model.entity.organism.OrganismBuilderImpl;
 import model.environment.BasicEnvironment;
-import model.environment.BasicEnvironmentFactory;
-import model.environment.BasicEnvironmentFactoryImpl;
+import model.environment.EnvironmentFactory;
+import model.environment.EnvironmentFactoryImpl;
 import model.mutation.ChildrenQuantity;
 import model.mutation.Dimension;
 import model.mutation.Speed;
@@ -29,7 +29,7 @@ public class TestBasicEnvironment {
     private final int speed = 5;
     private final int dimension = 100;
     private final int children = 2;
-    private BasicEnvironmentFactory factory; 
+    private EnvironmentFactory factory; 
     private BasicEnvironment environment;
     private OrganismBuilder organismBuilder;
     private Organism organism;
@@ -38,7 +38,7 @@ public class TestBasicEnvironment {
 
     @Before
     public void initialize() {
-        this.factory = new BasicEnvironmentFactoryImpl();
+        this.factory = new EnvironmentFactoryImpl();
         this.environment = this.factory.createBasicEnviroment(X_DIMENSION, Y_DIMENSION, INITIAL_FOOD, 0);
         this.organismBuilder = new OrganismBuilderImpl(new EnergyImpl(100));
         final Trait speed = new Speed(this.speed);
