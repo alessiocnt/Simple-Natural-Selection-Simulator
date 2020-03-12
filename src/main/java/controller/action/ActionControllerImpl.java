@@ -4,7 +4,8 @@
 package controller.action;
 
 import java.util.EnumMap;
-import model.environment.Environment;
+
+import model.environment.AdvancedEnvironment;
 import model.environment.daycicle.DayPeriod;
 
 /**
@@ -18,7 +19,7 @@ public class ActionControllerImpl implements ActionController {
     /**
      * @param environment the simulation Environment
      */
-    public ActionControllerImpl(final Environment environment) {
+    public ActionControllerImpl(final AdvancedEnvironment environment) {
         this.actions = new EnumMap<>(DayPeriod.class);
         this.actions.put(DayPeriod.DAY, new DayAction(environment));
         this.actions.put(DayPeriod.NIGHT, new NightAction(environment));

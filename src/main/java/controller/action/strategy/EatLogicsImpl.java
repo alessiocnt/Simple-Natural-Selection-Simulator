@@ -3,7 +3,7 @@
  */
 package controller.action.strategy;
 
-import java.util.Optional;
+import java.util.Set;
 
 import model.entity.Energy;
 import model.entity.food.Food;
@@ -21,8 +21,8 @@ public class EatLogicsImpl implements EatLogics {
      * {@inheritDoc}
      */
     @Override
-    public void eat(final Organism organism, final Food food) {
-        organism.getEnergy().addEnergy(food.getEnergy());
+    public void eat(final Organism organism, final Set<Food> foods) {
+        foods.forEach(f -> organism.getEnergy().addEnergy(f.getEnergy()));
         adjustEnergyLevel(organism);
     }
 
@@ -30,20 +30,20 @@ public class EatLogicsImpl implements EatLogics {
      * {@inheritDoc}
      */
     @Override
-    public boolean canEat(final Organism organism, final Optional<Food> food) {
+    public boolean canEat(final Organism organism, final Set<Food> foods) {
         return !organism.getEnergy().equals(calculateOrganismMaxEnergy(organism.getTraits().get(TraitType.DIMENSION))) 
-                && !food.isEmpty();
+                && !foods.isEmpty();
     }
 
     /*
-     * This method calculates Organism's maximum energy level from its size.
+     * Calculates Organism's maximum energy level from its size.
      */
     private Energy calculateOrganismMaxEnergy(final Trait organismDimension) {
         return DimensionConverter.toEnergy(organismDimension.getValue());
     }
 
     /*
-     * This method adjust Organism's energy level due to its maximum energy level.
+     * Adjust Organism's energy level due to its maximum energy level.
      */
     private void adjustEnergyLevel(final Organism organism) {
         if (Energy.greater(organism.getEnergy(), calculateOrganismMaxEnergy(organism.getTraits().get(TraitType.DIMENSION)))) {

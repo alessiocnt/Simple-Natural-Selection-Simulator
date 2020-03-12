@@ -3,14 +3,17 @@
  */
 package controller.action;
 
+import java.util.Set;
+
 import controller.action.strategy.Direction;
 import controller.action.strategy.EatLogics;
 import controller.action.strategy.EatLogicsImpl;
 import controller.action.strategy.MoveLogics;
 import controller.action.strategy.MoveLogicsImpl;
 import model.entity.Energy;
+import model.entity.food.Food;
 import model.entity.organism.Organism;
-import model.environment.Environment;
+import model.environment.AdvancedEnvironment;
 import model.environment.daycicle.DayPeriod;
 import model.environment.exceptions.OutOfEnviromentException;
 import model.mutation.TraitType;
@@ -23,13 +26,13 @@ public class DayAction extends AbstractAction {
 
     private final EatLogics eatLogic;
     private final MoveLogics moveLogic;
-    private final Environment environment;
+    private final AdvancedEnvironment environment;
 
     /**
      * @param environment
      *          the environment of the system
      */
-    public DayAction(final Environment environment) {
+    public DayAction(final AdvancedEnvironment environment) {
         super(DayPeriod.DAY);
         this.environment = environment;
         this.eatLogic = new EatLogicsImpl();
@@ -44,17 +47,20 @@ public class DayAction extends AbstractAction {
         if (!tryToRemoveOrganism(organism)) {
             try {
                 Direction currentDirection;
+                Set<Food> reachableFood;
                 for (int i = 0; i < organism.getTraits().get(TraitType.SPEED).getValue(); i++) {
                     currentDirection = moveLogic.getRandomDirection();
                     environment.moveOrganism(organism, currentDirection.getXVariation(), currentDirection.getYVariation());
-                    if (eatLogic.canEat(organism, environment.getFood(organism))) {
-                        eatLogic.eat(organism, environment.getFood(organism).get());
-                        environment.removeFood(environment.getFood(organism).get());
+                    reachableFood = environment.getNearbyFoods(organism);
+                    if (eatLogic.canEat(organism, reachableFood)) {
+                        eatLogic.eat(organism, reachableFood);
+                        reachableFood.forEach(f -> environment.removeFood(f));
                     }
                 }
                 moveLogic.detractConsumptionForMovement(organism);
             } catch (OutOfEnviromentException e) {
-                System.out.println(e.getMessage() + " " + organism);
+//                e.printStackTrace();
+//                System.out.println(e.getMessage() + " " + organism);
             }
         }
     }

@@ -3,7 +3,7 @@
  */
 package controller.action.strategy;
 
-import java.util.Optional;
+import java.util.Set;
 
 import model.entity.food.Food;
 import model.entity.organism.Organism;
@@ -16,16 +16,17 @@ public interface EatLogics {
 
     /**
      * @param organism the Organism that will eat
-     * @param food the Food that will be eaten
+     * @param foods a Set with the Food that will be eaten
+     * Eats the food.
      */
-    void eat(Organism organism, Food food);
+    void eat(Organism organism, Set<Food> foods);
 
     /**
      * @param organism the Organism that should eat
-     * @param food the Food that should be eaten
+     * @param foods a Set with Food that should be eaten
      * @return True if the Food can be eaten.
      *         False instead
      */
-    boolean canEat(Organism organism, Optional<Food> food);
+    boolean canEat(Organism organism, Set<Food> foods);
 
 }
