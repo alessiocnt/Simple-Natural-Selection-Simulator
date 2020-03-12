@@ -100,6 +100,7 @@ public class ControllerImpl implements Controller {
         private Object mutex = new Object();
 
         SimulationLoop() {
+            this.setDaemon(true);
             this.running = true;
         }
 
