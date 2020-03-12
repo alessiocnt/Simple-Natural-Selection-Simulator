@@ -28,7 +28,15 @@ public enum SetupValues {
     /**
      * Children quantity.
      */
-    CHILDRENQUANTITY(1, 3, 1);
+    CHILDRENQUANTITY(1, 3, 1),
+    /**
+     * Food radar values.
+     */
+    FOODRADAR(0, 2, 1),
+    /**
+     * Temperature of environment.
+     */
+    TEMPERATURE(20, 30, 25);
 
     private final int start;
     private final int stop;

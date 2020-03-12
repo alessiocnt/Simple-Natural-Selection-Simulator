@@ -16,12 +16,13 @@ public class EnvironmentHolder {
     private int entityQuantity;
     private int foodQuantity;
     private int foodVariation;
+    private int temperature;
 
     /**
      * @return the initial dimension of entities.
      */
     public int getEntityDimension() {
-        return entityDimension;
+        return this.entityDimension;
     }
 
     private void check(final SetupValues type, final int value) {
@@ -44,7 +45,7 @@ public class EnvironmentHolder {
      * @return the initial speed of entities
      */
     public int getEntitySpeed() {
-        return entitySpeed;
+        return this.entitySpeed;
     }
 
     /**
@@ -60,7 +61,7 @@ public class EnvironmentHolder {
      * @return the initial number of entities
      */
     public int getEntityQuantity() {
-        return entityQuantity;
+        return this.entityQuantity;
     }
 
     /**
@@ -77,7 +78,7 @@ public class EnvironmentHolder {
      * it can be modified everyday by foodVariation
      */
     public int getFoodQuantity() {
-        return foodQuantity;
+        return this.foodQuantity;
     }
 
     /**
@@ -93,7 +94,7 @@ public class EnvironmentHolder {
      * @return the food variation
      */
     public int getFoodVariation() {
-        return foodVariation;
+        return this.foodVariation;
     }
 
     /**
@@ -103,6 +104,22 @@ public class EnvironmentHolder {
     public void setFoodVariation(final int foodVariation) {
         this.check(SetupValues.FOODVARIATION, foodVariation);
         this.foodVariation = foodVariation;
+    }
+
+    /**
+     * @return the environment temperature.
+     */
+    public int getTemperature() {
+        return this.temperature;
+    }
+
+    /**
+     * @param temperature
+     * set the temperature of environment.
+     */
+    public void setTemperature(final int temperature) {
+        this.check(SetupValues.TEMPERATURE, temperature);
+        this.temperature = temperature;
     }
 
     @Override

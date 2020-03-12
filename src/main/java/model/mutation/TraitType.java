@@ -19,8 +19,7 @@ public enum TraitType {
     /**
      * Food Radar.
      */
-    //FOODRADAR(AffectMovement.YES, MutationRarity.RARE),
-
+    FOODRADAR(AffectMovement.YES, MutationRarity.RARE, SetupValues.FOODRADAR),
     /**
      * Children quantity.
      */
