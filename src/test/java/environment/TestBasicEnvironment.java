@@ -45,9 +45,9 @@ public class TestBasicEnvironment {
         final Trait dimension = new Dimension(this.dimension);
         final Trait childrenQuantity = new ChildrenQuantity(this.children);
         final FoodBuilder foodBuilder = new FoodBuilderImpl();
-        this.organismBuilder.trait(TraitType.SPEED, speed);
-        this.organismBuilder.trait(TraitType.DIMENSION, dimension);
-        this.organismBuilder.trait(TraitType.CHILDRENQUANTITY, childrenQuantity);
+        this.organismBuilder.setTrait(TraitType.SPEED, speed);
+        this.organismBuilder.setTrait(TraitType.DIMENSION, dimension);
+        this.organismBuilder.setTrait(TraitType.CHILDRENQUANTITY, childrenQuantity);
         this.organism = this.organismBuilder.build();
         this.environment.addOrganism(this.organism);
         this.food = foodBuilder.build();

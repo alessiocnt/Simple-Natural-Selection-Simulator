@@ -40,9 +40,9 @@ public class TestTraits {
         dimension = new Dimension(TestTraits.DIMENSIONINITIAL);
         childrenQuantity = new ChildrenQuantity(TestTraits.CHILDRENINITIAL);
         final OrganismBuilder builder = new OrganismBuilderImpl(new EnergyImpl(TestTraits.DIMENSIONINITIAL));
-        builder.trait(TraitType.SPEED, this.speed);
-        builder.trait(TraitType.DIMENSION, this.dimension);
-        builder.trait(TraitType.CHILDRENQUANTITY, this.childrenQuantity);
+        builder.setTrait(TraitType.SPEED, this.speed);
+        builder.setTrait(TraitType.DIMENSION, this.dimension);
+        builder.setTrait(TraitType.CHILDRENQUANTITY, this.childrenQuantity);
         this.organism = builder.build();
     }
 

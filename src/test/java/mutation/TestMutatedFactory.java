@@ -35,9 +35,9 @@ public class TestMutatedFactory {
         final Trait dimension = new Dimension(TestMutatedFactory.DIMENSIONINITIAL);
         final Trait childrenQuantity = new ChildrenQuantity(TestMutatedFactory.CHILDRENINITIAL);
         final OrganismBuilder builder = new OrganismBuilderImpl(new EnergyImpl(TestMutatedFactory.DIMENSIONINITIAL));
-        builder.trait(TraitType.SPEED, speed);
-        builder.trait(TraitType.DIMENSION, dimension);
-        builder.trait(TraitType.CHILDRENQUANTITY, childrenQuantity);
+        builder.setTrait(TraitType.SPEED, speed);
+        builder.setTrait(TraitType.DIMENSION, dimension);
+        builder.setTrait(TraitType.CHILDRENQUANTITY, childrenQuantity);
         this.organism = builder.build();
         this.factory = new MutatedOrganismFactoryImpl();
     }

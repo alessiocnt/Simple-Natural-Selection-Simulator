@@ -37,7 +37,7 @@ class TestEntity {
 
     @Test
     public void testOrganismBuilder() {
-        Organism o1 = new OrganismBuilderImpl(INITIALENERGY).trait(TraitType.SPEED, this.speed).trait(TraitType.DIMENSION, this.dimension).build();
+        Organism o1 = new OrganismBuilderImpl(INITIALENERGY).setTrait(TraitType.SPEED, this.speed).setTrait(TraitType.DIMENSION, this.dimension).build();
         assertEquals(INITIALENERGY, o1.getEnergy());
         EnumMap<TraitType, Trait> expectedTraits = new EnumMap<>(TraitType.class);
         expectedTraits.put(TraitType.SPEED, this.speed);
