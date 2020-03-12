@@ -7,7 +7,6 @@ import model.entity.food.Food;
 import model.entity.food.FoodBuilder;
 import model.entity.organism.Organism;
 import model.environment.AdvancedEnvironment;
-import model.environment.OrganismEnvironmentHolder;
 import model.environment.position.Position;
 import utilities.Pair;
 import view.entities.EnvironmentHolder;
@@ -46,11 +45,6 @@ public interface Model {
      * @return the environment dimension
      */
     Position getEnvironmentDimension();
-
-    /**
-     * @return the environment holder for the organism use
-     */
-    OrganismEnvironmentHolder getOrganismEnvironmentHolder();
 
     /**
      * Maintains the data needed for the Environment to be created.
