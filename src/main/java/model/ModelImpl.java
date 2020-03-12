@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Iterator;
 import java.util.Set;
 
 import controller.action.ActionController;
@@ -12,10 +11,8 @@ import model.entity.organism.Organism;
 import model.entity.organism.OrganismBuilder;
 import model.entity.organism.OrganismBuilderImpl;
 import model.environment.AdvancedEnvironment;
-import model.environment.BasicEnvironment;
 import model.environment.EnvironmentFactoryImpl;
-import model.environment.daycicle.DayCicle;
-import model.environment.daycicle.DayPeriod;
+import model.environment.OrganismEnvironmentHolder;
 import model.environment.position.Position;
 import model.environment.temperature.TemperatureImpl;
 import model.mutation.ChildrenQuantity;
@@ -35,31 +32,30 @@ public class ModelImpl implements Model {
 
     private AdvancedEnvironment environment;
     private ActionController actionController;
+    private FoodBuilder foodBuilder = new FoodBuilderImpl();
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void update(final DayCicle dayCicle) {
-        dayCicle.nextTick();
-        // Updates the environment food
-        updateEnvironmentFood(dayCicle.getCurrentDayMoment());
-        Iterator<Organism> organisms = this.environment.getOrganisms();
-        while (organisms.hasNext()) {
-            this.actionController.getActions().get(dayCicle.getCurrentDayMoment()).perform(organisms.next());
-        }
+    public AdvancedEnvironment getEnvironment() {
+        return this.environment;
     }
 
-    private void updateEnvironmentFood(final DayPeriod currentDayMoment) {
-        FoodBuilder foodBuilder = new FoodBuilderImpl();
-        // if it's night refills the environment with food for the next day
-        if (currentDayMoment == DayPeriod.NIGHT) {
-            //tells the environment a new day is coming
-            this.environment.nextDay();
-            for (int i = 0; i < this.environment.getMorningFoodQuantity(); i++) {
-                this.environment.addFood(foodBuilder.build());
-            }
-        }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public FoodBuilder getFoodBuilder() {
+        return this.foodBuilder;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ActionController getActionController() {
+        return actionController;
     }
 
     /**
@@ -92,6 +88,13 @@ public class ModelImpl implements Model {
     @Override
     public Position getEnvironmentDimension() {
         return this.environment.getDimension();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public OrganismEnvironmentHolder getOrganismEnvironmentHolder() {
+        return this.environment;
     }
 
     /**

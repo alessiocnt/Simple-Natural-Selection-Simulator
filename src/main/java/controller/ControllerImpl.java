@@ -1,8 +1,14 @@
 package controller;
 
+import java.util.Iterator;
+
 import model.Model;
+import model.entity.food.FoodBuilder;
+import model.entity.organism.Organism;
+import model.environment.AdvancedEnvironment;
 import model.environment.daycicle.DayCicle;
 import model.environment.daycicle.DayCicleImpl;
+import model.environment.daycicle.DayPeriod;
 import model.environment.position.Position;
 import settings.DayDuration;
 import settings.Settings;
@@ -32,6 +38,32 @@ public class ControllerImpl implements Controller {
         this.view = view;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void update(final DayCicle dayCicle) {
+        AdvancedEnvironment environment = this.model.getEnvironment();
+        dayCicle.nextTick();
+        // Updates the environment food
+        updateEnvironmentFood(dayCicle.getCurrentDayMoment(), environment);
+        Iterator<Organism> organisms = environment.getOrganisms();
+        while (organisms.hasNext()) {
+            this.model.getActionController().getActions().get(dayCicle.getCurrentDayMoment()).perform(organisms.next());
+        }
+    }
+
+    private void updateEnvironmentFood(final DayPeriod currentDayMoment, final AdvancedEnvironment environment) {
+        FoodBuilder foodBuilder = this.model.getFoodBuilder();
+        // if it's night refills the environment with food for the next day
+        if (currentDayMoment == DayPeriod.NIGHT) {
+            //tells the environment a new day is coming
+            environment.nextDay();
+            for (int i = 0; i < environment.getMorningFoodQuantity(); i++) {
+                environment.addFood(foodBuilder.build());
+            }
+        }
+    }
     @Override
     public final void setEnvironmentInitialValues(final EnvironmentHolder holder) {
         this.model.prepareEnvironment(holder);
@@ -124,7 +156,7 @@ public class ControllerImpl implements Controller {
         }
 
         private void update() {
-            model.update(dayCicle);
+            ControllerImpl.this.update(dayCicle);
             if (model.isSimulationOver()) {
                 view.setSimulationOver();
             }

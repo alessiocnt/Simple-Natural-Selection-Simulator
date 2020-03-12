@@ -5,7 +5,8 @@ import java.util.Set;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 
-public interface AdvancedEnvironment extends BasicEnvironment {
+public interface AdvancedEnvironment extends BasicEnvironment, OrganismEnvironmentHolder {
+
 
     /**
      * @param organism

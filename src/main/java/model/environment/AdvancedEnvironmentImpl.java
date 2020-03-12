@@ -13,7 +13,7 @@ import model.mutation.TraitType;
 /**
  * The Advanced Environment implementation.
  */
-public class AdvancedEnvironmentImpl extends BasicEnvironmentImpl implements AdvancedEnvironment, OrganismEnvironmentHolder {
+public class AdvancedEnvironmentImpl extends BasicEnvironmentImpl implements AdvancedEnvironment {
 
     private Temperature temperature;
 
