@@ -122,14 +122,13 @@ public class SimulationController extends AbstractSceneController {
         Map<TraitType, Double> averages = organisms.stream()
                 .flatMap((x) -> x.getY().getTraits().entrySet().stream())
                 .collect(Collectors.groupingBy((x) -> x.getKey(), Collectors.averagingInt((x) -> x.getValue().getValue())));
-        this.graphs.update(averages);
-
         Platform.runLater(() -> {
             this.logics.setEntities(foods, organisms);
             this.logics.update();
             this.aliveLbl.setText(String.valueOf(this.logics.getAlive()));
             this.aspeedLbl.setText(String.format("%.2f", averages.get(TraitType.SPEED)));
             this.adimensionLbl.setText(String.format("%.2f", averages.get(TraitType.DIMENSION)));
+            this.graphs.update(averages);
         });
     }
 
