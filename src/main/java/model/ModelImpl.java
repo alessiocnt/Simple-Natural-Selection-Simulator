@@ -110,9 +110,9 @@ public class ModelImpl implements Model {
     private void initEnvironment(final int entityQuantity, final int entitySpeed, final int entityDimension) {
         FoodBuilder foodBuilder = new FoodBuilderImpl();
         OrganismBuilder organismBuilder = new OrganismBuilderImpl(DimensionConverter.toEnergy(entityDimension));
-        organismBuilder.trait(TraitType.SPEED, new Speed(entitySpeed));
-        organismBuilder.trait(TraitType.DIMENSION, new Dimension(entityDimension));
-        organismBuilder.trait(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(SetupValues.CHILDRENQUANTITY.getDefault()));
+        organismBuilder.setTrait(TraitType.SPEED, new Speed(entitySpeed));
+        organismBuilder.setTrait(TraitType.DIMENSION, new Dimension(entityDimension));
+        organismBuilder.setTrait(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(SetupValues.CHILDRENQUANTITY.getDefault()));
         for (int i = 0; i < this.environment.getMorningFoodQuantity(); i++) {
             this.environment.addFood(foodBuilder.build());
         }

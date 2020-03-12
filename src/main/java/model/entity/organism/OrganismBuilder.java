@@ -3,6 +3,7 @@
  */
 package model.entity.organism;
 
+import model.environment.OrganismEnvironmentHolder;
 import model.mutation.Trait;
 import model.mutation.TraitType;
 
@@ -15,9 +16,15 @@ public interface OrganismBuilder {
     /**
      * @param type the type of mutation
      * @param trait the proper trait that must be associated to the organism
-     * @return an EnumMap containing all organism's traits
+     * @return an OrganismBuilderImpl
      */
-    OrganismBuilderImpl trait(TraitType type, Trait trait);
+    OrganismBuilderImpl setTrait(TraitType type, Trait trait);
+
+    /**
+     * @param environmentKnowledge organism knowledges an organism has about the environment
+     * @return an OrganismBuilderImpl
+     */
+    OrganismBuilderImpl setEnvironmentKnowledge(OrganismEnvironmentHolder environmentKnowledge);
 
     /**
      * @return an instance of OrganismImpl if all the fields are not null

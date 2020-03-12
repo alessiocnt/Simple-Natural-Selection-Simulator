@@ -31,7 +31,7 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
                                                 (entrySet) -> this.getMutatedTrait(entrySet.getKey(), entrySet.getValue().getValue())));
         //Child has the same energy of dad.
         final OrganismBuilder organismBuilder = new OrganismBuilderImpl(new EnergyImpl(organism.getEnergy().getEnergy()));
-        mutatedTraits.entrySet().forEach((entrySet) -> organismBuilder.trait(entrySet.getKey(), entrySet.getValue()));
+        mutatedTraits.entrySet().forEach((entrySet) -> organismBuilder.setTrait(entrySet.getKey(), entrySet.getValue()));
         final Organism mutatedOrganism = organismBuilder.build();
         return mutatedOrganism;
     }

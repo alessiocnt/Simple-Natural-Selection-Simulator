@@ -77,7 +77,7 @@ public class EnergyImpl implements Energy {
         if (!(obj instanceof EnergyImpl)) { 
             return false; 
         } 
-        EnergyImpl c = (EnergyImpl) obj; 
+        final EnergyImpl c = (EnergyImpl) obj; 
         return c.getEnergy() == this.getEnergy();
     } 
 
