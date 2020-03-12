@@ -2,9 +2,12 @@ package model;
 
 import java.util.Set;
 
+import controller.action.ActionController;
 import model.entity.food.Food;
+import model.entity.food.FoodBuilder;
 import model.entity.organism.Organism;
-import model.environment.daycicle.DayCicle;
+import model.environment.AdvancedEnvironment;
+import model.environment.OrganismEnvironmentHolder;
 import model.environment.position.Position;
 import utilities.Pair;
 import view.entities.EnvironmentHolder;
@@ -16,11 +19,19 @@ import view.entities.EnvironmentHolder;
 public interface Model {
 
     /**
-     * Updates all the objects in the simulation.
-     * @param dayCicle
-     *      the controller of day/night in the simulation
+     * @return the environment
      */
-    void update(DayCicle dayCicle);
+    AdvancedEnvironment getEnvironment();
+
+    /**
+     * @return the foodBuilder
+     */
+    FoodBuilder getFoodBuilder();
+
+    /**
+     * @return the actionController
+     */
+    ActionController getActionController();
 
     /**
      * @return true if the simulation is over
@@ -37,9 +48,15 @@ public interface Model {
     Position getEnvironmentDimension();
 
     /**
+     * @return the environment holder for the organism use
+     */
+    OrganismEnvironmentHolder getOrganismEnvironmentHolder();
+
+    /**
      * Maintains the data needed for the Environment to be created.
      * @param holder
      *      the data holder
      */
     void prepareEnvironment(EnvironmentHolder holder);
+
 }
