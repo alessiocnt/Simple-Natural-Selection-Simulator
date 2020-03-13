@@ -16,11 +16,11 @@ public enum SetupValues {
     /**
      * Initial quantity of entities.
      */
-    INITIALQUANTITY(50, 150, 100),
+    INITIALQUANTITY(50, 150, 50),
     /**
      * Quantity of food available every morning.
      */
-    FOODQUANTITY(200, 2000, 1750),
+    FOODQUANTITY(200, 2000, 900),
     /**
      * Food variation every morning.
      */

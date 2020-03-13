@@ -10,6 +10,7 @@ import model.environment.daycicle.DayCicle;
 import model.environment.daycicle.DayCicleImpl;
 import model.environment.daycicle.DayPeriod;
 import model.environment.position.Position;
+import model.environment.temperature.Temperature;
 import settings.DayDuration;
 import settings.Settings;
 import settings.SettingsHolder;

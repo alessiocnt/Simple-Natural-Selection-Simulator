@@ -16,6 +16,9 @@ import utilities.Pair;
  */
 public class SimulationViewLogicsImpl implements SimulationViewLogics {
 
+    private static final int SPEED_MULT = 50;
+    private static final int CHILD_MULT = 20;
+    private static final int FOOD_MULT = 10;
     private Set<Pair<Position, Food>> foods = Collections.emptySet();
     private Set<Pair<Position, Organism>> organisms = Collections.emptySet();;
     private final GraphicsContext graphics;
@@ -30,11 +33,11 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
      * Creates a new SimulationViewLogicsImpl.
      * 
      * @param graphics
-     *                         the Canvas graphics context
+     *      the Canvas graphics context
      * @param environmentX
-     *                         x-axis dimension of the environment
+     *      x-axis dimension of the environment
      * @param environmentY
-     *                         y-axis dimension of the environment
+     *      y-axis dimension of the environment
      */
     public SimulationViewLogicsImpl(final GraphicsContext graphics, final int environmentX, final int environmentY) {
         this.graphics = graphics;
@@ -81,20 +84,12 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
                     this.xAxisScaleFactor *  getOrganismDimension(entry.getY()),
                     this.yAxisScaleFactor * getOrganismDimension(entry.getY()));
         }
-
-        /*
-         * // colore organism this.graphics.setFill(Color.RED);
-         * this.graphics.fillOval(0, 0, 50, 50); // colore food
-         * this.graphics.setFill(Color.DARKGREEN); this.graphics.fillRect(65, 23, 25,
-         * 25);
-         */
     }
 
     private Color getOrganismColor(final Organism organism) {
-        final int speedMult = 50;
-        final int childMult = 20;
-        return Color.rgb(organism.getTraits().get(TraitType.SPEED).getValue() * speedMult, 0,
-                organism.getTraits().get(TraitType.CHILDRENQUANTITY).getValue() * childMult);
+        return Color.rgb(organism.getTraits().get(TraitType.SPEED).getValue() * SimulationViewLogicsImpl.SPEED_MULT,
+                organism.getTraits().get(TraitType.FOODRADAR).getValue() * SimulationViewLogicsImpl.FOOD_MULT,
+                organism.getTraits().get(TraitType.CHILDRENQUANTITY).getValue() * SimulationViewLogicsImpl.CHILD_MULT);
     }
 
     private double getOrganismDimension(final Organism organism) {

@@ -42,7 +42,7 @@ public class AdvancedEnvironmentImpl extends BasicEnvironmentImpl implements Adv
     private Set<Food> getFoods(final Organism organism) {
         Set<Food> ret = new HashSet<>();
         Position p = this.getOrganismsMap().get(organism);
-        int radius = organism.getTraits().get(TraitType.FOODRADAR).getValue();
+        int radius = organism.getTraits().get(TraitType.FOODRADAR).getValue() - 1;
         for (int i = -radius; i <= radius; i++) {
             for (int j = -radius; j <= radius; j++) {
                 Food f = this.getFoodsMap().get(new PositionImpl(p.getX() + i, p.getY() + j));
