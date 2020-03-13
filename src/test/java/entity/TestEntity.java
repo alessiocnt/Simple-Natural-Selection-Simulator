@@ -1,7 +1,9 @@
 package entity;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.EnumMap;
 
@@ -13,7 +15,12 @@ import model.entity.EnergyImpl;
 import model.entity.food.Food;
 import model.entity.food.FoodBuilderImpl;
 import model.entity.organism.Organism;
+import model.entity.organism.OrganismBuilder;
 import model.entity.organism.OrganismBuilderImpl;
+import model.environment.AdvancedEnvironment;
+import model.environment.EnvironmentFactory;
+import model.environment.EnvironmentFactoryImpl;
+import model.environment.temperature.TemperatureImpl;
 import model.mutation.Dimension;
 import model.mutation.Speed;
 import model.mutation.Trait;
@@ -22,9 +29,10 @@ import model.mutation.TraitType;
 class TestEntity {
 
     private static final Energy INITIALENERGY = new EnergyImpl(10);
-    private static final Energy INITIALFOODENERGY = new EnergyImpl(50);
+    private static final Energy INITIALFOODENERGY = new EnergyImpl(100);
     private static final int INITIALSPEED = 3;
     private static final int INITIALDIMENSION = 50;
+    private static final double TEMPERATURE = 50;
 
     private Trait speed;
     private Trait dimension;
@@ -37,12 +45,20 @@ class TestEntity {
 
     @Test
     public void testOrganismBuilder() {
-        Organism o1 = new OrganismBuilderImpl(INITIALENERGY).setTrait(TraitType.SPEED, this.speed).setTrait(TraitType.DIMENSION, this.dimension).build();
-        assertEquals(INITIALENERGY, o1.getEnergy());
-        EnumMap<TraitType, Trait> expectedTraits = new EnumMap<>(TraitType.class);
+        final EnvironmentFactory factory = new EnvironmentFactoryImpl();
+        final AdvancedEnvironment environment = factory.createAdvancedEnviroment(100, 100, 10, 0, new TemperatureImpl(TEMPERATURE));
+        final OrganismBuilder organismBuilder = new OrganismBuilderImpl(INITIALENERGY);
+        organismBuilder.setTrait(TraitType.SPEED, speed);
+        organismBuilder.setTrait(TraitType.DIMENSION, dimension);
+        organismBuilder.setEnvironmentKnowledge(environment);
+        environment.addOrganism(organismBuilder.build());
+        final Organism organism = environment.getOrganisms().next();
+
+        assertEquals(INITIALENERGY, organism.getEnergy());
+        final EnumMap<TraitType, Trait> expectedTraits = new EnumMap<>(TraitType.class);
         expectedTraits.put(TraitType.SPEED, this.speed);
         expectedTraits.put(TraitType.DIMENSION, this.dimension);
-        assertEquals(expectedTraits, o1.getTraits());
+        assertEquals(expectedTraits, organism.getTraits());
     }
 
     @Test
@@ -53,13 +69,13 @@ class TestEntity {
             o1 = new OrganismBuilderImpl(INITIALENERGY).build();
             fail("Expected an IllegalArgumentException to be thrown");
         } catch (IllegalArgumentException exception) {
-            assertTrue(exception.getMessage() == "Argument can not be null.");
+            assertTrue(exception.getMessage().equals("Argument can not be null."));
         }
     }
 
     @Test
     public void testFoodBuilder() {
-        Food f1 = new FoodBuilderImpl().build();
+        final Food f1 = new FoodBuilderImpl().build();
         assertNotEquals(INITIALENERGY, f1.getEnergy());
         assertEquals(INITIALFOODENERGY, f1.getEnergy());
     }
