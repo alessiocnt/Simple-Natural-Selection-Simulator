@@ -2,7 +2,6 @@ package controller;
 
 import model.environment.daycicle.DayCicle;
 import model.environment.position.Position;
-import model.environment.temperature.Temperature;
 import settings.DayDuration;
 import settings.SettingsHolder;
 import view.entities.EnvironmentHolder;

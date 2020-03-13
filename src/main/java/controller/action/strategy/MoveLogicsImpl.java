@@ -34,7 +34,7 @@ public class MoveLogicsImpl implements MoveLogics {
      */
     @Override
     public Energy computeConsumptionForMovement(final Organism organism) {
-        Energy consumpion = new EnergyImpl(0);
+        final Energy consumpion = new EnergyImpl(0);
         organism.getTraits().keySet().stream()
                 .filter(k -> k.affectMovement())
                 .forEach(e -> consumpion.addEnergy(organism.getTraits().get(e).getFoodConsumption(organism)));

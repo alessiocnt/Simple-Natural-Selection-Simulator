@@ -59,7 +59,7 @@ public class DayAction extends AbstractAction {
                 }
                 moveLogic.detractConsumptionForMovement(organism);
             } catch (OutOfEnviromentException e) {
-//                e.printStackTrace();
+//          Purposely left blank. If an organism try to go outside the environment it will not move.
 //                System.out.println(e.getMessage() + " " + organism);
             }
         }

@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 
 public class PositionImpl implements Position {
 
-    private Point2D position;
+    private final Point2D position;
 
     /**
      * @param x
@@ -90,7 +90,7 @@ public class PositionImpl implements Position {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        PositionImpl other = (PositionImpl) obj;
+        final PositionImpl other = (PositionImpl) obj;
         if (position == null) {
             if (other.position != null) {
                 return false;

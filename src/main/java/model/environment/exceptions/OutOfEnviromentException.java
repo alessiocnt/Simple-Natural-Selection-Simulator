@@ -6,7 +6,7 @@ package model.environment.exceptions;
 public class OutOfEnviromentException extends Exception {
 
     private static final long serialVersionUID = -4723076550396783510L;
-    private static final String EXCEPTIONMESSAGE = "Out of environment, can't move.";
+    private static final String EXCEPTIONMESSAGE = "Border reached. ";
 
     /**
      * Constructor.
