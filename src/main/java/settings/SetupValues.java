@@ -20,7 +20,7 @@ public enum SetupValues {
     /**
      * Quantity of food available every morning.
      */
-    FOODQUANTITY(200, 2000, 900),
+    FOODQUANTITY(200, 2000, 1600),
     /**
      * Food variation every morning.
      */
