@@ -14,8 +14,8 @@ import model.mutation.TraitType;
  * Class for loading graphs of traits in the lateralPane.
  */
 public class TraitGraphsImpl implements TraitGraphs {
-    private Map<TraitType, XYChart.Series<Number, Number>> graphMap = new EnumMap<>(TraitType.class);
-    private int time = 0;
+    private final Map<TraitType, XYChart.Series<Number, Number>> graphMap = new EnumMap<>(TraitType.class);
+    private int time;
 
     @Override
     public final void load(final Pane root) {

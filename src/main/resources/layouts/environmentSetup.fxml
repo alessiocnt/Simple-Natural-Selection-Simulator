@@ -9,11 +9,25 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="startDefault" fx:id="restoreDefaultBtn" mnemonicParsing="false" onAction="#restoreDefault" text="Restore defaults" />
-            <Button id="start" fx:id="startBtn" mnemonicParsing="false" onAction="#startSimulation" text="Start">
+            <Button id="helpBtn" fx:id="helpBtn" mnemonicParsing="false" onAction="#helpClicked" text="Help">
                <padding>
                   <Insets bottom="7.0" left="12.0" right="12.0" top="7.0" />
-               </padding></Button>
+               </padding>
+            </Button>
+            <HBox spacing="10.0">
+               <children>
+                  <Button id="startDefault" fx:id="restoreDefaultBtn" mnemonicParsing="false" onAction="#restoreDefault" text="Restore defaults">
+                     <padding>
+                        <Insets bottom="7.0" left="12.0" right="12.0" top="7.0" />
+                     </padding>
+                  </Button>
+                  <Button id="start" fx:id="startBtn" mnemonicParsing="false" onAction="#startSimulation" text="Start">
+                     <padding>
+                        <Insets bottom="7.0" left="12.0" right="12.0" top="7.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </HBox>
          </children>
          <BorderPane.margin>
             <Insets />
@@ -28,6 +42,11 @@
          <children>
             <VBox>
                <children>
+                  <Label styleClass="subtitle" text="Environment ">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </Label>
                   <GridPane hgap="20.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" />
@@ -37,20 +56,28 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Dimension" />
-                        <Label text="Speed" GridPane.rowIndex="1" />
                         <Label text="Initial Quantity" GridPane.rowIndex="2" />
-                        <ComboBox fx:id="dimComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
-                        <ComboBox fx:id="speedComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <ComboBox fx:id="quantityComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Food Quantity" />
+                        <ComboBox fx:id="foodQComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <Label text="Food Variation" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="foodVComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Temperature" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="temperatureComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                </children>
             </VBox>
             <VBox>
                <children>
+                  <Label styleClass="subtitle" text="Organism">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </Label>
                   <GridPane hgap="20.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" />
@@ -59,15 +86,12 @@
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="Food Quantity" />
-                        <Label text="Food Variation" GridPane.rowIndex="1" />
-                        <Label text="Temperature" GridPane.rowIndex="2" />
-                        <ComboBox fx:id="foodQComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
-                        <ComboBox fx:id="foodVComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="temperatureComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Dimension" />
+                        <ComboBox fx:id="dimComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <Label text="Speed" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="speedComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>

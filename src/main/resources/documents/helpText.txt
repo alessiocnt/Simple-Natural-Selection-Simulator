@@ -1,0 +1,41 @@
+Caratteristiche che ogni individuo possiede: 
+
+Velocita 
+Dimensione 
+Raggio di individuazione cibo (Food Radar) 
+Sensibilitá temperatura (Dipende strettamente dalla dimensione) 
+
+ 
+
+Velocita 
+La velocitá è una caratteristica dell'individuo che gli permette di avanzare di piu posizioni all'avanzare dei frame. 
+Maggiore velocita aumenta il consumo di energie dell'individuo nel movimento. 
+
+Dimensione 
+
+La dimensione è una caratteristica dell'individuo che consente di stabilire quanto cibo puó mangiare. 
+Un individuo di dimensione maggiore sará in grado di mangiare di piú peró consumerá piú energie nel movimento. 
+La dimensione influisce anche sulla resistenza alla temperatura, infatti un'individuo piú grande sará in grado di resistere meglio al freddo..  
+
+
+Raggio individuazione cibo (Food Radar) 
+È una proprietá molto importante che consente ad un'individuo di individuare e quindi mangiare il cibo in un raggio piu o meno grande. Quindi piú è grande questa sensibilitá piú energie consumerá. 
+
+
+Sensibilita temperatura 
+L'individuo é sensibile alla temperatura. 
+
+
+L'individuo a seconda dei valori assunti dalle varie caratteristiche cambia la sua rappresentazione. 
+Dimensione: il raggio dell'individuo é direttamente proporzionale alla sua dimensione. 
+Velocita (Rosso), Food Radar(Marrone) e Children Quantity(Viola) influiscono sul colore, in particolare: piú il valore della caratteristica é basso e piú incideranno con una tonalitá chiara del colore associato; invece piú il valore aumenta e piú la tonalitá diventa piú scura. 
+
+É possibile scegliere alcuni valori iniziali della simulazione dal menu, dopodiché cliccando su Start si aprirá la simulazione. 
+Food Quantity: Quantitá di cibo disponibile nell'ambiente 
+Food Variation: Variazione di cibo giornaliera 
+Initial Quantity: Quantitá iniziale di individui 
+Temperatura: Temperatura dell'ambiente 
+Dimension: dimensione iniziale degli individui 
+Speed: velocitá inziale degli individui 
+
+Nella simulazione ci sono tre pulsanti: Start/Stop, Back, Settings, il primo consente di mettere in pausa e riprendere la simulazione, il secondo consente di tornare al menu principale, il terzo consente di andare nelle impostazioni. 

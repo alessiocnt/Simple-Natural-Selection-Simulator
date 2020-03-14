@@ -29,6 +29,9 @@ public class SetupController extends AbstractSceneController {
     private Button restoreDefaultBtn;
 
     @FXML
+    private Button helpBtn;
+
+    @FXML
     private ComboBox<Integer> dimComboBox;
 
     @FXML
@@ -80,5 +83,10 @@ public class SetupController extends AbstractSceneController {
     @FXML
     private void restoreDefault() {
         this.initialize();
+    }
+
+    @FXML
+    private void helpClicked() {
+        MyAlert.showAlert(AlertType.INFORMATION, "Help", "Help Text");
     }
 }

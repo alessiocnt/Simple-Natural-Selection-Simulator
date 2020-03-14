@@ -9,6 +9,12 @@
     -fx-font-style: italic;
 }
 
+.subtitle {
+    -fx-font-style: normal;
+	-fx-font-size: 1.2em;
+	-fx-font-weight: bold;
+}
+
 #top {
     -fx-background-color: #16a085;
 }
@@ -25,6 +31,11 @@
 
 #start {
     -fx-background-color: #2ecc71;
+    -fx-text-fill: #ecf0f1;
+}
+
+#helpBtn {
+	-fx-background-color: #7f8c8d;
     -fx-text-fill: #ecf0f1;
 }
 
