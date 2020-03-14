@@ -1,7 +1,6 @@
 package model.environment;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -42,7 +41,7 @@ public interface Environment {
      * @throws NoSuchElementException
      *      if the father doesn't exists
      */
-    void addOrganism(Organism father, Organism son) throws NoSuchElementException;
+    void addOrganism(Organism father, Organism son);
 
     /**
      * Add a piece of food to the environment.
@@ -92,7 +91,7 @@ public interface Environment {
      * @throws NoSuchElementException
      *      if the Organism doesn't exists 
      */
-    Optional<Food> getFood(Organism organism) throws NoSuchElementException;
+    Optional<Food> getFood(Organism organism);
 
     /**
      * @param position

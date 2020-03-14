@@ -34,7 +34,7 @@ public class ModelImpl implements Model {
 
     private AdvancedEnvironment environment;
     private ActionController actionController;
-    private FoodBuilder foodBuilder = new FoodBuilderImpl();
+    private final FoodBuilder foodBuilder = new FoodBuilderImpl();
 
     /**
      * {@inheritDoc}
@@ -110,15 +110,14 @@ public class ModelImpl implements Model {
     }
 
     private void initEnvironment(final int entityQuantity, final int entitySpeed, final int entityDimension) {
-        FoodBuilder foodBuilder = new FoodBuilderImpl();
-        OrganismBuilder organismBuilder = new OrganismBuilderImpl(DimensionConverter.toEnergy(entityDimension));
+        final OrganismBuilder organismBuilder = new OrganismBuilderImpl(DimensionConverter.toEnergy(entityDimension));
         organismBuilder.setTrait(TraitType.SPEED, new Speed(entitySpeed));
         organismBuilder.setTrait(TraitType.DIMENSION, new Dimension(entityDimension));
         organismBuilder.setTrait(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(SetupValues.CHILDRENQUANTITY.getDefault()));
         organismBuilder.setTrait(TraitType.FOODRADAR, new FoodRadar(SetupValues.FOODRADAR.getDefault()));
         organismBuilder.setTrait(TraitType.TEMPERATURESENSIBILITY, new TemperatureSensibility());
         for (int i = 0; i < this.environment.getMorningFoodQuantity(); i++) {
-            this.environment.addFood(foodBuilder.build());
+            this.environment.addFood(this.foodBuilder.build());
         }
         for (int i = 0; i < entityQuantity; i++) {
             this.environment.addOrganism(organismBuilder.setEnvironmentKnowledge(this.getOrganismEnvironmentHolder()).build());

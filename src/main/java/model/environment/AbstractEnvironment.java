@@ -3,7 +3,6 @@ package model.environment;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
@@ -58,12 +57,15 @@ public abstract class AbstractEnvironment implements Environment {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int getCurrendOrganismQuantity() {
         return this.organisms.keySet().size();
     }
 
-    /**{@inheritDoc}
+    /**
+     * {@inheritDoc}
      */
+    @Override
     public int getCurrentFoodQuantity() {
         return this.foods.values().size();
     }
@@ -71,19 +73,21 @@ public abstract class AbstractEnvironment implements Environment {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void addOrganism(final Organism organism) {
         Objects.requireNonNull(organism);
-        Position organismPosition = this.getRandomPosition();
+        final Position organismPosition = this.getRandomPosition();
         this.organisms.put(organism, organismPosition);
     }
 
     /**
      * {@inheritDoc}
      */
-   public void addOrganism(final Organism father, final Organism son) throws NoSuchElementException {
+    @Override
+   public void addOrganism(final Organism father, final Organism son) {
        Objects.requireNonNull(father);
        Objects.requireNonNull(son);
-       Position pos = this.organisms.get(father);
+       final Position pos = this.organisms.get(father);
        this.organisms.put(son, pos);
    }
 
@@ -94,7 +98,7 @@ public abstract class AbstractEnvironment implements Environment {
     public void addFood(final Food food) {
         Objects.requireNonNull(food);
         //putting a food in an empty position
-        Position foodPosition = this.getRandomPosition();
+        final Position foodPosition = this.getRandomPosition();
         this.foods.put(foodPosition, this.foods.get(foodPosition) == null ? food 
                 : new FoodBuilderImpl().setEnergy(
                     new EnergyImpl(this.foods.get(foodPosition).getEnergy().getEnergy() + food.getEnergy().getEnergy())
@@ -108,19 +112,31 @@ public abstract class AbstractEnvironment implements Environment {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void moveOrganism(final Organism organism, final int xOffset, final int yOffset) throws OutOfEnviromentException {
-        Position position = this.organisms.get(organism);
-        Position newPosition = new PositionImpl(position.getX() + xOffset, position.getY() + yOffset);
-        if (newPosition.getX() < 0 || newPosition.getX() > this.width
-                || newPosition.getY() < 0 || newPosition.getY() > this.height) {
-            throw(new OutOfEnviromentException());
-        }
+        final Position position = this.organisms.get(organism);
+        final Position newPosition = new PositionImpl(position.getX() + xOffset, position.getY() + yOffset);
+        this.checkNewPosition(newPosition);
         this.organisms.put(organism, newPosition);
     }
 
     /**
+     * Checks if the new position is legal for the environment.
+     * @param newPosition
+     *      the new organism position
+     * @throws OutOfEnviromentException
+     *      if the new position is outside the environment
+     */
+    protected void checkNewPosition(final Position newPosition) throws OutOfEnviromentException {
+        if (newPosition.getX() < 0 || newPosition.getX() > this.width
+                || newPosition.getY() < 0 || newPosition.getY() > this.height) {
+            throw new OutOfEnviromentException();
+        }
+    }
+    /**
      * {@inheritDoc}
      */
+    @Override
     public void removeOrganism(final Organism organism) {
         Objects.requireNonNull(organism);
         this.organisms.remove(organism);
@@ -138,6 +154,7 @@ public abstract class AbstractEnvironment implements Environment {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Iterator<Organism> getOrganisms() {
         return new ArrayList<Organism>(this.organisms.keySet()).iterator();
     }
@@ -145,6 +162,7 @@ public abstract class AbstractEnvironment implements Environment {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Optional<Food> getFood(final Organism organism) {
         Objects.requireNonNull(organism);
         return Optional.ofNullable(this.foods.get(this.organisms.get(organism)));
@@ -161,16 +179,17 @@ public abstract class AbstractEnvironment implements Environment {
     /**
      * @return an Entry of each Food and its position in the environment
      */
+    @Override
     public Set<Pair<Position, Food>> getPositionFoods() {
-        Set<Pair<Position, Food>> s = this.foods.entrySet().stream()
+        return this.foods.entrySet().stream()
                 .map(e -> new Pair<>(e.getKey(), e.getValue()))
                 .collect(Collectors.toSet());
-        return s;
     }
 
     /**
      * @return an Entry of each Organism and its position in the environment
      */
+    @Override
     public Set<Pair<Position, Organism>> getPositionOrganisms() {
         return this.organisms.entrySet().stream()
                 .map(e -> new Pair<>(e.getValue(), e.getKey()))
@@ -188,6 +207,7 @@ public abstract class AbstractEnvironment implements Environment {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Position getDimension() {
         return new PositionImpl(this.width, this.height);
     }

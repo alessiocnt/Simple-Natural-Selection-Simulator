@@ -2,7 +2,7 @@ package model.environment.daycicle;
 
 public class DayCicleImpl implements DayCicle {
 
-    private int elapsedTicks = 0;
+    private int elapsedTicks;
     private final int dayDuration;
 
     /**

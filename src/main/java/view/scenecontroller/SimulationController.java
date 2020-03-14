@@ -124,7 +124,7 @@ public class SimulationController extends AbstractSceneController {
     public void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
         //Update graphs with new averages.
         if (!organisms.isEmpty()) {
-            Map<TraitType, Double> averages = organisms.stream()
+            final Map<TraitType, Double> averages = organisms.stream()
                     .flatMap((x) -> x.getY().getTraits().entrySet().stream())
                     .filter((x) -> !x.getKey().getRarity().equals(MutationRarity.NOMUTATION))
                     .collect(Collectors.groupingBy((x) -> x.getKey(), Collectors.averagingInt((x) -> x.getValue().getValue())));
@@ -157,7 +157,7 @@ public class SimulationController extends AbstractSceneController {
      */
     public void simulationOver() {
         Platform.runLater(() -> {
-            Alert a = new Alert(AlertType.INFORMATION);
+            final Alert a = new Alert(AlertType.INFORMATION);
             a.setTitle("INFO");
             a.setContentText("The simulation is over, everyone is dead.");
             a.show();

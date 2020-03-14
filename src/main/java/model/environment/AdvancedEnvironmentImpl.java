@@ -15,7 +15,7 @@ import model.mutation.TraitType;
  */
 public class AdvancedEnvironmentImpl extends BasicEnvironmentImpl implements AdvancedEnvironment {
 
-    private Temperature temperature;
+    private final Temperature temperature;
 
     protected AdvancedEnvironmentImpl(final int xDimension, final int yDimension, final int morningFoodQuantity,
             final int dailyFoodQuantityModification, final Temperature temperature) {
@@ -40,12 +40,12 @@ public class AdvancedEnvironmentImpl extends BasicEnvironmentImpl implements Adv
     }
 
     private Set<Food> getFoods(final Organism organism) {
-        Set<Food> ret = new HashSet<>();
-        Position p = this.getOrganismsMap().get(organism);
-        int radius = organism.getTraits().get(TraitType.FOODRADAR).getValue() - 1;
+        final Set<Food> ret = new HashSet<>();
+        final Position p = this.getOrganismsMap().get(organism);
+        final int radius = organism.getTraits().get(TraitType.FOODRADAR).getValue() - 1;
         for (int i = -radius; i <= radius; i++) {
             for (int j = -radius; j <= radius; j++) {
-                Food f = this.getFoodsMap().get(new PositionImpl(p.getX() + i, p.getY() + j));
+                final Food f = this.getFoodsMap().get(new PositionImpl(p.getX() + i, p.getY() + j));
                 if (f != null) {
                     ret.add(f);
                 }

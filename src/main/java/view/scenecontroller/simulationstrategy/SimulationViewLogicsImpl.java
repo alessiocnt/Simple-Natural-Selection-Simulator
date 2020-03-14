@@ -67,6 +67,7 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void update() {
         this.graphics.setFill(Color.BEIGE);
         this.graphics.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
