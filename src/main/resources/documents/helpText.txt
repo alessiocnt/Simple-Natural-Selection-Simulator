@@ -1,41 +1,38 @@
-Caratteristiche che ogni individuo possiede: 
+Organism's traits:
 
-Velocita 
-Dimensione 
-Raggio di individuazione cibo (Food Radar) 
-Sensibilitá temperatura (Dipende strettamente dalla dimensione) 
+Speed
+Dimension
+Food detection range (Food Radar) 
+Temperature sensibility (It depends on organism's dimension). 
 
- 
+(1) Speed 
+Speed is a trait that allows him to advance multiple positions at the same time.
+The higher the speed the higher the food consumption.
 
-Velocita 
-La velocitá è una caratteristica dell'individuo che gli permette di avanzare di piu posizioni all'avanzare dei frame. 
-Maggiore velocita aumenta il consumo di energie dell'individuo nel movimento. 
+(2) Dimension
+Dimension is a trait that allows to determine how much food the organism can eat.
+An organism with an higher dimension could eat more but it will consume more energy.
+Dimension affect also the temperature sensibility.
+The higher the dimension the higher the food consumption.
 
-Dimensione 
+(3) Food detection range (Food Radar) 
+It's a trait that allows the organism to detect food all around him.
+The higher the radius the higher the food consumption.
 
-La dimensione è una caratteristica dell'individuo che consente di stabilire quanto cibo puó mangiare. 
-Un individuo di dimensione maggiore sará in grado di mangiare di piú peró consumerá piú energie nel movimento. 
-La dimensione influisce anche sulla resistenza alla temperatura, infatti un'individuo piú grande sará in grado di resistere meglio al freddo..  
+(4) Temperature sensibility.
+It's affected by the organism's dimension.
+In fact a big organism will resist better to cold and it will suffer higher temperature.
+Instead a small organism will resist better to hot and it will suffer slower temperature.
 
+Organism vary its representation depending on its traits' value.
+Dimension: the organism radius is directly proportional to its dimension.
+Speed (Red), Food Radar(Brown) e Children Quantity(Violet) they influence the color, in particular: the lower the value of the trait, the more they will affect with a light shade of the associated color; instead the more the value increases and the more the tonality becomes darker.
 
-Raggio individuazione cibo (Food Radar) 
-È una proprietá molto importante che consente ad un'individuo di individuare e quindi mangiare il cibo in un raggio piu o meno grande. Quindi piú è grande questa sensibilitá piú energie consumerá. 
+It is possible to choose some initial values ​​of the simulation from the menu, after which clicking on Start will open the simulation.(*) Food Quantity: Quantitá di cibo disponibile nell'ambiente 
+(*) Food Variation: Food daily variation.
+(*) Initial Quantity: Organism initial quantity.
+(*) Temperatura: Environment temperature. 
+(*) Dimension: Organism initial dimension. 
+(*) Speed: Organism initial dimension.
 
-
-Sensibilita temperatura 
-L'individuo é sensibile alla temperatura. 
-
-
-L'individuo a seconda dei valori assunti dalle varie caratteristiche cambia la sua rappresentazione. 
-Dimensione: il raggio dell'individuo é direttamente proporzionale alla sua dimensione. 
-Velocita (Rosso), Food Radar(Marrone) e Children Quantity(Viola) influiscono sul colore, in particolare: piú il valore della caratteristica é basso e piú incideranno con una tonalitá chiara del colore associato; invece piú il valore aumenta e piú la tonalitá diventa piú scura. 
-
-É possibile scegliere alcuni valori iniziali della simulazione dal menu, dopodiché cliccando su Start si aprirá la simulazione. 
-Food Quantity: Quantitá di cibo disponibile nell'ambiente 
-Food Variation: Variazione di cibo giornaliera 
-Initial Quantity: Quantitá iniziale di individui 
-Temperatura: Temperatura dell'ambiente 
-Dimension: dimensione iniziale degli individui 
-Speed: velocitá inziale degli individui 
-
-Nella simulazione ci sono tre pulsanti: Start/Stop, Back, Settings, il primo consente di mettere in pausa e riprendere la simulazione, il secondo consente di tornare al menu principale, il terzo consente di andare nelle impostazioni. 
+In the simulation there are three buttons: Start / Stop, Back, Settings, the first allows you to pause and resume the simulation, the second allows you to return to the main menu, the third allows you to go to the settings.

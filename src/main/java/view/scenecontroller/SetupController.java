@@ -1,7 +1,14 @@
 package view.scenecontroller;
 
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
@@ -87,6 +94,14 @@ public class SetupController extends AbstractSceneController {
 
     @FXML
     private void helpClicked() {
-        MyAlert.showAlert(AlertType.INFORMATION, "Help", "Help Text");
+        try {
+            final StringBuilder builder = new StringBuilder();
+            Files.lines(Paths.get(ClassLoader.getSystemResource("documents/helpText.txt").getPath()))
+                 .forEach((x) -> builder.append(x + "\n"));
+            final String testo = builder.toString();
+            MyAlert.showHelp("Help", testo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
