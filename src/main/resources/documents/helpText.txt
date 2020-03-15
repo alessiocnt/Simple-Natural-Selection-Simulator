@@ -3,16 +3,16 @@ Organism's traits:
 Speed
 Dimension
 Food detection range (Food Radar) 
-Temperature sensibility (It depends on organism's dimension). 
+Temperature sensibility (It depends on an organism's dimension). 
 
 (1) Speed 
 Speed is a trait that allows him to advance multiple positions at the same time.
 The higher the speed the higher the food consumption.
 
 (2) Dimension
-Dimension is a trait that allows to determine how much food the organism can eat.
-An organism with an higher dimension could eat more but it will consume more energy.
-Dimension affect also the temperature sensibility.
+Dimension is a trait that allows determining how much food the organism can eat.
+An organism with a higher dimension could eat more but it will consume more energy.
+Dimension affect also temperature sensibility.
 The higher the dimension the higher the food consumption.
 
 (3) Food detection range (Food Radar) 
@@ -21,17 +21,18 @@ The higher the radius the higher the food consumption.
 
 (4) Temperature sensibility.
 It's affected by the organism's dimension.
-In fact a big organism will resist better to cold and it will suffer higher temperature.
-Instead a small organism will resist better to hot and it will suffer slower temperature.
+A big organism will resist better to cold and it will suffer higher temperature.
+Instead, a small organism will resist better to hot and it will suffer slower temperature.
 
-Organism vary its representation depending on its traits' value.
+Organism varies its representation depending on its traits' value.
 Dimension: the organism radius is directly proportional to its dimension.
 Speed (Red), Food Radar(Brown) e Children Quantity(Violet) they influence the color, in particular: the lower the value of the trait, the more they will affect with a light shade of the associated color; instead the more the value increases and the more the tonality becomes darker.
 
-It is possible to choose some initial values ​​of the simulation from the menu, after which clicking on Start will open the simulation.(*) Food Quantity: Quantitá di cibo disponibile nell'ambiente 
+It is possible to choose some initial values ​​of the simulation from the menu, after which clicking on Start will open the simulation.
+(*) Food Quantity: Quantity of food available in the environment. 
 (*) Food Variation: Food daily variation.
 (*) Initial Quantity: Organism initial quantity.
-(*) Temperatura: Environment temperature. 
+(*) Temperature: Environment temperature. 
 (*) Dimension: Organism initial dimension. 
 (*) Speed: Organism initial dimension.
 

@@ -1,6 +1,7 @@
 package view.scenecontroller;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.LinkedList;
@@ -89,10 +90,10 @@ public class SetupController extends AbstractSceneController {
     }
 
     @FXML
-    private void helpClicked() {
+    private void helpClicked() throws URISyntaxException {
         try {
             final StringBuilder builder = new StringBuilder();
-            Files.lines(Paths.get(ClassLoader.getSystemResource("documents/helpText.txt").getPath()))
+            Files.lines(Paths.get(ClassLoader.getSystemResource("documents/helpText.txt").toURI()))
                  .forEach((x) -> builder.append(x + "\n"));
             final String text = builder.toString();
             MyAlert.showHelp("Help", text);
