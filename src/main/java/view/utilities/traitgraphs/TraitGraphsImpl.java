@@ -63,7 +63,8 @@ public class TraitGraphsImpl implements TraitGraphs {
 
     @Override
     public final void update(final Map<TraitType, Double> values) {
-        values.entrySet()
+        values.entrySet().stream()
+              .filter((x) -> this.graphMap.containsKey(x.getKey()))
               .forEach((x) -> this.graphMap.get(x.getKey())
                                            .getData()
                                            .add(new XYChart.Data<>(time, x.getValue())));

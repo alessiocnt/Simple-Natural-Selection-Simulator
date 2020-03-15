@@ -149,7 +149,6 @@ public class SimulationController extends AbstractSceneController {
                    - this.top.getHeight() - this.bottom.getHeight());
          this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
          this.logics.update();
-
     }
 
     /**

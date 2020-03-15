@@ -21,9 +21,9 @@ public class TemperatureObserver implements SetupObserver {
     public TemperatureObserver(final ComboBox<Integer> combobox) {
         this.combobox = combobox;
         this.combobox.getItems().addAll(Stream.iterate(SetupValues.TEMPERATURE.getStart(),
-                (i) -> i != SetupValues.TEMPERATURE.getStop() + 1,
-                (i) -> i + 1)
-                .collect(Collectors.toList()));
+                                        (i) -> i != SetupValues.TEMPERATURE.getStop() + 1,
+                                        (i) -> i + 1)
+                                        .collect(Collectors.toList()));
         this.combobox.getSelectionModel().select(SetupValues.TEMPERATURE.getDefault());
     }
 

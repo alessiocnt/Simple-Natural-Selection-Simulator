@@ -22,9 +22,9 @@ public class FoodVariationObserver implements SetupObserver {
     public FoodVariationObserver(final ComboBox<Integer> combobox) { 
         this.combobox = combobox;
         this.combobox.getItems().addAll(Stream.iterate(SetupValues.FOODVARIATION.getStart(),
-                                                        (i) -> i != SetupValues.FOODVARIATION.getStop() + 1,
-                                                        (i) -> i + 1)
-                .collect(Collectors.toList()));
+                                        (i) -> i != SetupValues.FOODVARIATION.getStop() + 1,
+                                        (i) -> i + 1)
+                                        .collect(Collectors.toList()));
         this.combobox.getSelectionModel().select(SetupValues.FOODVARIATION.getDefault());
     }
 

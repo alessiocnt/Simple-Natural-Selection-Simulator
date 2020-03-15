@@ -47,27 +47,19 @@ public class ViewImpl implements View {
         return this.sceneFactory;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
+    public final void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
         Objects.requireNonNull(this.simulationController);
         this.simulationController.render(foods, organisms);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setSimulationOver() {
+    public final void setSimulationOver() {
         this.simulationController.simulationOver();
     }
-    /**
-     * {@inheritDoc}
-     */
+
     @Override
-    public void setSimulationController(final SimulationController simulationController) {
+    public final void setSimulationController(final SimulationController simulationController) {
         this.simulationController = simulationController;
     }
 

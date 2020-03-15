@@ -37,8 +37,14 @@ public interface Model {
      */
     boolean isSimulationOver();
 
+    /**
+     * @return food in the environment.
+     */
     Set<Pair<Position, Food>> getFoods();
 
+    /**
+     * @return organism in the environment.
+     */
     Set<Pair<Position, Organism>> getOrganisms();
 
     /**

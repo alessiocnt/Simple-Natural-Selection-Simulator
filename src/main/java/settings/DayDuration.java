@@ -18,7 +18,7 @@ public enum DayDuration {
     /**
      * Slow, 15 seconds.
      */
-    SLOW(15, "Slow");
+    SLOW(10, "Slow");
 
 
     private final int duration;
