@@ -104,7 +104,7 @@ public class SimulationController extends AbstractSceneController {
         //Create graphs.
         this.createGraphs();
         //Initialize the canvas dimension.
-        this.adjustCanvas();
+        //this.adjustCanvas();
         this.getView().getController().startSimulation();
     }
 
