@@ -1,5 +1,8 @@
 package view.sceneloader;
 
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsEnvironment;
+import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.util.EnumMap;
 import java.util.Map;
@@ -61,8 +64,12 @@ public class SceneLoaderImpl implements SceneLoader {
             stage.setTitle(sceneType.getTitle());
             //stage.setMinWidth(this.view.getController().getSettings().getPrefWindowWidth());
             //stage.setMinHeight(this.view.getController().getSettings().getPrefWindowHeight());
-            stage.setMaxWidth(this.view.getController().getSettings().getScreenWidth());
-            stage.setMaxHeight(this.view.getController().getSettings().getScreenHeight());
+            GraphicsConfiguration asdf = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+            AffineTransform asfd2 = asdf.getDefaultTransform();
+            double scaleX = asfd2.getScaleX();
+            double scaleY = asfd2.getScaleY();
+            stage.setMaxWidth(this.view.getController().getSettings().getScreenWidth() / scaleX);
+            stage.setMaxHeight(this.view.getController().getSettings().getScreenHeight() / scaleY);
             stage.setResizable(true);
 
             if (!stage.isShowing()) {
