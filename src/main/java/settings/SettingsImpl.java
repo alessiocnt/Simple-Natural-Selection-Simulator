@@ -42,12 +42,16 @@ public final class SettingsImpl implements Settings {
 
     @Override
     public int getWindowWidth() {
-        return this.selectedRes.getX().intValue();
+        synchronized (SettingsImpl.class) {
+            return this.selectedRes.getX().intValue(); 
+        }
     }
 
     @Override
     public int getWindowHeight() {
-        return this.selectedRes.getY().intValue();
+        synchronized (SettingsImpl.class) {
+            return this.selectedRes.getY().intValue();
+        }
     }
 
     @Override
@@ -66,10 +70,14 @@ public final class SettingsImpl implements Settings {
     }
     @Override
     public void setWidth(final int width) {
-        this.selectedRes = new Pair<Integer, Integer>(width, this.selectedRes.getY());
+        synchronized (SettingsImpl.class) {
+            this.selectedRes = new Pair<Integer, Integer>(width, this.selectedRes.getY());
+        }
     }
     @Override
     public void setHeight(final int height) {
-        this.selectedRes = new Pair<Integer, Integer>(this.selectedRes.getX(), height);
+        synchronized (SettingsImpl.class) {
+            this.selectedRes = new Pair<Integer, Integer>(this.selectedRes.getX(), height);
+        }
     }
 }

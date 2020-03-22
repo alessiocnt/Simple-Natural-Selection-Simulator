@@ -14,8 +14,8 @@ import model.mutation.TraitType;
  * Class for loading graphs of traits in the lateralPane.
  */
 public class TraitGraphsImpl implements TraitGraphs {
-    private final Map<TraitType, XYChart.Series<Number, Number>> graphMap = new EnumMap<>(TraitType.class);
-    private int time;
+    private static final Map<TraitType, XYChart.Series<Number, Number>> GRAPHMAP = new EnumMap<>(TraitType.class);
+    private static int time;
 
     @Override
     public final void load(final Pane root) {
@@ -41,11 +41,11 @@ public class TraitGraphsImpl implements TraitGraphs {
         //defining a series to display data
         final XYChart.Series<Number, Number> series;
         //If the series is already present (for example if U click settings, series aren't deleted).
-        if (this.graphMap.containsKey(type)) {
-            series = this.graphMap.get(type);
+        if (GRAPHMAP.containsKey(type)) {
+            series = GRAPHMAP.get(type);
         } else {
             series = new XYChart.Series<>();
-            this.graphMap.put(type, series);
+            GRAPHMAP.put(type, series);
         }
         // add series to chart
         lineChart.getData().add(series);
@@ -57,15 +57,15 @@ public class TraitGraphsImpl implements TraitGraphs {
 
     @Override
     public final void reset() {
-        this.time = 0;
-        this.graphMap.clear();
+        time = 0;
+        GRAPHMAP.clear();
     }
 
     @Override
     public final void update(final Map<TraitType, Double> values) {
         values.entrySet().stream()
-              .filter((x) -> this.graphMap.containsKey(x.getKey()))
-              .forEach((x) -> this.graphMap.get(x.getKey())
+              .filter((x) -> GRAPHMAP.containsKey(x.getKey()))
+              .forEach((x) -> GRAPHMAP.get(x.getKey())
                                            .getData()
                                            .add(new XYChart.Data<>(time, x.getValue())));
         time++;

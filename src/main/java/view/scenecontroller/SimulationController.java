@@ -22,6 +22,7 @@ import model.mutation.TraitType;
 import utilities.Pair;
 import view.scenecontroller.simulationstrategy.SimulationViewLogics;
 import view.scenecontroller.simulationstrategy.SimulationViewLogicsImpl;
+import view.utilities.MyAlert;
 import view.utilities.traitgraphs.TraitGraphs;
 import view.utilities.traitgraphs.TraitGraphsImpl;
 
@@ -110,8 +111,8 @@ public class SimulationController extends AbstractSceneController {
 
     private void createGraphs() {
         this.graphs.load(this.lateralPane);
-        this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         this.scrollPane.autosize();
+        this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
     /**
      * Updates the canvas with Environment parameters.
