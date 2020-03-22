@@ -97,22 +97,21 @@ public class SimulationController extends AbstractSceneController {
     /**
      * Initializes the simulation controller.
      */
-    public void initSimulationController() {
+    public void initSimulationController(final double rootwidth, double rootheight) {
         final int width = (int) this.getView().getController().getEnvironmentDimension().getX();
         final int height = (int) this.getView().getController().getEnvironmentDimension().getY();
         this.getView().setSimulationController(this);
         this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), width, height);
         //Create graphs.
         this.createGraphs();
-        //Initialize the canvas dimension.
-        this.adjustCanvas();
+        this.adjustCanvas(rootwidth, rootheight);
         this.getView().getController().startSimulation();
     }
 
     private void createGraphs() {
         this.graphs.load(this.lateralPane);
-        this.scrollPane.autosize();
         this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        this.scrollPane.autosize();
     }
     /**
      * Updates the canvas with Environment parameters.
@@ -143,11 +142,13 @@ public class SimulationController extends AbstractSceneController {
 
     /**
      * Adjust canvas dimension.
+     * @param rootWidth 
+     * @param rootHeight 
      */
-    public void adjustCanvas() {
-         this.canvas.setWidth(this.getView().getController().getSettings().getWindowWidth() - this.scrollPane.getWidth());
-         this.canvas.setHeight(this.getView().getController().getSettings().getWindowHeight()
-                   - this.top.getHeight() - this.bottom.getHeight());
+    public void adjustCanvas(final double rootWidth, final double rootHeight) {
+        System.out.println(rootWidth + "x" + rootHeight);
+         this.canvas.setWidth(rootWidth - this.scrollPane.getWidth());
+         this.canvas.setHeight(rootHeight - this.top.getHeight() - this.bottom.getHeight());
          this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
          this.logics.update();
     }
