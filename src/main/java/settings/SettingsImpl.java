@@ -12,17 +12,19 @@ public final class SettingsImpl implements Settings {
 
     private static final int PREFWIDTH = 1366;
     private static final int PREFHEIGHT = 768;
-    private Pair<Double, Double> selectedRes;
+    private Pair<Integer, Integer> selectedRes;
     private final Pair<Integer, Integer> prefRes = new Pair<>(PREFWIDTH, PREFHEIGHT);
+    private final Pair<Integer, Integer> screenRes;
     private DayDuration dayDuration = DayDuration.getDefualt();
 
     /**
      * Constructor.
      */
     public SettingsImpl() {
-        final double selectedWidth = Toolkit.getDefaultToolkit().getScreenSize().getWidth(); 
-        final double selectedHeight = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+        final int selectedWidth = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(); 
+        final int selectedHeight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
         this.selectedRes = new Pair<>(selectedWidth, selectedHeight);
+        this.screenRes = new Pair<>(selectedWidth, selectedHeight);
     }
     @Override
     public double getScaleFactor() {
@@ -66,10 +68,18 @@ public final class SettingsImpl implements Settings {
     }
     @Override
     public void setWidth(final int width) {
-        this.selectedRes = new Pair<Double, Double>((double) width, this.selectedRes.getY());
+        this.selectedRes = new Pair<Integer, Integer>(width, this.selectedRes.getY());
     }
     @Override
     public void setHeight(final int height) {
-        this.selectedRes = new Pair<Double, Double>(this.selectedRes.getX(), (double) height);
+        this.selectedRes = new Pair<Integer, Integer>(this.selectedRes.getX(), height);
+    }
+    @Override
+    public int getScreenWidth() {
+        return this.screenRes.getX();
+    }
+    @Override
+    public int getScreenHeight() {
+        return this.screenRes.getY();
     }
 }
