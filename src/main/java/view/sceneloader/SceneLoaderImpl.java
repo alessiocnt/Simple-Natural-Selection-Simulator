@@ -7,13 +7,12 @@ import java.util.Optional;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import view.View;
 import view.scenecontroller.SceneController;
 import view.scenecontroller.SimulationController;
-import view.utilities.MyAlert;
+
 import view.utilities.SceneType;
 
 /**
@@ -114,8 +113,8 @@ public class SceneLoaderImpl implements SceneLoader {
         root.heightProperty().addListener((obs, oldVal, newVal) -> {
             this.view.getController().setHeight(newVal.intValue());
         });
-        //root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
-          //      this.view.getController().getSettings().getWindowHeight());
+        root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
+                this.view.getController().getSettings().getWindowHeight());
         return root;
     }
 }
