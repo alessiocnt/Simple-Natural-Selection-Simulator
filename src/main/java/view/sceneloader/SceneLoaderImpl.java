@@ -44,8 +44,8 @@ public class SceneLoaderImpl implements SceneLoader {
                 this.loader = (FXMLLoader) scene.getUserData();
                 root = (Region) scene.getRoot();
                 //Set the actual resolution to the root.
-                //root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
-                  //      this.view.getController().getSettings().getWindowHeight());
+                root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
+                      this.view.getController().getSettings().getWindowHeight());
             } else {
                 //If the scene isn't in the cache, then create a new one, with the current root.
                 this.loader = new FXMLLoader();
