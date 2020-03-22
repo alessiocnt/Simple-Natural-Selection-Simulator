@@ -84,7 +84,7 @@ public class SceneLoaderImpl implements SceneLoader {
 
         switch (sceneType) {
             case SIMULATION:
-                final SimulationController simulationController = ((SimulationController) controller);
+                final SimulationController simulationController = (SimulationController) controller;
                 simulationController.initSimulationController();
                 //Add another listener, so when dimension change the canvas will resize properly.
                 root.widthProperty().addListener((obs, oldVal, newVal) -> {
