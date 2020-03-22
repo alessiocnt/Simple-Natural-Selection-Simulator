@@ -35,14 +35,4 @@ public interface SettingsHolder {
      * @return the preferite window height.
      */
     int getPrefWindowHeight();
-
-    /**
-     * @return the screen width.
-     */
-    int getScreenWidth();
-
-    /**
-     * @return the screen height.
-     */
-    int getScreenHeight();
 }

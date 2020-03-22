@@ -1,8 +1,5 @@
 package view.sceneloader;
 
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
-import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.util.EnumMap;
 import java.util.Map;
@@ -47,8 +44,8 @@ public class SceneLoaderImpl implements SceneLoader {
                 this.loader = (FXMLLoader) scene.getUserData();
                 root = (Region) scene.getRoot();
                 //Set the actual resolution to the root.
-                root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
-                        this.view.getController().getSettings().getWindowHeight());
+                //root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
+                  //      this.view.getController().getSettings().getWindowHeight());
             } else {
                 //If the scene isn't in the cache, then create a new one, with the current root.
                 this.loader = new FXMLLoader();
@@ -64,12 +61,6 @@ public class SceneLoaderImpl implements SceneLoader {
             stage.setTitle(sceneType.getTitle());
             //stage.setMinWidth(this.view.getController().getSettings().getPrefWindowWidth());
             //stage.setMinHeight(this.view.getController().getSettings().getPrefWindowHeight());
-            GraphicsConfiguration asdf = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-            AffineTransform asfd2 = asdf.getDefaultTransform();
-            double scaleX = asfd2.getScaleX();
-            double scaleY = asfd2.getScaleY();
-            stage.setMaxWidth(this.view.getController().getSettings().getScreenWidth() / scaleX);
-            stage.setMaxHeight(this.view.getController().getSettings().getScreenHeight() / scaleY);
             stage.setResizable(true);
 
             if (!stage.isShowing()) {
