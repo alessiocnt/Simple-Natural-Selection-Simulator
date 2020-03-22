@@ -113,8 +113,8 @@ public class SceneLoaderImpl implements SceneLoader {
         root.heightProperty().addListener((obs, oldVal, newVal) -> {
             this.view.getController().setHeight(newVal.intValue());
         });
-        root.setPrefSize(this.view.getController().getSettings().getWindowWidth(),
-                this.view.getController().getSettings().getWindowHeight());
+        root.setPrefSize(this.view.getController().getSettings().getPrefWindowWidth(),
+                this.view.getController().getSettings().getPrefWindowHeight());
         return root;
     }
 }
