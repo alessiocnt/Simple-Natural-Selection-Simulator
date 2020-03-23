@@ -21,7 +21,7 @@
     <Canvas fx:id="canvas" height="300.0" width="600.0" BorderPane.alignment="CENTER" />
   </center>
   <right>
-    <ScrollPane fx:id="scrollPane" maxHeight="-1.0" maxWidth="-Infinity" minHeight="-1.0" minWidth="-Infinity">
+    <ScrollPane fx:id="scrollPane" maxHeight="-1.0" minHeight="-1.0" minWidth="-Infinity">
       <content>
         <VBox fx:id="lateralPane" />
       </content>

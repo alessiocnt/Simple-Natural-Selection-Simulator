@@ -44,41 +44,35 @@ public class SceneLoaderImpl implements SceneLoader {
                 scene = this.sceneCache.get(sceneType).get();
                 this.loader = (FXMLLoader) scene.getUserData();
                 root = (Region) scene.getRoot();
-                //Set the actual resolution to the root.
-                //root.resize(this.view.getController().getSettings().getWindowWidth(),
-                  //    this.view.getController().getSettings().getWindowHeight());
             } else {
                 //If the scene isn't in the cache, then create a new one, with the current root.
                 this.loader = new FXMLLoader();
                 this.loader.setLocation(ClassLoader.getSystemResource(sceneType.getFxmlPath()));
                 root = this.createRoot();
-                //scene = new Scene(root, this.view.getController().getSettings().getWindowWidth(),
-                  //          this.view.getController().getSettings().getWindowHeight());
                 scene = new Scene(root);
                 scene.setUserData(this.loader);
                 scene.getStylesheets().add(ClassLoader.getSystemResource(sceneType.getCssPath()).toExternalForm());
                 this.sceneCache.put(sceneType, Optional.of(scene));
             }
 
-          //Add listener to set the current size in settings.
+            //Add listener to set the current size in settings.
             stage.widthProperty().addListener((obs, oldVal, newVal) -> {
-                this.view.getController().setWidth((int) (newVal.intValue()));
+                this.view.getController().setWidth(newVal.intValue());
             });
             stage.heightProperty().addListener((obs, oldVal, newVal) -> {
-                this.view.getController().setHeight((int) (newVal.intValue()));
+                this.view.getController().setHeight(newVal.intValue());
             });
 
-            stage.setScene(scene);
             stage.setTitle(sceneType.getTitle());
-            //stage.setMinWidth(this.view.getController().getSettings().getPrefWindowWidth());
-            //stage.setMinHeight(this.view.getController().getSettings().getPrefWindowHeight());
             stage.setResizable(true);
+            stage.setScene(scene);
+
             stage.setHeight(this.view.getController().getSettings().getWindowHeight());
             stage.setWidth(this.view.getController().getSettings().getWindowWidth());
 
-            if (!stage.isShowing()) {
-                stage.show();
-            }
+            stage.close();
+            stage.show();
+
             final SceneController controller = (SceneController) this.loader.getController();
             this.initializeScene(controller, sceneType, scene, root);
         } catch (IOException e) {

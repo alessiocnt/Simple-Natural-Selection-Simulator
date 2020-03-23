@@ -14,8 +14,8 @@ import model.mutation.TraitType;
  * Class for loading graphs of traits in the lateralPane.
  */
 public class TraitGraphsImpl implements TraitGraphs {
-    private static final Map<TraitType, XYChart.Series<Number, Number>> GRAPHMAP = new EnumMap<>(TraitType.class);
-    private static int time;
+    private final Map<TraitType, XYChart.Series<Number, Number>> graphMap = new EnumMap<>(TraitType.class);
+    private int time;
 
     @Override
     public final void load(final Pane root) {
@@ -41,11 +41,11 @@ public class TraitGraphsImpl implements TraitGraphs {
         //defining a series to display data
         final XYChart.Series<Number, Number> series;
         //If the series is already present (for example if U click settings, series aren't deleted).
-        if (GRAPHMAP.containsKey(type)) {
-            series = GRAPHMAP.get(type);
+        if (this.graphMap.containsKey(type)) {
+            series = this.graphMap.get(type);
         } else {
             series = new XYChart.Series<>();
-            GRAPHMAP.put(type, series);
+            this.graphMap.put(type, series);
         }
         // add series to chart
         lineChart.getData().add(series);
@@ -57,17 +57,17 @@ public class TraitGraphsImpl implements TraitGraphs {
 
     @Override
     public final void reset() {
-        time = 0;
-        GRAPHMAP.clear();
+        this.time = 0;
+        this.graphMap.clear();
     }
 
     @Override
     public final void update(final Map<TraitType, Double> values) {
         values.entrySet().stream()
-              .filter((x) -> GRAPHMAP.containsKey(x.getKey()))
-              .forEach((x) -> GRAPHMAP.get(x.getKey())
+              .filter((x) -> this.graphMap.containsKey(x.getKey()))
+              .forEach((x) -> this.graphMap.get(x.getKey())
                                            .getData()
-                                           .add(new XYChart.Data<>(time, x.getValue())));
-        time++;
+                                           .add(new XYChart.Data<>(this.time, x.getValue())));
+        this.time++;
     }
 }

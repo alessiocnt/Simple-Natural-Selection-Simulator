@@ -97,18 +97,19 @@ public class SimulationController extends AbstractSceneController {
     /**
      * Initializes the simulation controller.
      */
-    public void initSimulationController(final double rootwidth, double rootheight) {
+    public void initSimulationController(final double rootWidth, final double rootHeight) {
         final int width = (int) this.getView().getController().getEnvironmentDimension().getX();
         final int height = (int) this.getView().getController().getEnvironmentDimension().getY();
         this.getView().setSimulationController(this);
         this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), width, height);
         //Create graphs.
         this.createGraphs();
-        this.adjustCanvas(rootwidth, rootheight);
+        this.adjustCanvas(rootWidth, rootHeight);
         this.getView().getController().startSimulation();
     }
 
     private void createGraphs() {
+        this.scrollPane.setContent(this.lateralPane);
         this.graphs.load(this.lateralPane);
         this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         this.scrollPane.autosize();
@@ -146,7 +147,6 @@ public class SimulationController extends AbstractSceneController {
      * @param rootHeight 
      */
     public void adjustCanvas(final double rootWidth, final double rootHeight) {
-        System.out.println(rootWidth + "x" + rootHeight);
          this.canvas.setWidth(rootWidth - this.scrollPane.getWidth());
          this.canvas.setHeight(rootHeight - this.top.getHeight() - this.bottom.getHeight());
          this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
