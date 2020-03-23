@@ -49,7 +49,8 @@ public class SceneLoaderImpl implements SceneLoader {
                 this.loader = new FXMLLoader();
                 this.loader.setLocation(ClassLoader.getSystemResource(sceneType.getFxmlPath()));
                 root = this.createRoot();
-                scene = new Scene(root);
+                scene = new Scene(root, (double) this.view.getController().getSettings().getPrefWindowWidth(),
+                        (double) this.view.getController().getSettings().getPrefWindowHeight());
                 scene.setUserData(this.loader);
                 scene.getStylesheets().add(ClassLoader.getSystemResource(sceneType.getCssPath()).toExternalForm());
                 this.sceneCache.put(sceneType, Optional.of(scene));
