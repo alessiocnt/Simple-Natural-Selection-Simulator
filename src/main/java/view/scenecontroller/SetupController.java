@@ -1,8 +1,15 @@
 package view.scenecontroller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
@@ -92,11 +99,14 @@ public class SetupController extends AbstractSceneController {
     @FXML
     private void helpClicked() throws URISyntaxException {
         try {
-            final StringBuilder builder = new StringBuilder();
-            Files.lines(Paths.get(ClassLoader.getSystemResource("documents/helpText.txt").toURI()))
-                 .forEach((x) -> builder.append(x + "\n"));
-            final String text = builder.toString();
-            MyAlert.showHelp("Help", text);
+            String fileName = "documents/helpText.txt";
+            try (InputStream in = this.getClass().getClassLoader().getResourceAsStream(fileName);
+                 BufferedReader br = new BufferedReader(new InputStreamReader(in));) {
+                final StringBuilder builder = new StringBuilder();
+                br.lines().forEach((string) -> builder.append(string + "\n"));
+                final String text = builder.toString();
+                MyAlert.showHelp("Help", text);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
