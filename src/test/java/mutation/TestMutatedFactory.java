@@ -2,6 +2,9 @@ package mutation;
 
 import static org.junit.Assert.fail;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,9 +12,14 @@ import model.entity.EnergyImpl;
 import model.entity.organism.Organism;
 import model.entity.organism.OrganismBuilder;
 import model.entity.organism.OrganismBuilderImpl;
+import model.environment.AdvancedEnvironment;
+import model.environment.EnvironmentFactoryImpl;
+import model.environment.temperature.TemperatureImpl;
 import model.mutation.ChildrenQuantity;
 import model.mutation.Dimension;
+import model.mutation.FoodRadar;
 import model.mutation.Speed;
+import model.mutation.TemperatureSensibility;
 import model.mutation.Trait;
 import model.mutation.TraitType;
 import model.mutation.factory.MutatedOrganismFactory;
@@ -24,6 +32,7 @@ public class TestMutatedFactory {
     private static final int SPEEDINITIAL = 5;
     private static final int DIMENSIONINITIAL = 100;
     private static final int CHILDRENINITIAL = 2;
+    private static final int FOODRADAR = 2;
     private Organism organism;
     private MutatedOrganismFactory factory;
     /**
@@ -31,13 +40,20 @@ public class TestMutatedFactory {
      */
     @Before
     public void initialise() {
-        final Trait speed = new Speed(TestMutatedFactory.SPEEDINITIAL);
-        final Trait dimension = new Dimension(TestMutatedFactory.DIMENSIONINITIAL);
-        final Trait childrenQuantity = new ChildrenQuantity(TestMutatedFactory.CHILDRENINITIAL);
-        final OrganismBuilder builder = new OrganismBuilderImpl(new EnergyImpl(TestMutatedFactory.DIMENSIONINITIAL));
-        builder.setTrait(TraitType.SPEED, speed);
-        builder.setTrait(TraitType.DIMENSION, dimension);
-        builder.setTrait(TraitType.CHILDRENQUANTITY, childrenQuantity);
+        final Map<TraitType, Trait> traits = new EnumMap<>(TraitType.class);
+        traits.put(TraitType.SPEED, new Speed(TestMutatedFactory.SPEEDINITIAL));
+        traits.put(TraitType.DIMENSION, new Dimension(TestMutatedFactory.DIMENSIONINITIAL));
+        traits.put(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(TestMutatedFactory.CHILDRENINITIAL));
+        traits.put(TraitType.FOODRADAR, new FoodRadar(TestMutatedFactory.FOODRADAR));
+        traits.put(TraitType.TEMPERATURESENSIBILITY, new TemperatureSensibility());
+        final AdvancedEnvironment environment = new EnvironmentFactoryImpl()
+                .createAdvancedEnviroment(100, 100, 100, 0, new TemperatureImpl(10));
+        final OrganismBuilder builder = new OrganismBuilderImpl(new EnergyImpl(TestMutatedFactory.DIMENSIONINITIAL))
+                .setEnvironmentKnowledge(environment);
+        //Set all the trait for the builder.
+        traits.entrySet()
+            .stream()
+            .forEach((entrySet) -> builder.setTrait(entrySet.getKey(), entrySet.getValue()));
         this.organism = builder.build();
         this.factory = new MutatedOrganismFactoryImpl();
     }

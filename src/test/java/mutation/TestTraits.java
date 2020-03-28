@@ -2,6 +2,9 @@ package mutation;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,9 +12,14 @@ import model.entity.EnergyImpl;
 import model.entity.organism.Organism;
 import model.entity.organism.OrganismBuilder;
 import model.entity.organism.OrganismBuilderImpl;
+import model.environment.AdvancedEnvironment;
+import model.environment.EnvironmentFactoryImpl;
+import model.environment.temperature.TemperatureImpl;
 import model.mutation.ChildrenQuantity;
 import model.mutation.Dimension;
+import model.mutation.FoodRadar;
 import model.mutation.Speed;
+import model.mutation.TemperatureSensibility;
 import model.mutation.Trait;
 import model.mutation.TraitType;
 
@@ -20,29 +28,39 @@ import model.mutation.TraitType;
  *
  */
 public class TestTraits {
+    //Valori iniziali trait.
     private static final int SPEEDINITIAL = 5;
     private static final int DIMENSIONINITIAL = 100;
     private static final int CHILDRENINITIAL = 2;
+    private static final int FOODRADAR = 2;
+
+    //Consumo di cibo aspettato
+    private static final int EXPTEMPSENSCONS = 2;
+    private static final int EXPFOODRADARCONS = 4;
     private static final int EXPSPEEDCONS = 25;
     private static final int EXPDIMCONS = 10;
-    private static final int EXPCHILDCONS = 20;
+    private static final int EXPCHILDCONS = 40;
 
-    private Trait speed;
-    private Trait dimension;
-    private Trait childrenQuantity;
+    private final Map<TraitType, Trait> traits = new EnumMap<>(TraitType.class);
     private Organism organism;
     /**
      * Initialise traits.
      */
     @Before
     public void initialise() {
-        speed = new Speed(TestTraits.SPEEDINITIAL);
-        dimension = new Dimension(TestTraits.DIMENSIONINITIAL);
-        childrenQuantity = new ChildrenQuantity(TestTraits.CHILDRENINITIAL);
-        final OrganismBuilder builder = new OrganismBuilderImpl(new EnergyImpl(TestTraits.DIMENSIONINITIAL));
-        builder.setTrait(TraitType.SPEED, this.speed);
-        builder.setTrait(TraitType.DIMENSION, this.dimension);
-        builder.setTrait(TraitType.CHILDRENQUANTITY, this.childrenQuantity);
+        this.traits.put(TraitType.SPEED, new Speed(TestTraits.SPEEDINITIAL));
+        this.traits.put(TraitType.DIMENSION, new Dimension(TestTraits.DIMENSIONINITIAL));
+        this.traits.put(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(TestTraits.CHILDRENINITIAL));
+        this.traits.put(TraitType.FOODRADAR, new FoodRadar(TestTraits.FOODRADAR));
+        this.traits.put(TraitType.TEMPERATURESENSIBILITY, new TemperatureSensibility());
+        final AdvancedEnvironment environment = new EnvironmentFactoryImpl()
+                .createAdvancedEnviroment(100, 100, 100, 0, new TemperatureImpl(10));
+        final OrganismBuilder builder = new OrganismBuilderImpl(new EnergyImpl(TestTraits.DIMENSIONINITIAL))
+                .setEnvironmentKnowledge(environment);
+        //Set all the trait for the builder.
+        this.traits.entrySet()
+            .stream()
+            .forEach((entrySet) -> builder.setTrait(entrySet.getKey(), entrySet.getValue()));
         this.organism = builder.build();
     }
 
@@ -51,9 +69,10 @@ public class TestTraits {
      */
     @Test
     public void testValues() {
-        assertEquals(TestTraits.SPEEDINITIAL, this.speed.getValue());
-        assertEquals(TestTraits.DIMENSIONINITIAL, this.dimension.getValue());
-        assertEquals(TestTraits.CHILDRENINITIAL, this.childrenQuantity.getValue());
+        assertEquals(TestTraits.SPEEDINITIAL, this.traits.get(TraitType.SPEED).getValue());
+        assertEquals(TestTraits.DIMENSIONINITIAL, this.traits.get(TraitType.DIMENSION).getValue());
+        assertEquals(TestTraits.CHILDRENINITIAL, this.traits.get(TraitType.CHILDRENQUANTITY).getValue());
+        assertEquals(TestTraits.FOODRADAR, this.traits.get(TraitType.FOODRADAR).getValue());
     }
 
     /**
@@ -61,8 +80,10 @@ public class TestTraits {
      */
     @Test
     public void testFoodConsuption() {
-        assertEquals(new EnergyImpl(TestTraits.EXPSPEEDCONS), this.speed.getFoodConsumption(organism));
-        assertEquals(new EnergyImpl(TestTraits.EXPDIMCONS), this.dimension.getFoodConsumption(organism));
-        assertEquals(new EnergyImpl(TestTraits.EXPCHILDCONS), this.childrenQuantity.getFoodConsumption(organism));
+        assertEquals(new EnergyImpl(TestTraits.EXPSPEEDCONS), this.traits.get(TraitType.SPEED).getFoodConsumption(organism));
+        assertEquals(new EnergyImpl(TestTraits.EXPDIMCONS), this.traits.get(TraitType.DIMENSION).getFoodConsumption(organism));
+        assertEquals(new EnergyImpl(TestTraits.EXPCHILDCONS), this.traits.get(TraitType.CHILDRENQUANTITY).getFoodConsumption(organism));
+        assertEquals(new EnergyImpl(TestTraits.EXPFOODRADARCONS), this.traits.get(TraitType.FOODRADAR).getFoodConsumption(organism));
+        assertEquals(new EnergyImpl(TestTraits.EXPTEMPSENSCONS), this.traits.get(TraitType.TEMPERATURESENSIBILITY).getFoodConsumption(organism));
     }
 }
