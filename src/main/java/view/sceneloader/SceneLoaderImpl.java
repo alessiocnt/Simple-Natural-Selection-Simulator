@@ -11,8 +11,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import view.View;
 import view.scenecontroller.SceneController;
-import view.scenecontroller.SimulationController;
-
+import view.scenecontroller.simulationstrategy.SimulationInitializer;
 import view.utilities.SceneType;
 
 /**
@@ -91,7 +90,7 @@ public class SceneLoaderImpl implements SceneLoader {
 
         switch (sceneType) {
             case SIMULATION:
-                final SimulationController simulationController = (SimulationController) controller;
+                final SimulationInitializer simulationController = (SimulationInitializer) controller;
                 simulationController.initSimulationController(this.view.getController().getSettings().getWindowWidth() - scene.getX(),
                         this.view.getController().getSettings().getWindowHeight() - scene.getY());
                 //Add another listener, so when dimension change the canvas will resize properly.

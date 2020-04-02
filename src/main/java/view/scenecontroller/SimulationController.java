@@ -20,6 +20,8 @@ import model.environment.position.Position;
 import model.mutation.MutationRarity;
 import model.mutation.TraitType;
 import utilities.Pair;
+import view.scenecontroller.simulationstrategy.SimulationHandler;
+import view.scenecontroller.simulationstrategy.SimulationInitializer;
 import view.scenecontroller.simulationstrategy.SimulationViewLogics;
 import view.scenecontroller.simulationstrategy.SimulationViewLogicsImpl;
 import view.utilities.MyAlert;
@@ -30,7 +32,7 @@ import view.utilities.traitgraphs.TraitGraphsImpl;
  * Simulation controller.
  *
  */
-public class SimulationController extends AbstractSceneController {
+public class SimulationController extends AbstractSceneController implements SimulationInitializer, SimulationHandler {
 
     @FXML
     private Canvas canvas;
@@ -97,7 +99,8 @@ public class SimulationController extends AbstractSceneController {
     /**
      * Initializes the simulation controller.
      */
-    public void initSimulationController(final double rootWidth, final double rootHeight) {
+    @Override
+    public final void initSimulationController(final double rootWidth, final double rootHeight) {
         final int width = (int) this.getView().getController().getEnvironmentDimension().getX();
         final int height = (int) this.getView().getController().getEnvironmentDimension().getY();
         this.getView().setSimulationController(this);
@@ -114,15 +117,9 @@ public class SimulationController extends AbstractSceneController {
         this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         this.scrollPane.autosize();
     }
-    /**
-     * Updates the canvas with Environment parameters.
-     * 
-     * @param foods
-     *                      food that will be displayed
-     * @param organisms
-     *                      organisms that will be displayed
-     */
-    public void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
+
+    @Override
+    public final void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
         //Update graphs with new averages.
         if (!organisms.isEmpty()) {
             final Map<TraitType, Double> averages = organisms.stream()
@@ -141,22 +138,16 @@ public class SimulationController extends AbstractSceneController {
         }
     }
 
-    /**
-     * Adjust canvas dimension.
-     * @param rootWidth 
-     * @param rootHeight 
-     */
-    public void adjustCanvas(final double rootWidth, final double rootHeight) {
+    @Override
+    public final void adjustCanvas(final double rootWidth, final double rootHeight) {
          this.canvas.setWidth(rootWidth - this.scrollPane.getWidth());
          this.canvas.setHeight(rootHeight - this.top.getHeight() - this.bottom.getHeight());
          this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
          this.logics.update();
     }
 
-    /**
-     * Tells SimulationController that the simulation is over.
-     */
-    public void simulationOver() {
+    @Override
+    public final void simulationOver() {
         Platform.runLater(() -> {
             final Alert a = new Alert(AlertType.INFORMATION);
             a.setTitle("INFO");

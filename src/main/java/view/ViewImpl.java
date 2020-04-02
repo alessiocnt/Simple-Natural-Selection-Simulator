@@ -9,7 +9,7 @@ import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
 import utilities.Pair;
-import view.scenecontroller.SimulationController;
+import view.scenecontroller.simulationstrategy.SimulationHandler;
 import view.scenefactory.SceneFactory;
 import view.scenefactory.SceneFactoryImpl;
 
@@ -21,7 +21,7 @@ public class ViewImpl implements View {
 
     private Controller controller;
     private final SceneFactory sceneFactory;
-    private SimulationController simulationController;
+    private SimulationHandler simulationController;
 
     /**
      * @param stage
@@ -59,7 +59,7 @@ public class ViewImpl implements View {
     }
 
     @Override
-    public final void setSimulationController(final SimulationController simulationController) {
+    public final void setSimulationController(final SimulationHandler simulationController) {
         this.simulationController = simulationController;
     }
 

@@ -7,7 +7,7 @@ import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
 import utilities.Pair;
-import view.scenecontroller.SimulationController;
+import view.scenecontroller.simulationstrategy.SimulationHandler;
 import view.scenefactory.SceneFactory;
 
 /**
@@ -36,7 +36,7 @@ public interface View {
      * @param simulationController
      *      the SimulationController
      */
-    void setSimulationController(SimulationController simulationController);
+    void setSimulationController(SimulationHandler simulationController);
 
     /**
      * Tells view that the simulation is over.
