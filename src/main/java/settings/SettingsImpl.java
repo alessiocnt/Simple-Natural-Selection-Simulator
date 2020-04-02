@@ -2,7 +2,8 @@ package settings;
 
 import java.awt.Toolkit;
 
-import utilities.Pair;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.MutablePair;
 
 /**
  * Implementation of settings.
@@ -12,8 +13,8 @@ public final class SettingsImpl implements Settings {
 
     private static final int PREFWIDTH = 1366;
     private static final int PREFHEIGHT = 768;
-    private Pair<Integer, Integer> selectedRes;
-    private final Pair<Integer, Integer> prefRes = new Pair<>(PREFWIDTH, PREFHEIGHT);
+    private final MutablePair<Integer, Integer> selectedRes;
+    private final ImmutablePair<Integer, Integer> prefRes = ImmutablePair.of(PREFWIDTH, PREFHEIGHT);
     private DayDuration dayDuration = DayDuration.getDefualt();
 
     /**
@@ -22,12 +23,12 @@ public final class SettingsImpl implements Settings {
     public SettingsImpl() {
         final int selectedWidth = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(); 
         final int selectedHeight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-        this.selectedRes = new Pair<>(selectedWidth, selectedHeight);
+        this.selectedRes = MutablePair.of(selectedWidth, selectedHeight);
     }
     @Override
     public double getScaleFactor() {
-        return Math.min(this.selectedRes.getX() / this.prefRes.getX(),
-                this.selectedRes.getY() / this.prefRes.getY());
+        return Math.min(this.selectedRes.getKey() / this.prefRes.getKey(),
+                this.selectedRes.getValue() / this.prefRes.getValue());
     }
 
     @Override
@@ -42,22 +43,22 @@ public final class SettingsImpl implements Settings {
 
     @Override
     public int getWindowWidth() {
-        return this.selectedRes.getX().intValue(); 
+        return this.selectedRes.getKey().intValue(); 
     }
 
     @Override
     public int getWindowHeight() {
-        return this.selectedRes.getY().intValue();
+        return this.selectedRes.getValue().intValue();
     }
 
     @Override
     public int getPrefWindowWidth() {
-        return this.prefRes.getX();
+        return this.prefRes.getKey();
     }
 
     @Override
     public int getPrefWindowHeight() {
-        return this.prefRes.getY();
+        return this.prefRes.getValue();
     }
 
     @Override
@@ -66,10 +67,10 @@ public final class SettingsImpl implements Settings {
     }
     @Override
     public void setWidth(final int width) {
-        this.selectedRes = new Pair<Integer, Integer>(width, this.selectedRes.getY());
+        this.selectedRes.setLeft(width);
     }
     @Override
     public void setHeight(final int height) {
-        this.selectedRes = new Pair<Integer, Integer>(this.selectedRes.getX(), height);
+        this.selectedRes.setRight(height);
     }
 }

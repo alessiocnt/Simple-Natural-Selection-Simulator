@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -19,12 +21,10 @@ import model.entity.organism.Organism;
 import model.environment.position.Position;
 import model.mutation.MutationRarity;
 import model.mutation.TraitType;
-import utilities.Pair;
 import view.scenecontroller.simulationstrategy.SimulationHandler;
 import view.scenecontroller.simulationstrategy.SimulationInitializer;
 import view.scenecontroller.simulationstrategy.SimulationViewLogics;
 import view.scenecontroller.simulationstrategy.SimulationViewLogicsImpl;
-import view.utilities.MyAlert;
 import view.utilities.traitgraphs.TraitGraphs;
 import view.utilities.traitgraphs.TraitGraphsImpl;
 
@@ -119,11 +119,11 @@ public class SimulationController extends AbstractSceneController implements Sim
     }
 
     @Override
-    public final void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
+    public final void render(final Set<ImmutablePair<Position, Food>> foods, final Set<ImmutablePair<Position, Organism>> organisms) {
         //Update graphs with new averages.
         if (!organisms.isEmpty()) {
             final Map<TraitType, Double> averages = organisms.stream()
-                    .flatMap((x) -> x.getY().getTraits().entrySet().stream())
+                    .flatMap((x) -> x.getValue().getTraits().entrySet().stream())
                     .filter((x) -> !x.getKey().getRarity().equals(MutationRarity.NOMUTATION))
                     .collect(Collectors.groupingBy((x) -> x.getKey(), Collectors.averagingInt((x) -> x.getValue().getValue())));
             Platform.runLater(() -> {
@@ -132,7 +132,7 @@ public class SimulationController extends AbstractSceneController implements Sim
                 this.aliveLbl.setText(String.valueOf(this.logics.getAlive()));
                 this.aspeedLbl.setText(String.format("%.2f", averages.get(TraitType.SPEED)));
                 this.adimensionLbl.setText(String.format("%.2f", averages.get(TraitType.DIMENSION)));
-                this.temperatureLbl.setText(String.format("%.2f", organisms.stream().findAny().get().getY().getEnvironmentKnowledge().getTemperature().getValue()));
+                this.temperatureLbl.setText(String.format("%.2f", organisms.stream().findAny().get().getValue().getEnvironmentKnowledge().getTemperature().getValue()));
                 this.graphs.update(averages);
             });
         }

@@ -3,12 +3,13 @@ package view;
 import java.util.Objects;
 import java.util.Set;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import controller.Controller;
 import javafx.stage.Stage;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
-import utilities.Pair;
 import view.scenecontroller.simulationstrategy.SimulationHandler;
 import view.scenefactory.SceneFactory;
 import view.scenefactory.SceneFactoryImpl;
@@ -48,7 +49,7 @@ public class ViewImpl implements View {
     }
 
     @Override
-    public final void render(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
+    public final void render(final Set<ImmutablePair<Position, Food>> foods, final Set<ImmutablePair<Position, Organism>> organisms) {
         Objects.requireNonNull(this.simulationController);
         this.simulationController.render(foods, organisms);
     }

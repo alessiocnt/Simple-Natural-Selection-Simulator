@@ -2,13 +2,14 @@ package model;
 
 import java.util.Set;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import controller.action.ActionController;
 import model.entity.food.Food;
 import model.entity.food.FoodBuilder;
 import model.entity.organism.Organism;
 import model.environment.AdvancedEnvironment;
 import model.environment.position.Position;
-import utilities.Pair;
 import view.entities.EnvironmentHolder;
 
 /**
@@ -40,12 +41,12 @@ public interface Model {
     /**
      * @return food in the environment.
      */
-    Set<Pair<Position, Food>> getFoods();
+    Set<ImmutablePair<Position, Food>> getFoods();
 
     /**
      * @return organism in the environment.
      */
-    Set<Pair<Position, Organism>> getOrganisms();
+    Set<ImmutablePair<Position, Organism>> getOrganisms();
 
     /**
      * @return the environment dimension

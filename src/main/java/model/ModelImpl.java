@@ -2,6 +2,8 @@ package model;
 
 import java.util.Set;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import controller.action.ActionController;
 import controller.action.ActionControllerImpl;
 import model.entity.food.Food;
@@ -23,7 +25,6 @@ import model.mutation.TemperatureSensibility;
 import model.mutation.TraitType;
 import model.utilities.DimensionConverter;
 import settings.SetupValues;
-import utilities.Pair;
 import view.entities.EnvironmentHolder;
 
 /**
@@ -72,7 +73,7 @@ public class ModelImpl implements Model {
      * {@inheritDoc}
      */
     @Override
-    public Set<Pair<Position, Food>> getFoods() {
+    public Set<ImmutablePair<Position, Food>> getFoods() {
         return this.environment.getPositionFoods();
     }
 
@@ -80,7 +81,7 @@ public class ModelImpl implements Model {
      * {@inheritDoc}
      */
     @Override
-    public Set<Pair<Position, Organism>> getOrganisms() {
+    public Set<ImmutablePair<Position, Organism>> getOrganisms() {
         return this.environment.getPositionOrganisms();
     }
 

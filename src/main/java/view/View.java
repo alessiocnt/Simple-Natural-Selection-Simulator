@@ -2,11 +2,12 @@ package view;
 
 import java.util.Set;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import controller.Controller;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
-import utilities.Pair;
 import view.scenecontroller.simulationstrategy.SimulationHandler;
 import view.scenefactory.SceneFactory;
 
@@ -50,6 +51,6 @@ public interface View {
      * @param organisms
      *      organisms in the environment 
      */
-    void render(Set<Pair<Position, Food>> foods, Set<Pair<Position, Organism>> organisms);
+    void render(Set<ImmutablePair<Position, Food>> foods, Set<ImmutablePair<Position, Organism>> organisms);
 
 }

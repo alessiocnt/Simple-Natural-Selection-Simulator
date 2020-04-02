@@ -4,11 +4,12 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.exceptions.OutOfEnviromentException;
 import model.environment.position.Position;
-import utilities.Pair;
 
 /**
  * Represent the environment in which Organisms and Food are contained.
@@ -103,12 +104,12 @@ public interface Environment {
     /**
      * @return an Entry of each Food and its position in the environment
      */
-    Set<Pair<Position, Food>> getPositionFoods();
+    Set<ImmutablePair<Position, Food>> getPositionFoods();
 
     /**
      * @return an Entry of each Organism and its position in the environment
      */
-    Set<Pair<Position, Organism>> getPositionOrganisms();
+    Set<ImmutablePair<Position, Organism>> getPositionOrganisms();
 
     /**
      * @return the environment dimension

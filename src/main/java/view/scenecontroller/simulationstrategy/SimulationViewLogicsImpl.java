@@ -3,13 +3,14 @@ package view.scenecontroller.simulationstrategy;
 import java.util.Collections;
 import java.util.Set;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
 import model.mutation.TraitType;
-import utilities.Pair;
 
 /**
  * Class that defines the logic to display entities on screen.
@@ -19,8 +20,8 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
     private static final int SPEED_MULT = 50;
     private static final int CHILD_MULT = 20;
     private static final int FOOD_MULT = 10;
-    private Set<Pair<Position, Food>> foods = Collections.emptySet();
-    private Set<Pair<Position, Organism>> organisms = Collections.emptySet();;
+    private Set<ImmutablePair<Position, Food>> foods = Collections.emptySet();
+    private Set<ImmutablePair<Position, Organism>> organisms = Collections.emptySet();;
     private final GraphicsContext graphics;
     private final int environmentX;
     private final int environmentY;
@@ -59,7 +60,7 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
      * {@inheritDoc}
      */
     @Override
-    public void setEntities(final Set<Pair<Position, Food>> foods, final Set<Pair<Position, Organism>> organisms) {
+    public void setEntities(final Set<ImmutablePair<Position, Food>> foods, final Set<ImmutablePair<Position, Organism>> organisms) {
         this.foods = foods;
         this.organisms = organisms;
     }
@@ -71,19 +72,19 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
     public void update() {
         this.graphics.setFill(Color.BEIGE);
         this.graphics.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
-        for (final Pair<Position, Food> entry : foods) {
+        for (final ImmutablePair<Position, Food> entry : foods) {
             this.graphics.setFill(Color.DARKGREEN);
-            this.graphics.fillRect(entry.getX().getX() * this.xAxisScaleFactor, 
-                    entry.getX().getY() * this.yAxisScaleFactor,
+            this.graphics.fillRect(entry.getKey().getX() * this.xAxisScaleFactor, 
+                    entry.getKey().getY() * this.yAxisScaleFactor,
                     this.xAxisScaleFactor, this.yAxisScaleFactor);
         }
 
-        for (final Pair<Position, Organism> entry : organisms) {
-            this.graphics.setFill(getOrganismColor(entry.getY()));
-            this.graphics.fillOval(entry.getX().getX() * this.xAxisScaleFactor, 
-                    entry.getX().getY() * this.yAxisScaleFactor,
-                    this.xAxisScaleFactor *  getOrganismDimension(entry.getY()),
-                    this.yAxisScaleFactor * getOrganismDimension(entry.getY()));
+        for (final ImmutablePair<Position, Organism> entry : organisms) {
+            this.graphics.setFill(getOrganismColor(entry.getValue()));
+            this.graphics.fillOval(entry.getKey().getX() * this.xAxisScaleFactor, 
+                    entry.getKey().getY() * this.yAxisScaleFactor,
+                    this.xAxisScaleFactor *  getOrganismDimension(entry.getValue()),
+                    this.yAxisScaleFactor * getOrganismDimension(entry.getValue()));
         }
     }
 

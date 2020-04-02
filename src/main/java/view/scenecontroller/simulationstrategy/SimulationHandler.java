@@ -2,10 +2,10 @@ package view.scenecontroller.simulationstrategy;
 
 import java.util.Set;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
-import utilities.Pair;
 
 /**
  * Interface that enable render and stopSimulation, 
@@ -21,7 +21,7 @@ public interface SimulationHandler {
      * @param organisms
      *                      organisms that will be displayed
      */
-    void render(Set<Pair<Position, Food>> foods, Set<Pair<Position, Organism>> organisms);
+    void render(Set<ImmutablePair<Position, Food>> foods, Set<ImmutablePair<Position, Organism>> organisms);
 
     /**
      * Tells SimulationController that the simulation is over.

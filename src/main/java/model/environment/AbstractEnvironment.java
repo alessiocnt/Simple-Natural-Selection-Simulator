@@ -10,6 +10,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import model.entity.EnergyImpl;
 import model.entity.food.Food;
 import model.entity.food.FoodBuilderImpl;
@@ -17,7 +19,6 @@ import model.entity.organism.Organism;
 import model.environment.exceptions.OutOfEnviromentException;
 import model.environment.position.Position;
 import model.environment.position.PositionImpl;
-import utilities.Pair;
 
 /**
  * Abstract class to describe environment.
@@ -180,9 +181,9 @@ public abstract class AbstractEnvironment implements Environment {
      * @return an Entry of each Food and its position in the environment
      */
     @Override
-    public Set<Pair<Position, Food>> getPositionFoods() {
+    public Set<ImmutablePair<Position, Food>> getPositionFoods() {
         return this.foods.entrySet().stream()
-                .map(e -> new Pair<>(e.getKey(), e.getValue()))
+                .map(e -> ImmutablePair.of(e.getKey(), e.getValue()))
                 .collect(Collectors.toSet());
     }
 
@@ -190,9 +191,9 @@ public abstract class AbstractEnvironment implements Environment {
      * @return an Entry of each Organism and its position in the environment
      */
     @Override
-    public Set<Pair<Position, Organism>> getPositionOrganisms() {
+    public Set<ImmutablePair<Position, Organism>> getPositionOrganisms() {
         return this.organisms.entrySet().stream()
-                .map(e -> new Pair<>(e.getValue(), e.getKey()))
+                .map(e -> ImmutablePair.of(e.getValue(), e.getKey()))
                 .collect(Collectors.toSet());
     }
 

@@ -2,10 +2,11 @@ package view.scenecontroller.simulationstrategy;
 
 import java.util.Set;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
 import model.entity.food.Food;
 import model.entity.organism.Organism;
 import model.environment.position.Position;
-import utilities.Pair;
 
 /**
  * Interface that models the logic to display entities on screen.
@@ -19,7 +20,7 @@ public interface SimulationViewLogics {
      * @param organisms
      *      organisms that will be displayed
      */
-    void setEntities(Set<Pair<Position, Food>> foods, Set<Pair<Position, Organism>> organisms);
+    void setEntities(Set<ImmutablePair<Position, Food>> foods, Set<ImmutablePair<Position, Organism>> organisms);
 
     /**
      * Updates the canvas.
