@@ -1,6 +1,6 @@
 package environment;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,16 +12,20 @@ import model.entity.food.FoodBuilderImpl;
 import model.entity.organism.Organism;
 import model.entity.organism.OrganismBuilder;
 import model.entity.organism.OrganismBuilderImpl;
-import model.environment.BasicEnvironment;
+import model.environment.AdvancedEnvironment;
 import model.environment.EnvironmentFactory;
 import model.environment.EnvironmentFactoryImpl;
+import model.environment.OrganismEnvironmentHolder;
+import model.environment.temperature.Temperature;
+import model.environment.temperature.TemperatureImpl;
 import model.mutation.ChildrenQuantity;
 import model.mutation.Dimension;
+import model.mutation.FoodRadar;
 import model.mutation.Speed;
 import model.mutation.Trait;
 import model.mutation.TraitType;
 
-public class TestBasicEnvironment {
+public class TestEnvironment {
 
     private static final int X_DIMENSION = 100;
     private static final int Y_DIMENSION = 100;
@@ -29,8 +33,10 @@ public class TestBasicEnvironment {
     private final int speed = 5;
     private final int dimension = 100;
     private final int children = 2;
+    private final int foodRadar = 1;
+    private final Temperature temperature = new TemperatureImpl(20);
     private EnvironmentFactory factory; 
-    private BasicEnvironment environment;
+    private AdvancedEnvironment environment;
     private OrganismBuilder organismBuilder;
     private Organism organism;
     private Food food;
@@ -39,15 +45,18 @@ public class TestBasicEnvironment {
     @Before
     public void initialize() {
         this.factory = new EnvironmentFactoryImpl();
-        this.environment = this.factory.createBasicEnviroment(X_DIMENSION, Y_DIMENSION, INITIAL_FOOD, 0);
+        this.environment = this.factory.createAdvancedEnviroment(X_DIMENSION, Y_DIMENSION, INITIAL_FOOD, 0, this.temperature);
         this.organismBuilder = new OrganismBuilderImpl(new EnergyImpl(100));
         final Trait speed = new Speed(this.speed);
         final Trait dimension = new Dimension(this.dimension);
         final Trait childrenQuantity = new ChildrenQuantity(this.children);
+        final Trait foodRadar = new FoodRadar(this.foodRadar);
         final FoodBuilder foodBuilder = new FoodBuilderImpl();
         this.organismBuilder.setTrait(TraitType.SPEED, speed);
         this.organismBuilder.setTrait(TraitType.DIMENSION, dimension);
         this.organismBuilder.setTrait(TraitType.CHILDRENQUANTITY, childrenQuantity);
+        this.organismBuilder.setTrait(TraitType.FOODRADAR, foodRadar);
+        this.organismBuilder.setEnvironmentKnowledge(this.environment);
         this.organism = this.organismBuilder.build();
         this.environment.addOrganism(this.organism);
         this.food = foodBuilder.build();
@@ -60,12 +69,14 @@ public class TestBasicEnvironment {
 
     @Test
     public void testAddOrganism() {
-        assertEquals(5, this.environment.getCurrendOrganismQuantity());
+        final int expected = 5;
+        assertEquals(expected, this.environment.getCurrendOrganismQuantity());
     }
 
     @Test 
     public void testAddFood() {
-        assertEquals(5, this.environment.getCurrentFoodQuantity());
+        final int expected = 5;
+        assertEquals(expected, this.environment.getCurrentFoodQuantity());
     }
 
     @Test
@@ -78,13 +89,20 @@ public class TestBasicEnvironment {
     @Test
     public void testAddSon() {
         this.environment.addOrganism(this.environment.getOrganisms().next(), this.organismBuilder.build());
-        assertEquals(6, this.environment.getCurrendOrganismQuantity());
+        final int expected = 6;
+        assertEquals(expected, this.environment.getCurrendOrganismQuantity());
     }
 
     @Test
     public void testNewDay() {
         this.environment.nextDay();
         assertEquals(0, this.environment.getCurrentFoodQuantity());
+    }
+
+    @Test
+    public void testTemperature() {
+        final Temperature expected = this.temperature;
+        assertEquals(expected, (this.environment).getTemperature());
     }
 }
 
