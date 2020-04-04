@@ -1,7 +1,9 @@
-package model.mutation;
+package model.mutation.trait;
 
 import model.entity.Energy;
 import model.entity.organism.Organism;
+import model.mutation.MutationRarity;
+import model.mutation.TraitType;
 
 /**
  * Interface that describes an entity trait.
@@ -19,10 +21,7 @@ public interface Trait  {
      * organism.
      */
     Energy getFoodConsumption(Organism organism);
-    /**
-     * @return the mutation rarity of the trait.
-     */
-    MutationRarity getRarity();
+
     /**
      * @return the type of the trait.
      */

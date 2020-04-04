@@ -1,4 +1,4 @@
-package model.mutation;
+package model.mutation.trait;
 
 
 import java.util.Objects;
@@ -6,6 +6,7 @@ import java.util.Objects;
 import model.entity.Energy;
 import model.entity.EnergyImpl;
 import model.entity.organism.Organism;
+import model.mutation.TraitType;
 import model.mutation.foodconsumption.strategy.FoodConsumptionFunc;
 import model.mutation.utilities.CheckUtil;
 
@@ -50,16 +51,11 @@ public abstract class AbstractTrait implements Trait {
 
     @Override
     public final String toString() {
-        return "Value: " + this.getValue() + ", Rarity: " + this.getRarity();
+        return "Value: " + this.getValue() + ", Rarity: " + this.type.getRarity();
     }
 
     @Override
     public final TraitType getType() {
         return this.type;
-    }
-
-    @Override
-    public final MutationRarity getRarity() {
-        return type.getRarity();
     }
 }

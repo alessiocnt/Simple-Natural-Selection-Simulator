@@ -7,8 +7,8 @@ import java.util.EnumMap;
 
 import model.entity.Entity;
 import model.environment.OrganismEnvironmentHolder;
-import model.mutation.Trait;
 import model.mutation.TraitType;
+import model.mutation.trait.Trait;
 
 /**
  * Interface that defines an Organism.

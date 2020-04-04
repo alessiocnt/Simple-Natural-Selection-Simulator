@@ -1,6 +1,7 @@
-package model.mutation;
+package model.mutation.trait;
 
 import model.entity.organism.Organism;
+import model.mutation.TraitType;
 import model.mutation.foodconsumption.strategy.FoodConsumptionFunc;
 
 /**

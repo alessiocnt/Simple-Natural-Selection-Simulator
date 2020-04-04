@@ -27,11 +27,11 @@ import model.environment.AdvancedEnvironment;
 import model.environment.EnvironmentFactory;
 import model.environment.EnvironmentFactoryImpl;
 import model.environment.temperature.TemperatureImpl;
-import model.mutation.ChildrenQuantity;
-import model.mutation.Dimension;
-import model.mutation.Speed;
-import model.mutation.Trait;
 import model.mutation.TraitType;
+import model.mutation.trait.ChildrenQuantity;
+import model.mutation.trait.Dimension;
+import model.mutation.trait.Speed;
+import model.mutation.trait.Trait;
 
 class TestAction {
 

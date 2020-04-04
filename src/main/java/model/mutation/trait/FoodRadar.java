@@ -1,5 +1,6 @@
-package model.mutation;
+package model.mutation.trait;
 
+import model.mutation.TraitType;
 import model.mutation.foodconsumption.strategy.Multiplier;
 
 /**

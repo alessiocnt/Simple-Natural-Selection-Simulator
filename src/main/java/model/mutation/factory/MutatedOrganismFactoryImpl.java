@@ -9,13 +9,13 @@ import model.entity.EnergyImpl;
 import model.entity.organism.Organism;
 import model.entity.organism.OrganismBuilder;
 import model.entity.organism.OrganismBuilderImpl;
-import model.mutation.ChildrenQuantity;
-import model.mutation.Dimension;
-import model.mutation.FoodRadar;
 import model.mutation.MutationRarity;
-import model.mutation.Speed;
-import model.mutation.Trait;
 import model.mutation.TraitType;
+import model.mutation.trait.ChildrenQuantity;
+import model.mutation.trait.Dimension;
+import model.mutation.trait.FoodRadar;
+import model.mutation.trait.Speed;
+import model.mutation.trait.Trait;
 
 /**
  * Children factory.
@@ -27,7 +27,7 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
         Objects.requireNonNull(organism);
         final Map<TraitType, Trait> traits = organism.getTraits();
         final Map<TraitType, Trait> mutatedTraits = traits.entrySet().stream()
-                                    .filter((entrySet) -> !entrySet.getValue().getRarity().equals(MutationRarity.NOMUTATION))
+                                    .filter((entrySet) -> !entrySet.getValue().getType().getRarity().equals(MutationRarity.NOMUTATION))
                                     .collect(Collectors.toMap((entrySet) -> entrySet.getKey(),
                                                               (entrySet) -> this.getMutatedTrait(entrySet.getKey(), entrySet.getValue().getValue())));
         //Child has the same energy of dad.

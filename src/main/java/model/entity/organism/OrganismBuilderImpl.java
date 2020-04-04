@@ -9,8 +9,8 @@ import java.util.Optional;
 import model.entity.Energy;
 import model.entity.EnergyImpl;
 import model.environment.OrganismEnvironmentHolder;
-import model.mutation.Trait;
 import model.mutation.TraitType;
+import model.mutation.trait.Trait;
 
 /**
  * Class that models an organism's builder.

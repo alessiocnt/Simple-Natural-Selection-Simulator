@@ -8,8 +8,8 @@ import java.util.EnumMap;
 import model.entity.Energy;
 import model.environment.OrganismEnvironmentHolder;
 import model.entity.AbstractEntity;
-import model.mutation.Trait;
 import model.mutation.TraitType;
+import model.mutation.trait.Trait;
 
 /**
  * Class that models an Organism.

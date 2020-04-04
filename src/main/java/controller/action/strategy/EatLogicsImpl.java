@@ -8,8 +8,8 @@ import java.util.Set;
 import model.entity.Energy;
 import model.entity.food.Food;
 import model.entity.organism.Organism;
-import model.mutation.Trait;
 import model.mutation.TraitType;
+import model.mutation.trait.Trait;
 import model.utilities.DimensionConverter;
 
 /**
