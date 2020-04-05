@@ -106,9 +106,6 @@ public class SceneLoaderImpl implements SceneLoader {
         }
     }
 
-    /*
-     * Create root with resolution listener.
-     */
     private Region createRoot() throws IOException {
         final Region root = this.loader.load();
         return root;
