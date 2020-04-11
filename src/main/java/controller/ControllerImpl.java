@@ -38,11 +38,7 @@ public class ControllerImpl implements Controller {
         this.view = view;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void update(final DayCicle dayCicle) {
+    private void update(final DayCicle dayCicle) {
         final AdvancedEnvironment environment = this.model.getEnvironment();
         dayCicle.nextTick();
         // Updates the environment food
@@ -67,11 +63,6 @@ public class ControllerImpl implements Controller {
     @Override
     public final void setEnvironmentInitialValues(final EnvironmentHolder holder) {
         this.model.prepareEnvironment(holder);
-    }
-
-    @Override
-    public final boolean initSimulation() {
-        return true;
     }
 
     /**
@@ -123,7 +114,7 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public final SettingsHolder getSettings() {
+    public final SettingsHolder getSettingsHolder() {
         return this.settings;
     }
 

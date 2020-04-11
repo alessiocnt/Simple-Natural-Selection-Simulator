@@ -56,7 +56,7 @@ public class OrganismBuilderImpl implements OrganismBuilder {
      * {@inheritDoc}
      */
     @Override
-    public OrganismImpl build() {
+    public Organism build() {
         if (this.energy != null && !this.traits.isEmpty() && this.environmentKnowledge.isPresent()) {
             return new OrganismImpl(new EnergyImpl(this.energy.getEnergy()), this.traits, this.environmentKnowledge.get());
         }

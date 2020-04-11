@@ -1,6 +1,5 @@
 package controller;
 
-import model.environment.daycicle.DayCicle;
 import model.environment.position.Position;
 import settings.DayDuration;
 import settings.SettingsHolder;
@@ -18,18 +17,6 @@ public interface Controller {
     void setEnvironmentInitialValues(EnvironmentHolder holder);
 
     /**
-     * @return true if the simulation start correctly.
-     */
-    boolean initSimulation();
-
-    /**
-     * Updates the simulation state.
-     * @param dayCicle
-     *      the dayCicle
-     */
-    void update(DayCicle dayCicle);
-
-    /**
      * @param duration
      * the duration of the day to be set in Settings.
      */
@@ -38,7 +25,7 @@ public interface Controller {
     /**
      * @return the settings in read-only.
      */
-    SettingsHolder getSettings();
+    SettingsHolder getSettingsHolder();
 
     /**
      * @return the environment dimension
@@ -52,12 +39,12 @@ public interface Controller {
 
     /**
      * @param width
-     * Width to set.
+     * Window width to set.
      */
     void setWidth(int width);
     /**
      * @param height
-     * height to set.
+     * Window height to set.
      */
     void setHeight(int height);
 

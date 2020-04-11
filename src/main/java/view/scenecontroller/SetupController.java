@@ -75,14 +75,8 @@ public class SetupController extends AbstractSceneController {
         final EnvironmentHolder holder = new EnvironmentHolder();
         //Imposto l'holder attraverso tutti gli observer
         this.observers.forEach((observer) -> observer.update(holder));
-        MyAlert.showAlert(AlertType.INFORMATION, "START", holder.toString());
         this.getView().getController().setEnvironmentInitialValues(holder);
-        if (this.getView().getController().initSimulation()) {
-            //Initialization is ok, so open the simulation scene.
-            this.getSceneFactory().openSimulation();
-        } else {
-            MyAlert.showAlert(AlertType.ERROR, "Error", "Something went wrong, retry!");
-        }
+        this.getSceneFactory().openSimulation();
     }
 
     @FXML

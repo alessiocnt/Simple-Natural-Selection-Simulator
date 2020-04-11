@@ -30,5 +30,5 @@ public interface OrganismBuilder {
      * @return an instance of OrganismImpl if all the fields are not null
      * @throws IllegalArgumentException instead
      */
-    OrganismImpl build();
+    Organism build();
 }

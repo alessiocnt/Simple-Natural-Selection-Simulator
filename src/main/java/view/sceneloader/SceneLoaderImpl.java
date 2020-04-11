@@ -48,8 +48,8 @@ public class SceneLoaderImpl implements SceneLoader {
                 this.loader = new FXMLLoader();
                 this.loader.setLocation(ClassLoader.getSystemResource(sceneType.getFxmlPath()));
                 root = this.createRoot();
-                scene = new Scene(root, (double) this.view.getController().getSettings().getPrefWindowWidth(),
-                        (double) this.view.getController().getSettings().getPrefWindowHeight());
+                scene = new Scene(root, (double) this.view.getController().getSettingsHolder().getPrefWindowWidth(),
+                        (double) this.view.getController().getSettingsHolder().getPrefWindowHeight());
                 scene.setUserData(this.loader);
                 scene.getStylesheets().add(ClassLoader.getSystemResource(sceneType.getCssPath()).toExternalForm());
                 this.sceneCache.put(sceneType, Optional.of(scene));
@@ -67,8 +67,8 @@ public class SceneLoaderImpl implements SceneLoader {
             stage.setResizable(true);
             stage.setScene(scene);
 
-            stage.setHeight(this.view.getController().getSettings().getWindowHeight());
-            stage.setWidth(this.view.getController().getSettings().getWindowWidth());
+            stage.setHeight(this.view.getController().getSettingsHolder().getWindowHeight());
+            stage.setWidth(this.view.getController().getSettingsHolder().getWindowWidth());
 
             stage.close();
             stage.show();
@@ -91,8 +91,8 @@ public class SceneLoaderImpl implements SceneLoader {
         switch (sceneType) {
             case SIMULATION:
                 final SimulationInitializer simulationController = (SimulationInitializer) controller;
-                simulationController.initSimulationController(this.view.getController().getSettings().getWindowWidth() - scene.getX(),
-                        this.view.getController().getSettings().getWindowHeight() - scene.getY());
+                simulationController.initSimulationController(this.view.getController().getSettingsHolder().getWindowWidth() - scene.getX(),
+                        this.view.getController().getSettingsHolder().getWindowHeight() - scene.getY());
                 //Add another listener, so when dimension change the canvas will resize properly.
                 root.widthProperty().addListener((obs, oldVal, newVal) -> {
                     simulationController.adjustCanvas(newVal.intValue(), root.getHeight());
