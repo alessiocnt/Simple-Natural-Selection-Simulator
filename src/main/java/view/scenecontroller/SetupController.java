@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import view.entities.EnvironmentHolder;

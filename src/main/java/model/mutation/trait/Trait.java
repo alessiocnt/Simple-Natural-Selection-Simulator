@@ -2,7 +2,6 @@ package model.mutation.trait;
 
 import model.entity.Energy;
 import model.entity.organism.Organism;
-import model.mutation.MutationRarity;
 import model.mutation.TraitType;
 
 /**
