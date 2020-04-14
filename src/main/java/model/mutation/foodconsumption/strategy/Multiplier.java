@@ -5,7 +5,7 @@ import model.entity.organism.Organism;
 /**
  * Strategy for calculate the food consumption based on a moltiplication.
  */
-public class Multiplier implements FoodConsumptionFunc {
+public class Multiplier implements FoodConsumptionFunction {
 
     private final double factor;
     private final int value;

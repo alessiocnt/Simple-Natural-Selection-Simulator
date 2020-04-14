@@ -7,7 +7,7 @@ import model.entity.Energy;
 import model.entity.EnergyImpl;
 import model.entity.organism.Organism;
 import model.mutation.TraitType;
-import model.mutation.foodconsumption.strategy.FoodConsumptionFunc;
+import model.mutation.foodconsumption.strategy.FoodConsumptionFunction;
 import model.mutation.utilities.CheckUtil;
 
 /**
@@ -16,7 +16,7 @@ import model.mutation.utilities.CheckUtil;
 public abstract class AbstractTrait implements Trait {
 
     private final int value;
-    private final FoodConsumptionFunc foodConsumption;
+    private final FoodConsumptionFunction foodConsumption;
     private final TraitType type;
 
     /*
@@ -25,7 +25,7 @@ public abstract class AbstractTrait implements Trait {
      * @param foodConsumption
      * the strategy for calculating the food consumption.
      */
-    AbstractTrait(final int value, final FoodConsumptionFunc foodConsumption, final TraitType type) {
+    AbstractTrait(final int value, final FoodConsumptionFunction foodConsumption, final TraitType type) {
         Objects.requireNonNull(value, "Value must not be null");
         Objects.requireNonNull(foodConsumption, "Food Consumption function must not be null");
         Objects.requireNonNull(type, "Trait type must not be null");

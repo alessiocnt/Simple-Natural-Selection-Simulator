@@ -30,9 +30,9 @@ public enum TraitType {
      */
     CHILDRENQUANTITY(AffectMovement.NO, MutationRarity.RARE, SetupValues.CHILDRENQUANTITY);
 
-    private AffectMovement affectMovement;
-    private MutationRarity rarity;
-    private SetupValues values;
+    private final AffectMovement affectMovement;
+    private final MutationRarity rarity;
+    private final SetupValues values;
 
     TraitType(final AffectMovement affectMovement, final MutationRarity rarity, final SetupValues values) {
         this.affectMovement = affectMovement;

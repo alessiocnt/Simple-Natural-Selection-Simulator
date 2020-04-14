@@ -35,8 +35,8 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
                                                     .setEnvironmentKnowledge(organism.getEnvironmentKnowledge());
         //Insert mutate trait.
         mutatedTraits.entrySet().forEach((entrySet) -> organismBuilder.setTrait(entrySet.getKey(), entrySet.getValue()));
-        //Insert also not mutable trait in children.
-        organism.getTraits().entrySet().stream()
+        //Insert also not mutable trait in children, copying value from dad.
+        traits.entrySet().stream()
             .filter((x) -> x.getKey().getRarity().equals(MutationRarity.NOMUTATION))
             .forEach((x) -> organismBuilder.setTrait(x.getKey(), x.getValue()));
         final Organism mutatedOrganism = organismBuilder.build();

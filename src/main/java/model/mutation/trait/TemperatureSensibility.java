@@ -2,7 +2,7 @@ package model.mutation.trait;
 
 import model.entity.organism.Organism;
 import model.mutation.TraitType;
-import model.mutation.foodconsumption.strategy.FoodConsumptionFunc;
+import model.mutation.foodconsumption.strategy.FoodConsumptionFunction;
 
 /**
  * Temperature sensibility.
@@ -19,10 +19,14 @@ public class TemperatureSensibility extends AbstractTrait {
     /*
      * It's private static because it's limited to this class and I want to make it usable only within this class.
      */
-    private static class Sensibility implements FoodConsumptionFunc {
+    private static class Sensibility implements FoodConsumptionFunction {
         private static final int NUMERATOR = 200;
         private static final double PARAMETER = 2;
 
+        /*
+         * Utilizzo una parabola, modificandola a seconda della dimensione dell'individuo
+         * y = ((1/4) * x - 2 - (200/DIMENSION)) ^ 2
+         */
         @Override
         public final int getConsumption(final Organism organism) {
             final double environmentTemp = organism.getEnvironmentKnowledge().getTemperature().getValue();
@@ -31,7 +35,9 @@ public class TemperatureSensibility extends AbstractTrait {
         }
     }
 
-    //Temperature sensibility hasn't a value.
+    /*
+     * Temperature sensibility hasn't got a value.
+     */
     @Override
     public final int getValue() {
         throw new UnsupportedOperationException();

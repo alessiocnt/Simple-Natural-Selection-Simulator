@@ -5,7 +5,7 @@ import model.entity.organism.Organism;
 /**
  * Function used to get Food Consuption.
  */
-public interface FoodConsumptionFunc {
+public interface FoodConsumptionFunction {
     /**
      * @param organism
      * entity to get the food Consumption for this specific trait.
