@@ -40,7 +40,7 @@ public abstract class AbstractTrait implements Trait {
      * Get value
      */
     @Override
-    public int getValue() {
+    public final int getValue() {
         return this.value;
     }
 
