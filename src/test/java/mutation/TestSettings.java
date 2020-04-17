@@ -1,11 +1,11 @@
 package mutation;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.awt.Toolkit;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import settings.DayDuration;
 import settings.Settings;
@@ -21,7 +21,7 @@ public class TestSettings {
     /**
      * Initialise settings.
      */
-    @Before
+    @BeforeEach
     public void initialise() {
         this.settings = new SettingsImpl();
         this.settings.setDayDuration(DURATION);

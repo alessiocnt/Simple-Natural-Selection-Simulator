@@ -1,13 +1,13 @@
 package entity;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.EnumMap;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.entity.Energy;
@@ -37,7 +37,7 @@ class TestEntity {
     private Trait speed;
     private Trait dimension;
 
-    @Before
+    @BeforeEach
     public void initialise() {
         speed = new Speed(INITIALSPEED);
         dimension = new Dimension(INITIALDIMENSION);

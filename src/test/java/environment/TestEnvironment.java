@@ -1,9 +1,10 @@
 package environment;
 
-import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import model.entity.EnergyImpl;
 import model.entity.food.Food;
@@ -43,7 +44,7 @@ public class TestEnvironment {
     private Food food;
 
 
-    @Before
+    @BeforeEach
     public void initialize() {
         this.factory = new EnvironmentFactoryImpl();
         this.environment = this.factory.createAdvancedEnviroment(X_DIMENSION, Y_DIMENSION, INITIAL_FOOD, 0, this.temperature);

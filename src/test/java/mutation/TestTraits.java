@@ -1,12 +1,13 @@
 package mutation;
 
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.EnumMap;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import model.entity.EnergyImpl;
 import model.entity.organism.Organism;
@@ -46,7 +47,7 @@ public class TestTraits {
     /**
      * Initialise traits.
      */
-    @Before
+    @BeforeEach
     public void initialise() {
         this.traits.put(TraitType.SPEED, new Speed(TestTraits.SPEEDINITIAL));
         this.traits.put(TraitType.DIMENSION, new Dimension(TestTraits.DIMENSIONINITIAL));
