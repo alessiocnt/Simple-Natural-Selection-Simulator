@@ -29,11 +29,8 @@ public class MoveLogicsImpl implements MoveLogics {
         this.directions = Arrays.asList(Direction.values());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Energy computeConsumptionForMovement(final Organism organism) {
+    public final Energy computeConsumptionForMovement(final Organism organism) {
         final Energy consumpion = new EnergyImpl(0);
         organism.getTraits().keySet().stream()
                 .filter(k -> k.affectMovement())
@@ -41,20 +38,14 @@ public class MoveLogicsImpl implements MoveLogics {
         return consumpion;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Direction getRandomDirection() {
+    public final Direction getRandomDirection() {
         Collections.shuffle(this.directions);
         return this.directions.get(0);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void detractConsumptionForMovement(final Organism organism) {
+    public final void detractConsumptionForMovement(final Organism organism) {
         organism.getEnergy().detractEnergy(computeConsumptionForMovement(organism));
     }
 

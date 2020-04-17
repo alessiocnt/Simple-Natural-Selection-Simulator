@@ -25,11 +25,8 @@ public class NightAction extends AbstractAction {
         this.replicateLogic = new ReplicateLogicsImpl();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void perform(final Organism organism) {
+    public final void perform(final Organism organism) {
         if (!tryToRemoveOrganism(organism)) {
             for (int i = 0; i < replicateLogic.getNumberOfChild(organism); i++) {
                 environment.addOrganism(organism, replicateLogic.replicate(organism));

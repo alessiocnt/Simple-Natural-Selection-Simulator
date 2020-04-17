@@ -34,29 +34,20 @@ public class OrganismBuilderImpl implements OrganismBuilder {
         this.environmentKnowledge = Optional.empty();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public OrganismBuilderImpl setTrait(final TraitType type, final Trait trait) {
+    public final OrganismBuilderImpl setTrait(final TraitType type, final Trait trait) {
         this.traits.put(type, trait);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public OrganismBuilderImpl setEnvironmentKnowledge(final OrganismEnvironmentHolder environmentKnowledge) {
+    public final OrganismBuilderImpl setEnvironmentKnowledge(final OrganismEnvironmentHolder environmentKnowledge) {
         this.environmentKnowledge = Optional.of(environmentKnowledge);
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Organism build() {
+    public final Organism build() {
         if (this.energy != null && !this.traits.isEmpty() && this.environmentKnowledge.isPresent()) {
             return new OrganismImpl(new EnergyImpl(this.energy.getEnergy()), this.traits, this.environmentKnowledge.get());
         }

@@ -17,7 +17,9 @@ public abstract class AbstractEntity implements Entity {
     }
 
     /**
-     * {@inheritDoc}
+     * Represents the entity energy.
+     * 
+     * @return the current energy.
      */
     @Override
     public Energy getEnergy() {
@@ -25,7 +27,10 @@ public abstract class AbstractEntity implements Entity {
     }
 
     /**
-     * {@inheritDoc}
+     * Set the entity energy.
+     * 
+     * @param energy 
+     *          to set
      */
     @Override
     public void setEnergy(final Energy energy) {
@@ -33,7 +38,7 @@ public abstract class AbstractEntity implements Entity {
     }
 
     /**
-     * {@inheritDoc}
+     * toString for an Entity.
      */
     @Override
     public String toString() {

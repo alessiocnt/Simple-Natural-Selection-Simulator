@@ -20,11 +20,8 @@ public abstract class AbstractAction implements Action {
         this.type = type;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public DayPeriod getType() {
+    public final DayPeriod getType() {
         return this.type;
     }
 

@@ -17,20 +17,14 @@ import model.utilities.DimensionConverter;
  *
  */
 public class EatLogicsImpl implements EatLogics {
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void eat(final Organism organism, final Set<Food> foods) {
+    public final void eat(final Organism organism, final Set<Food> foods) {
         foods.forEach(f -> organism.getEnergy().addEnergy(f.getEnergy()));
         adjustEnergyLevel(organism);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public boolean canEat(final Organism organism, final Set<Food> foods) {
+    public final boolean canEat(final Organism organism, final Set<Food> foods) {
         return !organism.getEnergy().equals(calculateOrganismMaxEnergy(organism.getTraits().get(TraitType.DIMENSION))) 
                 && !foods.isEmpty();
     }

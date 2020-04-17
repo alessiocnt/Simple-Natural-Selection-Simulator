@@ -24,35 +24,23 @@ public class ReplicateLogicsImpl implements ReplicateLogics {
         this.duplicationFactory = new MutatedOrganismFactoryImpl();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Organism replicate(final Organism organism) {
+    public final Organism replicate(final Organism organism) {
         return duplicationFactory.createMutated(organism);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Energy computeConsumptionForReplication(final Organism organism) {
+    public final Energy computeConsumptionForReplication(final Organism organism) {
         return organism.getTraits().get(TraitType.CHILDRENQUANTITY).getFoodConsumption(organism);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public int getNumberOfChild(final Organism organism) {
+    public final int getNumberOfChild(final Organism organism) {
         return organism.getTraits().get(TraitType.CHILDRENQUANTITY).getValue();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void detractConsumptionForReplication(final Organism organism, final Energy energyToDetract) {
+    public final void detractConsumptionForReplication(final Organism organism, final Energy energyToDetract) {
         organism.getEnergy().detractEnergy(energyToDetract);
     }
 }

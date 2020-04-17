@@ -19,43 +19,28 @@ public class EnergyImpl implements Energy {
         this.energyLevel = energyLevel;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public int getEnergy() {
+    public final int getEnergy() {
         return energyLevel;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setEnergy(final Energy energy) {
+    public final void setEnergy(final Energy energy) {
         this.energyLevel = energy.getEnergy();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void addEnergy(final Energy energy) {
+    public final void addEnergy(final Energy energy) {
         this.energyLevel += energy.getEnergy();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void detractEnergy(final Energy energy) {
+    public final void detractEnergy(final Energy energy) {
         this.energyLevel -= energy.getEnergy();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + energyLevel;
@@ -70,7 +55,7 @@ public class EnergyImpl implements Energy {
      *      false instead
      */
     @Override
-    public boolean equals(final Object obj) {
+    public final boolean equals(final Object obj) {
         if (obj == this) { 
             return true; 
         }

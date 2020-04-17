@@ -34,27 +34,18 @@ public class OrganismImpl extends AbstractEntity implements Organism {
         this.environmentKnowledge = environmentKnowledge;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public EnumMap<TraitType, Trait> getTraits() {
+    public final EnumMap<TraitType, Trait> getTraits() {
         return this.traits;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public OrganismEnvironmentHolder getEnvironmentKnowledge() {
+    public final OrganismEnvironmentHolder getEnvironmentKnowledge() {
         return this.environmentKnowledge;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public String toString() {
+    public final String toString() {
         return "Organism= [energy=" + this.getEnergy() + ", traits=" + this.getTraits() + "]";
     }
 

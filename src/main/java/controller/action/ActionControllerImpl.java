@@ -25,11 +25,8 @@ public class ActionControllerImpl implements ActionController {
         this.actions.put(DayPeriod.NIGHT, new NightAction(environment));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public EnumMap<DayPeriod, Action> getActions() {
+    public final EnumMap<DayPeriod, Action> getActions() {
         return this.actions;
     }
 

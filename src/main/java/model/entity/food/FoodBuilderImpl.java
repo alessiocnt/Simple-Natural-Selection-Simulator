@@ -23,20 +23,14 @@ public class FoodBuilderImpl implements FoodBuilder {
         this.energy = ENERGYVALUE;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public FoodBuilder setEnergy(final Energy energy) {
+    public final FoodBuilder setEnergy(final Energy energy) {
         this.energy = energy;
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Food build() {
+    public final Food build() {
         return new Food(this.energy);
     }
 }

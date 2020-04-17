@@ -39,11 +39,8 @@ public class DayAction extends AbstractAction {
         this.moveLogic = new MoveLogicsImpl();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void perform(final Organism organism) {
+    public final void perform(final Organism organism) {
         if (!tryToRemoveOrganism(organism)) {
             try {
                 Direction currentDirection;

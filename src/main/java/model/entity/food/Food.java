@@ -15,12 +15,13 @@ public class Food extends AbstractEntity {
     }
 
     /**
+     * This method in Unsupported for Object Food.
      * @param energy
      *          The Food energy
      * @throws UnsupportedOperationException
      */
     @Override
-    public void setEnergy(final Energy energy) {
+    public final void setEnergy(final Energy energy) throws UnsupportedOperationException {
         throw new UnsupportedOperationException(EXCEPTIONMESSAGE);
     }
 
