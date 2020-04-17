@@ -123,14 +123,14 @@ public abstract class AbstractEnvironment implements Environment {
 
     /**
      * Template method that checks if the new position is legal for the environment.
-     * @param newPosition
-     *      the new organism position
+     * @param position
+     *      the position that will be checked
      * @throws OutOfEnviromentException
      *      if the new position is outside the environment
      * @return
      *      true if the position is valid else if it's not valid
      */
-    protected abstract boolean checkNewPosition(Position newPosition) throws OutOfEnviromentException;
+    protected abstract boolean checkPosition(Position position) throws OutOfEnviromentException;
 
     /**
      * {@inheritDoc}

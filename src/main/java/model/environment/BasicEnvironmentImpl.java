@@ -52,9 +52,9 @@ public class BasicEnvironmentImpl extends AbstractEnvironment implements BasicEn
      * {@inheritDoc}
      */
     @Override
-    protected boolean checkNewPosition(final Position newPosition) throws OutOfEnviromentException {
-        if (newPosition.getX() < 0 || newPosition.getX() > super.getDimension().getX()
-                || newPosition.getY() < 0 || newPosition.getY() > super.getDimension().getY()) {
+    protected boolean checkPosition(final Position position) throws OutOfEnviromentException {
+        if (position.getX() < 0 || position.getX() > super.getDimension().getX()
+                || position.getY() < 0 || position.getY() > super.getDimension().getY()) {
             throw new OutOfEnviromentException();
         }
         return true;
