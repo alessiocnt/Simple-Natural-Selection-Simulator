@@ -117,23 +117,21 @@ public abstract class AbstractEnvironment implements Environment {
     public void moveOrganism(final Organism organism, final int xOffset, final int yOffset) throws OutOfEnviromentException {
         final Position position = this.organisms.get(organism);
         final Position newPosition = new PositionImpl(position.getX() + xOffset, position.getY() + yOffset);
-        this.checkNewPosition(newPosition);
+        this.checkPosition(newPosition);
         this.organisms.put(organism, newPosition);
     }
 
     /**
-     * Checks if the new position is legal for the environment.
-     * @param newPosition
-     *      the new organism position
+     * Template method that checks if the new position is legal for the environment.
+     * @param position
+     *      the position that will be checked
      * @throws OutOfEnviromentException
      *      if the new position is outside the environment
+     * @return
+     *      true if the position is valid else if it's not valid
      */
-    protected void checkNewPosition(final Position newPosition) throws OutOfEnviromentException {
-        if (newPosition.getX() < 0 || newPosition.getX() > this.width
-                || newPosition.getY() < 0 || newPosition.getY() > this.height) {
-            throw new OutOfEnviromentException();
-        }
-    }
+    protected abstract boolean checkPosition(Position position) throws OutOfEnviromentException;
+
     /**
      * {@inheritDoc}
      */

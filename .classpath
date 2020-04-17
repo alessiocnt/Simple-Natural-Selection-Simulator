@@ -19,6 +19,7 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+
 	<classpathentry kind="src" output="bin/test" path="src/test/resources">
 		<attributes>
 			<attribute name="gradle_scope" value="test"/>
