@@ -36,8 +36,8 @@ public abstract class AbstractTrait implements Trait {
         this.type = type;
     }
 
-    /*
-     * Get value
+    /**
+     * Get value.
      */
     @Override
     public int getValue() {
