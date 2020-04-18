@@ -19,6 +19,10 @@ public class NightAction extends AbstractAction {
     private final ReplicateLogics replicateLogic;
     private final Environment environment;
 
+    /**
+     * @param environment
+     * the environment to control.
+     */
     public NightAction(final Environment environment) {
         super(DayPeriod.NIGHT);
         this.environment = environment;

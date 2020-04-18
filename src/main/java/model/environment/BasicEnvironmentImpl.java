@@ -11,6 +11,16 @@ public class BasicEnvironmentImpl extends AbstractEnvironment implements BasicEn
     private int morningFoodQuantity;
     private final int dailyFoodQuantityModification;
 
+    /**
+     * @param xDimension
+     * environment width.
+     * @param yDimension
+     * environment height.
+     * @param morningFoodQuantity
+     * morning food quantity.
+     * @param dailyFoodQuantityModification
+     * daily food variation.
+     */
     protected BasicEnvironmentImpl(final int xDimension, final int yDimension, final int morningFoodQuantity, final int dailyFoodQuantityModification) {
         super(xDimension, yDimension);
         this.morningFoodQuantity = morningFoodQuantity;

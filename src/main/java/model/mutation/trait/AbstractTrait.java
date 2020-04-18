@@ -19,7 +19,7 @@ public abstract class AbstractTrait implements Trait {
     private final FoodConsumptionFunction foodConsumption;
     private final TraitType type;
 
-    /*
+    /**
      * @param value
      * Value of the trait.
      * @param foodConsumption

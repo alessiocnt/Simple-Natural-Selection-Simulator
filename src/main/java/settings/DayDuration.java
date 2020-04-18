@@ -39,6 +39,7 @@ public enum DayDuration {
     /**
      * @return the String rapresentation of the enum.
      */
+    @Override
     public String toString() {
         return this.name;
     }

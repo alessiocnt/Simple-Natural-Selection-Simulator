@@ -3,6 +3,11 @@ package model.entity.food;
 import model.entity.Energy;
 import model.entity.AbstractEntity;
 
+/**
+ * Implementation of Food.
+ * It's the food available for the organisms.
+ *
+ */
 public class Food extends AbstractEntity {
 
     private static final String EXCEPTIONMESSAGE = "Operation not supported for type Food.";
@@ -18,10 +23,9 @@ public class Food extends AbstractEntity {
      * This method in Unsupported for Object Food.
      * @param energy
      *          The Food energy
-     * @throws UnsupportedOperationException
      */
     @Override
-    public final void setEnergy(final Energy energy) throws UnsupportedOperationException {
+    public final void setEnergy(final Energy energy) {
         throw new UnsupportedOperationException(EXCEPTIONMESSAGE);
     }
 

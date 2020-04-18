@@ -39,8 +39,7 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
         traits.entrySet().stream()
             .filter((x) -> x.getKey().getRarity().equals(MutationRarity.NOMUTATION))
             .forEach((x) -> organismBuilder.setTrait(x.getKey(), x.getValue()));
-        final Organism mutatedOrganism = organismBuilder.build();
-        return mutatedOrganism;
+        return organismBuilder.build();
     }
 
     private Trait getMutatedTrait(final TraitType type, final int value) {

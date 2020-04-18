@@ -26,6 +26,10 @@ import model.mutation.trait.FoodRadar;
 import model.mutation.trait.Speed;
 import model.mutation.trait.Trait;
 
+/**
+ * Environment test.
+ *
+ */
 public class TestEnvironment {
 
     private static final int X_DIMENSION = 100;
@@ -42,6 +46,9 @@ public class TestEnvironment {
     private Food food;
 
 
+    /**
+     * Initialize tests.
+     */
     @BeforeEach
     public final void initialize() {
         final EnvironmentFactory factory = new EnvironmentFactoryImpl();
@@ -67,18 +74,27 @@ public class TestEnvironment {
         }
     }
 
+    /**
+     * Test the organism insertion.
+     */
     @Test
     public void testAddOrganism() {
         final int expected = 5;
         assertEquals(expected, this.environment.getCurrendOrganismQuantity());
     }
 
+    /**
+     * Test food insertion. 
+     */
     @Test 
     public void testAddFood() {
         final int expected = 5;
         assertEquals(expected, this.environment.getCurrentFoodQuantity());
     }
 
+    /**
+     * Test food and organism removal.
+     */
     @Test
     public void removeFoodAndOrganism() {
         this.environment.removeFood(this.food);
@@ -86,6 +102,10 @@ public class TestEnvironment {
         assertEquals(4, this.environment.getCurrentFoodQuantity());
         assertEquals(4, this.environment.getCurrendOrganismQuantity());
     }
+
+    /**
+     * Test son insertion. 
+     */
     @Test
     public void testAddSon() {
         this.environment.addOrganism(this.environment.getOrganisms().next(), this.organismBuilder.build());
@@ -93,12 +113,18 @@ public class TestEnvironment {
         assertEquals(expected, this.environment.getCurrendOrganismQuantity());
     }
 
+    /**
+     * Test new day.
+     */
     @Test
     public void testNewDay() {
         this.environment.nextDay();
         assertEquals(0, this.environment.getCurrentFoodQuantity());
     }
 
+    /**
+     * Test temperature.
+     */
     @Test
     public void testTemperature() {
         final Temperature expected = this.temperature;

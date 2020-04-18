@@ -60,9 +60,7 @@ public interface Environment {
      * @param yOffset
      *      the offset of the y-axis
      * @throws OutOfEnviromentException
-     *      if the Organism tries to exit the Environment 
-     * @throws NoSuchElementException
-     *      if the organism doesn't exists
+     *      if the organism try to exit the environment.
      */
     void moveOrganism(Organism organism, int xOffset, int yOffset) throws OutOfEnviromentException;
 

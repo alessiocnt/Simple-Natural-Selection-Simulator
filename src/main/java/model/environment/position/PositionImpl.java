@@ -2,6 +2,10 @@ package model.environment.position;
 
 import java.awt.geom.Point2D;
 
+/**
+ * Position implementation.
+ *
+ */
 public class PositionImpl implements Position {
 
     private final Point2D position;

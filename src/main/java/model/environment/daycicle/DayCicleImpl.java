@@ -1,5 +1,9 @@
 package model.environment.daycicle;
 
+/**
+ * Implementation of Day Cicle controller.
+ *
+ */
 public class DayCicleImpl implements DayCicle {
 
     private int elapsedTicks;

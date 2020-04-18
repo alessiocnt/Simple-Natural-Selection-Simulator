@@ -43,18 +43,18 @@ class TestAction {
     private static final int EXPECTEDMOVEMENTCONSUPTION = 35;
     private static final int EXPECTEDREPLICATIONCONSUPTION = 40;
 
-    private Trait speed = new Speed(INITIALSPEED);
-    private Trait dimension = new Dimension(INITIALDIMENSION);
-    private Trait children = new ChildrenQuantity(INITIALCHILDRENQTY);
+    private final Trait speed = new Speed(INITIALSPEED);
+    private final Trait dimension = new Dimension(INITIALDIMENSION);
+    private final Trait children = new ChildrenQuantity(INITIALCHILDRENQTY);
 
     private final EnvironmentFactory factory = new EnvironmentFactoryImpl();
     private final OrganismBuilder organismBuilder = new OrganismBuilderImpl(INITIALENERGY);
-    private AdvancedEnvironment environment = factory.createAdvancedEnviroment(100, 100, 10, 0, new TemperatureImpl(TEMPERATURE));
-    private Organism organism = createOrganism();
+    private final AdvancedEnvironment environment = factory.createAdvancedEnviroment(100, 100, 10, 0, new TemperatureImpl(TEMPERATURE));
+    private final Organism organism = createOrganism();
 
-    private EatLogics eatLogic = new EatLogicsImpl();
-    private MoveLogics moveLogic = new MoveLogicsImpl();
-    private ReplicateLogics replicateLogic = new ReplicateLogicsImpl();
+    private final EatLogics eatLogic = new EatLogicsImpl();
+    private final MoveLogics moveLogic = new MoveLogicsImpl();
+    private final ReplicateLogics replicateLogic = new ReplicateLogicsImpl();
 
     // Setting up an organism with basic traits.
     private Organism createOrganism() {
@@ -68,8 +68,8 @@ class TestAction {
 
     @Test
     public void testComputeConsumptionForMovement() {
-        Energy expectedEnergy = new EnergyImpl(EXPECTEDMOVEMENTCONSUPTION);
-        Energy currentConsumption = moveLogic.computeConsumptionForMovement(organism);
+        final Energy expectedEnergy = new EnergyImpl(EXPECTEDMOVEMENTCONSUPTION);
+        final Energy currentConsumption = moveLogic.computeConsumptionForMovement(organism);
         assertEquals(expectedEnergy, currentConsumption);
     }
 
@@ -81,8 +81,8 @@ class TestAction {
 
     @Test
     public void testCanEat() {
-        Set<Food> f1 = Collections.emptySet();
-        Set<Food> f2 = new HashSet<>();
+        final Set<Food> f1 = Collections.emptySet();
+        final Set<Food> f2 = new HashSet<>();
         f2.add(new FoodBuilderImpl().build());
         assertFalse(eatLogic.canEat(organism, f1));
         assertTrue(eatLogic.canEat(organism, f2));
@@ -90,11 +90,11 @@ class TestAction {
 
     @Test
     public void testEat() {
-        Set<Food> f = new HashSet<>();
+        final Set<Food> f = new HashSet<>();
         f.add(new FoodBuilderImpl().build());
         organism.setEnergy(new EnergyImpl(0));
         eatLogic.eat(organism, f);
-        assertTrue(organism.getEnergy().getEnergy() == 100);
+        assertEquals(organism.getEnergy().getEnergy(), 100);
     }
 
     @Test
@@ -104,8 +104,8 @@ class TestAction {
 
     @Test
     public void testComputeConsumptionForReplication() {
-        Energy expectedEnergy = new EnergyImpl(EXPECTEDREPLICATIONCONSUPTION);
-        Energy currentConsumption = replicateLogic.computeConsumptionForReplication(organism);
+        final Energy expectedEnergy = new EnergyImpl(EXPECTEDREPLICATIONCONSUPTION);
+        final Energy currentConsumption = replicateLogic.computeConsumptionForReplication(organism);
         assertEquals(expectedEnergy, currentConsumption);
     }
 }

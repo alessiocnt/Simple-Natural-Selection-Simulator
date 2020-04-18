@@ -72,7 +72,7 @@ public class SceneLoaderImpl implements SceneLoader {
             stage.setWidth(this.view.getController().getSettingsHolder().getWindowWidth());
 
             final SceneController controller = (SceneController) this.loader.getController();
-            this.initializeScene(controller, sceneType, scene, root);
+            this.initializeScene(controller, sceneType);
 
             if (!stage.isShowing()) {
                 stage.show();
@@ -86,7 +86,7 @@ public class SceneLoaderImpl implements SceneLoader {
      * Initialize scene by call methods, for example in startSimulation we need to call some
      * methods in order to init the environment view.
      */
-    private void initializeScene(final SceneController controller, final SceneType sceneType, final Scene scene, final Region root) {
+    private void initializeScene(final SceneController controller, final SceneType sceneType) {
         controller.setSceneFactory(this.view.getSceneFactory());
         controller.setView(this.view);
 

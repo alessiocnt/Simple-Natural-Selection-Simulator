@@ -1,5 +1,9 @@
 package model.environment.daycicle;
 
+/**
+ * Represents the day and night controller.
+ *
+ */
 public interface DayCicle {
 
     /**

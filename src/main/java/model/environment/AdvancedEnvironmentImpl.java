@@ -17,6 +17,18 @@ public class AdvancedEnvironmentImpl extends BasicEnvironmentImpl implements Adv
 
     private final Temperature temperature;
 
+    /**
+     * @param xDimension
+     * environment width.
+     * @param yDimension
+     * environment height.
+     * @param morningFoodQuantity
+     * morning food quantity.
+     * @param dailyFoodQuantityModification
+     * daily food variation.
+     * @param temperature
+     * temperature of the environment.
+     */
     protected AdvancedEnvironmentImpl(final int xDimension, final int yDimension, final int morningFoodQuantity,
             final int dailyFoodQuantityModification, final Temperature temperature) {
         super(xDimension, yDimension, morningFoodQuantity, dailyFoodQuantityModification);
