@@ -3,7 +3,7 @@ package view.observers;
 import view.entities.EnvironmentHolder;
 
 /**
- * Interface that hold all the observers for setting up the environment.
+ * Interface of observers for setting up the environment.
  *
  */
 public interface SetupObserver {

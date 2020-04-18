@@ -17,7 +17,7 @@ public class FoodVariationObserver implements SetupObserver {
 
     /**
      * @param combobox
-     * combobox that is observed.
+     * the combobox that is observed.
      */
     public FoodVariationObserver(final ComboBox<Integer> combobox) { 
         this.combobox = combobox;

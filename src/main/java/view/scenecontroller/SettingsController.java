@@ -32,6 +32,7 @@ public class SettingsController extends AbstractSceneController {
      */
     @FXML
     public void initialize() {
+        this.observers.clear();
         this.observers.addAll(List.of(new DayDurationObserver(this.dayDurComboBox)));
     }
 

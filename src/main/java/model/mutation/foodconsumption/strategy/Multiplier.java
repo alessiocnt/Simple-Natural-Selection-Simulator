@@ -3,7 +3,7 @@ package model.mutation.foodconsumption.strategy;
 import model.entity.organism.Organism;
 
 /**
- * Strategy for calculate the food consumption based on a moltiplication.
+ * Strategy for calculate the food consumption based on a multiplication.
  */
 public class Multiplier implements FoodConsumptionFunction {
 
@@ -14,7 +14,7 @@ public class Multiplier implements FoodConsumptionFunction {
      * @param value
      * Value of trait.
      * @param factor
-     * Factor of moltiplication.
+     * Factor of multiplication.
      */
     public Multiplier(final int value, final double factor) {
         this.value = value;

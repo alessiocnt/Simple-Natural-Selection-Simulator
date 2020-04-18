@@ -35,7 +35,7 @@ public interface View {
     /**
      * Sets the simulation controller.
      * @param simulationController
-     *      the SimulationController
+     * the SimulationController
      */
     void setSimulationController(SimulationHandler simulationController);
 
@@ -47,9 +47,9 @@ public interface View {
     /**
      * Renders the simulation canvas.
      * @param foods
-     *      foods in the environment
+     * foods in the environment
      * @param organisms
-     *      organisms in the environment 
+     * organisms in the environment 
      */
     void render(Set<ImmutablePair<Position, Food>> foods, Set<ImmutablePair<Position, Organism>> organisms);
 

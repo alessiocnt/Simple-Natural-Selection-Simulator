@@ -9,6 +9,7 @@ import view.entities.EnvironmentHolder;
 
 /**
  * Temperature observer.
+ * 
  */
 public class TemperatureObserver implements SetupObserver {
 

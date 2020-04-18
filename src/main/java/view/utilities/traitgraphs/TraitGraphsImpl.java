@@ -20,6 +20,8 @@ public class TraitGraphsImpl implements TraitGraphs {
     @Override
     public final void load(final Pane root) {
         root.getChildren().clear();
+        //Create graphs dinamically based on the current trait.
+        //In this way, if we add new trait, this class not need modifactions.
         for (final TraitType trait : TraitType.values()) {
             if (!trait.getRarity().equals(MutationRarity.NOMUTATION)) {
                 final LineChart<Number, Number> lineChart = this.createGraph(trait);
@@ -29,18 +31,20 @@ public class TraitGraphsImpl implements TraitGraphs {
     }
 
     private LineChart<Number, Number> createGraph(final TraitType type) {
-        final NumberAxis xAxis = new NumberAxis(); // we are gonna plot against time
+        final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Time");
-        xAxis.setAnimated(false); // axis animations are removed
+        //Axis animations are removed
+        xAxis.setAnimated(false); 
         yAxis.setLabel("Value");
-        yAxis.setAnimated(false); // axis animations are removed
-        //creating the line chart with two axis created above
+        //Axis animations are removed
+        yAxis.setAnimated(false); 
+        //Creating the line chart with the two axis created.
         final LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setTitle(type.toString());
-        //defining a series to display data
+        //Define a series to display data
         final XYChart.Series<Number, Number> series;
-        //If the series is already present (for example if U click settings, series aren't deleted).
+        //Control if the series is already present (for example if you open another scene, series aren't deleted, but cached).
         if (this.graphMap.containsKey(type)) {
             series = this.graphMap.get(type);
         } else {

@@ -17,7 +17,7 @@ public class EntityQuantityObserver implements SetupObserver {
 
     /**
      * @param combobox
-     * combobox that is observed.
+     * the combobox that is observed.
      */
     public EntityQuantityObserver(final ComboBox<Integer> combobox) {
         this.combobox = combobox;

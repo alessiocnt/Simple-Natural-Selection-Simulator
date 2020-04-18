@@ -22,7 +22,7 @@ public enum TraitType {
     FOODRADAR(AffectMovement.YES, MutationRarity.VERYRARE, SetupValues.FOODRADAR),
 
     /**
-     * Temperature.
+     * Temperature sensibility.
      */
     TEMPERATURESENSIBILITY(AffectMovement.YES, MutationRarity.NOMUTATION, SetupValues.TEMPERATURESENSIBILITY),
     /**

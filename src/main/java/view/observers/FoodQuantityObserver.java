@@ -17,7 +17,7 @@ public class FoodQuantityObserver implements SetupObserver {
 
     /**
      * @param combobox
-     * combobox that is observed.
+     * the combobox that is observed.
      */
     public FoodQuantityObserver(final ComboBox<Integer> combobox) {
         this.combobox = combobox;

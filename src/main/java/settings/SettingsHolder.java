@@ -15,22 +15,18 @@ public interface SettingsHolder {
      * @return the duration of the day.
      */
     DayDuration getDayDuration();
-
     /**
      * @return the window width.
      */
     int getWindowWidth();
-
     /**
      * @return the window height.
      */
     int getWindowHeight();
-
     /**
      * @return the preferite window width.
      */
     int getPrefWindowWidth();
-
     /**
      * @return the preferite window height.
      */

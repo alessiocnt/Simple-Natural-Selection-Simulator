@@ -25,6 +25,7 @@ public final class SettingsImpl implements Settings {
         final int selectedHeight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
         this.selectedRes = MutablePair.of(selectedWidth, selectedHeight);
     }
+
     @Override
     public double getScaleFactor() {
         return Math.min(this.selectedRes.getKey() / this.prefRes.getKey(),
@@ -65,10 +66,12 @@ public final class SettingsImpl implements Settings {
     public String toString() {
         return "[Res: " + this.selectedRes + ", " + "Day Duration: " + this.dayDuration + "]";
     }
+
     @Override
     public void setWidth(final int width) {
         this.selectedRes.setLeft(width);
     }
+
     @Override
     public void setHeight(final int height) {
         this.selectedRes.setRight(height);

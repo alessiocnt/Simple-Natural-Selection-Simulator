@@ -21,8 +21,7 @@ public interface SceneController {
 
     /**
      * @param view
-     * set current view.
-     * For example to get the controller
+     * set current view object.
      */
     void setView(View view);
 

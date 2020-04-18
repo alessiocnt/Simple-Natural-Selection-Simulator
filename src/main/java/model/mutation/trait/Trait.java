@@ -5,7 +5,7 @@ import model.entity.organism.Organism;
 import model.mutation.TraitType;
 
 /**
- * Interface that describes an entity trait.
+ * Interface that describes an organism trait.
  *
  */
 public interface Trait  {
@@ -17,7 +17,7 @@ public interface Trait  {
     /**
      * @return the food consumption of the trait.
      * @param organism
-     * organism.
+     * organism to get the food consumption.
      */
     Energy getFoodConsumption(Organism organism);
 

@@ -42,22 +42,21 @@ public final class MyAlert {
         alert.setTitle(title);
         alert.setHeaderText("Natural Selection Simulator");
 
+        //Create textArea to host the help text.
         final TextArea textArea = new TextArea(text);
         textArea.setEditable(false);
         textArea.setWrapText(true);
-
         textArea.setMaxWidth(Double.MAX_VALUE);
         textArea.setMaxHeight(Double.MAX_VALUE);
         GridPane.setVgrow(textArea, Priority.ALWAYS);
         GridPane.setHgrow(textArea, Priority.ALWAYS);
-
         final GridPane content = new GridPane();
         content.setMaxWidth(Double.MAX_VALUE);
         content.add(textArea, 0, 0);
 
-        // Set content
+        //Set help text
         alert.getDialogPane().setContent(content);
-
+        //Show the alert
         alert.showAndWait();
     }
 }

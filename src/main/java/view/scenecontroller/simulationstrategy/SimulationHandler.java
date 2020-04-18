@@ -17,9 +17,9 @@ public interface SimulationHandler {
      * Updates the canvas with Environment parameters.
      * 
      * @param foods
-     *                      food that will be displayed
+     * food that will be displayed
      * @param organisms
-     *                      organisms that will be displayed
+     * organisms that will be displayed
      */
     void render(Set<ImmutablePair<Position, Food>> foods, Set<ImmutablePair<Position, Organism>> organisms);
 

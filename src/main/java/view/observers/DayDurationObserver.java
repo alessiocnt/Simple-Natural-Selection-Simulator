@@ -4,7 +4,6 @@ import javafx.scene.control.ComboBox;
 import settings.DayDuration;
 import view.View;
 
-
 /**
  * Day Duration observer.
  */

@@ -37,7 +37,7 @@ public abstract class AbstractTrait implements Trait {
     }
 
     /**
-     * Get value.
+     * Get trait value.
      */
     @Override
     public int getValue() {

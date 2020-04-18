@@ -17,7 +17,7 @@ public interface TraitGraphs {
 
     /**
      * @param values
-     * values to put in the graphs.
+     * new values to put in the graphs.
      */
     void update(Map<TraitType, Double> values);
 
