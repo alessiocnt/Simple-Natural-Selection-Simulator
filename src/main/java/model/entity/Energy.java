@@ -38,7 +38,7 @@ public interface Energy {
      * @param b
      *      second element of the comparison
      * @return
-     *      true if a > b
+     *      true if 'a' is greater than 'b'
      *      false instead
      */
     static boolean greater(final Energy a, final Energy b) {

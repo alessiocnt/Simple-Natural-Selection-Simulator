@@ -39,8 +39,6 @@ public interface Environment {
      *      the father organism
      * @param son
      *      the new organisms
-     * @throws NoSuchElementException
-     *      if the father doesn't exists
      */
     void addOrganism(Organism father, Organism son);
 
@@ -87,8 +85,6 @@ public interface Environment {
      * @param organism
      *      the organism that requires the food piece
      * @return an optional containing the food or an empty one if the position was empty
-     * @throws NoSuchElementException
-     *      if the Organism doesn't exists 
      */
     Optional<Food> getFood(Organism organism);
 
