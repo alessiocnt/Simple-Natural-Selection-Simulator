@@ -17,7 +17,6 @@ import model.environment.AdvancedEnvironment;
 import model.environment.EnvironmentFactory;
 import model.environment.EnvironmentFactoryImpl;
 
-import model.environment.OrganismEnvironmentHolder;
 import model.environment.temperature.Temperature;
 import model.environment.temperature.TemperatureImpl;
 import model.mutation.TraitType;
@@ -32,12 +31,11 @@ public class TestEnvironment {
     private static final int X_DIMENSION = 100;
     private static final int Y_DIMENSION = 100;
     private static final int INITIAL_FOOD = 100;
-    private final int speed = 5;
-    private final int dimension = 100;
-    private final int children = 2;
-    private final int foodRadar = 1;
+    private static final int SPEED = 5;
+    private static final int DIMENSION = 100;
+    private static final int CHILDREN = 2;
+    private static final int FOOD_RADAR = 1;
     private final Temperature temperature = new TemperatureImpl(20);
-    private EnvironmentFactory factory; 
     private AdvancedEnvironment environment;
     private OrganismBuilder organismBuilder;
     private Organism organism;
@@ -45,14 +43,14 @@ public class TestEnvironment {
 
 
     @BeforeEach
-    public void initialize() {
-        this.factory = new EnvironmentFactoryImpl();
-        this.environment = this.factory.createAdvancedEnviroment(X_DIMENSION, Y_DIMENSION, INITIAL_FOOD, 0, this.temperature);
+    public final void initialize() {
+        final EnvironmentFactory factory = new EnvironmentFactoryImpl();
+        this.environment = factory.createAdvancedEnviroment(X_DIMENSION, Y_DIMENSION, INITIAL_FOOD, 0, this.temperature);
         this.organismBuilder = new OrganismBuilderImpl(new EnergyImpl(100));
-        final Trait speed = new Speed(this.speed);
-        final Trait dimension = new Dimension(this.dimension);
-        final Trait childrenQuantity = new ChildrenQuantity(this.children);
-        final Trait foodRadar = new FoodRadar(this.foodRadar);
+        final Trait speed = new Speed(TestEnvironment.SPEED);
+        final Trait dimension = new Dimension(TestEnvironment.DIMENSION);
+        final Trait childrenQuantity = new ChildrenQuantity(TestEnvironment.CHILDREN);
+        final Trait foodRadar = new FoodRadar(TestEnvironment.FOOD_RADAR);
         final FoodBuilder foodBuilder = new FoodBuilderImpl();
         this.organismBuilder.setTrait(TraitType.SPEED, speed);
         this.organismBuilder.setTrait(TraitType.DIMENSION, dimension);
@@ -104,7 +102,7 @@ public class TestEnvironment {
     @Test
     public void testTemperature() {
         final Temperature expected = this.temperature;
-        assertEquals(expected, (this.environment).getTemperature());
+        assertEquals(expected, this.environment.getTemperature());
     }
 }
 
