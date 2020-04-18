@@ -70,11 +70,11 @@ public class SceneLoaderImpl implements SceneLoader {
             stage.setHeight(this.view.getController().getSettingsHolder().getWindowHeight());
             stage.setWidth(this.view.getController().getSettingsHolder().getWindowWidth());
 
-            stage.close();
-            stage.show();
-
             final SceneController controller = (SceneController) this.loader.getController();
             this.initializeScene(controller, sceneType, scene, root);
+
+            stage.close();
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,8 +107,7 @@ public class SceneLoaderImpl implements SceneLoader {
     }
 
     private Region createRoot() throws IOException {
-        final Region root = this.loader.load();
-        return root;
+        return this.loader.load();
     }
 }
 
