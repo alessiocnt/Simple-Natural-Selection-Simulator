@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.entity.food.Food;
@@ -25,6 +26,7 @@ import view.scenecontroller.simulationstrategy.SimulationHandler;
 import view.scenecontroller.simulationstrategy.SimulationInitializer;
 import view.scenecontroller.simulationstrategy.SimulationViewLogics;
 import view.scenecontroller.simulationstrategy.SimulationViewLogicsImpl;
+import view.utilities.ResizableCanvas;
 import view.utilities.traitgraphs.TraitGraphs;
 import view.utilities.traitgraphs.TraitGraphsImpl;
 
@@ -33,9 +35,6 @@ import view.utilities.traitgraphs.TraitGraphsImpl;
  *
  */
 public class SimulationController extends AbstractSceneController implements SimulationInitializer, SimulationHandler {
-
-    @FXML
-    private Canvas canvas;
 
     @FXML
     private Button startStopBtn;
@@ -70,6 +69,11 @@ public class SimulationController extends AbstractSceneController implements Sim
     @FXML
     private ScrollPane scrollPane;
 
+    @FXML
+    private BorderPane borderPane;
+
+    //My resizable canvas
+    private final Canvas canvas = new ResizableCanvas();
     private SimulationViewLogics logics;
     private final TraitGraphs graphs = new TraitGraphsImpl();
 
@@ -100,14 +104,23 @@ public class SimulationController extends AbstractSceneController implements Sim
      * Initializes the simulation controller.
      */
     @Override
-    public final void initSimulationController(final double rootWidth, final double rootHeight) {
+    public final void initSimulationController() {
+        this.borderPane.setCenter(this.canvas);
+        //Listener for changes in canvas dimension.
+        this.canvas.widthProperty().addListener((obs, oldVal, newVal) -> {
+            this.adjustCanvas();
+        });
+        this.canvas.heightProperty().addListener((obs, oldVal, newVal) -> {
+            this.adjustCanvas();
+        });
         final int width = (int) this.getView().getController().getEnvironmentDimension().getX();
         final int height = (int) this.getView().getController().getEnvironmentDimension().getY();
         this.getView().setSimulationController(this);
         this.logics = new SimulationViewLogicsImpl(this.canvas.getGraphicsContext2D(), width, height);
         //Create graphs.
         this.createGraphs();
-        this.adjustCanvas(rootWidth, rootHeight);
+        //Adjust canvas dimension after graphs creation.
+        this.adjustCanvas();
         this.getView().getController().startSimulation();
     }
 
@@ -139,9 +152,7 @@ public class SimulationController extends AbstractSceneController implements Sim
     }
 
     @Override
-    public final void adjustCanvas(final double rootWidth, final double rootHeight) {
-         this.canvas.setWidth(rootWidth - this.scrollPane.getWidth());
-         this.canvas.setHeight(rootHeight - this.top.getHeight() - this.bottom.getHeight());
+    public final void adjustCanvas() {
          this.logics.setCanvasDimension(this.canvas.getWidth(), this.canvas.getHeight());
          this.logics.update();
     }

@@ -6,17 +6,12 @@ package view.scenecontroller.simulationstrategy;
 public interface SimulationInitializer {
 
     /**
-     * @param rootWidth
-     * width of the root.
-     * @param rootHeight
-     * height of the root.
+     * Initialize simulation.
      */
-    void initSimulationController(double rootWidth, double rootHeight);
+    void initSimulationController();
 
     /**
      * Adjust canvas dimension.
-     * @param rootWidth 
-     * @param rootHeight 
      */
-    void adjustCanvas(double rootWidth, double rootHeight);
+    void adjustCanvas();
 }

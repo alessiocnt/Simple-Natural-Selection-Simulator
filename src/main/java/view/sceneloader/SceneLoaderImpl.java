@@ -73,7 +73,7 @@ public class SceneLoaderImpl implements SceneLoader {
             final SceneController controller = (SceneController) this.loader.getController();
             this.initializeScene(controller, sceneType, scene, root);
 
-            stage.close();
+            //stage.close();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -91,15 +91,7 @@ public class SceneLoaderImpl implements SceneLoader {
         switch (sceneType) {
             case SIMULATION:
                 final SimulationInitializer simulationController = (SimulationInitializer) controller;
-                simulationController.initSimulationController(this.view.getController().getSettingsHolder().getWindowWidth() - scene.getX(),
-                        this.view.getController().getSettingsHolder().getWindowHeight() - scene.getY());
-                //Add another listener, so when dimension change the canvas will resize properly.
-                root.widthProperty().addListener((obs, oldVal, newVal) -> {
-                    simulationController.adjustCanvas(newVal.intValue(), root.getHeight());
-                });
-                root.heightProperty().addListener((obs, oldVal, newVal) -> {
-                    simulationController.adjustCanvas(root.getWidth(), newVal.intValue());
-                });
+                simulationController.initSimulationController();
                 break;
             default:
                 break;

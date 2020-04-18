@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?scenebuilder-stylesheet ../css/simulation.css?>
 
-<BorderPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.scenecontroller.SimulationController">
+<BorderPane fx:id="borderPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.scenecontroller.SimulationController">
   <bottom>
     <HBox fx:id="top" prefHeight="50.0" prefWidth="600.0" snapToPixel="false" BorderPane.alignment="CENTER">
       <children>
@@ -17,9 +17,6 @@
       </children>
     </HBox>
   </bottom>
-  <center>
-    <Canvas fx:id="canvas" height="300.0" width="600.0" BorderPane.alignment="CENTER" />
-  </center>
   <right>
     <ScrollPane fx:id="scrollPane" maxHeight="-1.0" minHeight="-1.0" minWidth="-Infinity">
       <content>
