@@ -14,6 +14,12 @@ public class ResizableCanvas extends Canvas {
     }
 
     @Override
+    public final void resize(final double width, final double height) {
+        this.setWidth(width);
+        this.setHeight(height);
+    }
+
+    @Override
     public final double maxHeight(final double width) {
         return Double.POSITIVE_INFINITY;
     }
@@ -25,17 +31,11 @@ public class ResizableCanvas extends Canvas {
 
     @Override
     public final double minWidth(final double height) {
-        return 1D;
+        return 1;
     }
 
     @Override
     public final double minHeight(final double width) {
-        return 1D;
-    }
-
-    @Override
-    public final void resize(final double width, final double height) {
-        this.setWidth(width);
-        this.setHeight(height);
+        return 1;
     }
 }

@@ -66,7 +66,8 @@ public class SceneLoaderImpl implements SceneLoader {
             stage.setTitle(sceneType.getTitle());
             stage.setResizable(true);
             stage.setScene(scene);
-
+            stage.setMinWidth(this.view.getController().getSettingsHolder().getPrefWindowWidth());
+            stage.setMinHeight(this.view.getController().getSettingsHolder().getPrefWindowHeight());
             stage.setHeight(this.view.getController().getSettingsHolder().getWindowHeight());
             stage.setWidth(this.view.getController().getSettingsHolder().getWindowWidth());
 

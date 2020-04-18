@@ -11,8 +11,8 @@ import org.apache.commons.lang3.tuple.MutablePair;
  */
 public final class SettingsImpl implements Settings {
 
-    private static final int PREFWIDTH = 1366;
-    private static final int PREFHEIGHT = 768;
+    private static final int PREFWIDTH = 800;
+    private static final int PREFHEIGHT = 600;
     private final MutablePair<Integer, Integer> selectedRes;
     private final ImmutablePair<Integer, Integer> prefRes = ImmutablePair.of(PREFWIDTH, PREFHEIGHT);
     private DayDuration dayDuration = DayDuration.getDefualt();
