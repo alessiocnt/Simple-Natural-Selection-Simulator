@@ -73,8 +73,9 @@ public class SceneLoaderImpl implements SceneLoader {
             final SceneController controller = (SceneController) this.loader.getController();
             this.initializeScene(controller, sceneType, scene, root);
 
-            //stage.close();
-            stage.show();
+            if (!stage.isShowing()) {
+                stage.show();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
