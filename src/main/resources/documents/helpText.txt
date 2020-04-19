@@ -3,30 +3,40 @@ Organism's traits:
 Speed
 Dimension
 Food detection range (Food Radar) 
-Temperature sensibility (It depends on an organism's dimension). 
+Temperature sensibility (It depends on an organism's dimension).
+Children Quantity
 
-(1) Speed 
+They also have a range of value [min value, max value]: 
+
+(1) Speed [1,5]
 Speed is a trait that allows him to advance multiple positions at the same time.
 The higher the speed the higher the food consumption.
 
-(2) Dimension
+(2) Dimension [50,200]
 Dimension is a trait that allows determining how much food the organism can eat.
 An organism with a higher dimension could eat more but it will consume more energy.
 Dimension affect also temperature sensibility.
 The higher the dimension the higher the food consumption.
 
-(3) Food detection range (Food Radar) 
+(3) Food detection range (Food Radar) [1,3] 
 It's a trait that allows the organism to detect food all around him.
 The higher the radius the higher the food consumption.
 
-(4) Temperature sensibility.
+(4) Temperature sensibility. [no Value]
 It's affected by the organism's dimension.
 A big organism will resist better to cold and it will suffer higher temperature.
 Instead, a small organism will resist better to hot and it will suffer slower temperature.
 
+(5) Children Quantity [1,3]
+It's the quantity of children that an organism can do.
+
 Organism varies its representation depending on its traits' value.
 Dimension: the organism radius is directly proportional to its dimension.
-Speed (Red), Food Radar(Brown) e Children Quantity(Violet) they influence the color, in particular: the lower the value of the trait, the more they will affect with a light shade of the associated color; instead the more the value increases and the more the tonality becomes darker.
+The chromatic range of the organisms ranges from dark colors tending to black up to bright red.
+Speed ​​(Red), Food Radar (Brown) and Children Quantity (Purple) affect color.
+What strongly influences color is the speed of the organism.
+At high speeds the color will turn to bright red, while at low speeds the color will be dark.
+The remaining traits, on the other hand, influence the chromatic range in less relief, resulting in nuances: the lower the value, the more they affect with a light hue of the associated color, on the contrary the more the value increases, the darker the hue becomes.
 
 It is possible to choose some initial values ​​of the simulation from the menu, after which clicking on Start will open the simulation.
 (*) Food Quantity: Quantity of food available in the environment. 
