@@ -31,8 +31,7 @@ public interface ReplicateLogics {
     int getNumberOfChild(Organism organism);
 
     /**
-     * @param organism the Organism that will perform the movement
-     * @param energyToDetract the energy value that will be spent to perform the movement
+     * @param organism the Organism that will replicate
      */
-    void detractConsumptionForReplication(Organism organism, Energy energyToDetract);
+    void detractConsumptionForReplication(Organism organism);
 }

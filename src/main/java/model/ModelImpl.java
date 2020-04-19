@@ -37,59 +37,38 @@ public class ModelImpl implements Model {
     private ActionController actionController;
     private final FoodBuilder foodBuilder = new FoodBuilderImpl();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public AdvancedEnvironment getEnvironment() {
+    public final AdvancedEnvironment getEnvironment() {
         return this.environment;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public FoodBuilder getFoodBuilder() {
+    public final FoodBuilder getFoodBuilder() {
         return this.foodBuilder;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public ActionController getActionController() {
+    public final ActionController getActionController() {
         return actionController;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public boolean isSimulationOver() {
+    public final boolean isSimulationOver() {
         return this.environment.getCurrendOrganismQuantity() == 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Set<ImmutablePair<Position, Food>> getFoods() {
+    public final Set<ImmutablePair<Position, Food>> getFoods() {
         return this.environment.getPositionFoods();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Set<ImmutablePair<Position, Organism>> getOrganisms() {
+    public final Set<ImmutablePair<Position, Organism>> getOrganisms() {
         return this.environment.getPositionOrganisms();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Position getEnvironmentDimension() {
+    public final Position getEnvironmentDimension() {
         return this.environment.getDimension();
     }
 
@@ -97,11 +76,8 @@ public class ModelImpl implements Model {
         return this.environment;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void prepareEnvironment(final EnvironmentHolder holder) {
+    public final void prepareEnvironment(final EnvironmentHolder holder) {
         final int width = 200;
         final int height = 100;
         this.environment = new EnvironmentFactoryImpl()

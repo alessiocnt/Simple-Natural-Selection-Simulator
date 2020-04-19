@@ -56,20 +56,14 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
         return this.canvasHeight / this.environmentY;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setEntities(final Set<ImmutablePair<Position, Food>> foods, final Set<ImmutablePair<Position, Organism>> organisms) {
+    public final void setEntities(final Set<ImmutablePair<Position, Food>> foods, final Set<ImmutablePair<Position, Organism>> organisms) {
         this.foods = foods;
         this.organisms = organisms;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void update() {
+    public final void update() {
         this.graphics.setFill(Color.BEIGE);
         this.graphics.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
         for (final ImmutablePair<Position, Food> entry : foods) {
@@ -98,22 +92,16 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
         return ((double) organism.getTraits().get(TraitType.DIMENSION).getValue()) / 100;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setCanvasDimension(final double width, final double height) {
+    public final void setCanvasDimension(final double width, final double height) {
         this.canvasWidth = width;
         this.canvasHeight = height;
         this.xAxisScaleFactor = getXScaleFactor();
         this.yAxisScaleFactor = getYScaleFactor();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public int getAlive() {
+    public final int getAlive() {
         return this.organisms.size();
     }
 }

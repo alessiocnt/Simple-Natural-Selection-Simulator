@@ -40,7 +40,8 @@ public class ReplicateLogicsImpl implements ReplicateLogics {
     }
 
     @Override
-    public final void detractConsumptionForReplication(final Organism organism, final Energy energyToDetract) {
+    public final void detractConsumptionForReplication(final Organism organism) {
+        Energy energyToDetract = computeConsumptionForReplication(organism);
         organism.getEnergy().detractEnergy(energyToDetract);
     }
 }

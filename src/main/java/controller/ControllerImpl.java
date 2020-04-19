@@ -29,9 +29,9 @@ public class ControllerImpl implements Controller {
 
     /**
      * @param model
-     *                  model of the app.
+     *                  model of the application.
      * @param view
-     *                  view of the app.
+     *                  view of the application.
      */
     public ControllerImpl(final Model model, final View view) {
         this.model = model;
@@ -60,41 +60,30 @@ public class ControllerImpl implements Controller {
             }
         }
     }
+
     @Override
     public final void setEnvironmentInitialValues(final EnvironmentHolder holder) {
         this.model.prepareEnvironment(holder);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void startSimulation() {
+    public final void startSimulation() {
         this.simulationLoop = new SimulationLoop();
         this.simulationLoop.start();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void startStopSimulation() {
+    public final void startStopSimulation() {
         this.simulationLoop.startStop();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public boolean isSimulationRunning() {
+    public final boolean isSimulationRunning() {
         return this.simulationLoop.running;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Position getEnvironmentDimension() {
+    public final Position getEnvironmentDimension() {
         return this.model.getEnvironmentDimension();
     }
 

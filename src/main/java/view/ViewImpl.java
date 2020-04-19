@@ -26,7 +26,7 @@ public class ViewImpl implements View {
 
     /**
      * @param stage
-     * the stage where tha app run.
+     * the stage where the application run.
      */
     public ViewImpl(final Stage stage) {
         this.sceneFactory = new SceneFactoryImpl(stage, this);

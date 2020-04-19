@@ -44,8 +44,11 @@ public class OrganismImpl extends AbstractEntity implements Organism {
         return this.environmentKnowledge;
     }
 
+    /**
+     * toString for an Organism.
+     */
     @Override
-    public final String toString() {
+    public String toString() {
         return "Organism= [energy=" + this.getEnergy() + ", traits=" + this.getTraits() + "]";
     }
 

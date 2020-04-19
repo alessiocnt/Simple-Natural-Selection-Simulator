@@ -10,6 +10,19 @@ package model.entity;
 public interface Energy {
 
     /**
+     * @param a
+     *      first element of the comparison
+     * @param b
+     *      second element of the comparison
+     * @return
+     *      true if 'a' is greater than 'b'
+     *      false instead
+     */
+    static boolean greater(final Energy a, final Energy b) {
+        return a.getEnergy() > b.getEnergy();
+    }
+
+    /**
      * @return the energy value.
      */
     int getEnergy();
@@ -32,16 +45,4 @@ public interface Energy {
      */
     void detractEnergy(Energy energy);
 
-    /**
-     * @param a
-     *      first element of the comparison
-     * @param b
-     *      second element of the comparison
-     * @return
-     *      true if 'a' is greater than 'b'
-     *      false instead
-     */
-    static boolean greater(final Energy a, final Energy b) {
-        return a.getEnergy() > b.getEnergy();
-    }
 }

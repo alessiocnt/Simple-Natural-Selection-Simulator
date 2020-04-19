@@ -45,9 +45,15 @@ public enum Direction {
      */
     STOP(0, 0);
 
-    private int xAxis;
-    private int yAxis;
+    private final int xAxis;
+    private final int yAxis;
 
+    /**
+     * @param xAxis
+     *                  the value on x
+     * @param yAxis
+     *                  the value on y
+     */
     Direction(final int xAxis, final int yAxis) {
         this.xAxis = xAxis;
         this.yAxis = yAxis;
@@ -61,7 +67,7 @@ public enum Direction {
     }
 
     /**
-     * @return the variation on the x-axis.
+     * @return the variation on the y-axis.
      */
     public int getYVariation() {
         return this.yAxis;

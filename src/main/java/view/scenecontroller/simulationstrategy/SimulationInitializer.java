@@ -1,7 +1,7 @@
 package view.scenecontroller.simulationstrategy;
 
 /**
- * Interface that permit to inizialize and update graphics in the simulation.
+ * Interface that permit to initialize and update graphics in the simulation.
  */
 public interface SimulationInitializer {
 

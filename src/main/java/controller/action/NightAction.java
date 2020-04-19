@@ -35,7 +35,7 @@ public class NightAction extends AbstractAction {
             for (int i = 0; i < replicateLogic.getNumberOfChild(organism); i++) {
                 environment.addOrganism(organism, replicateLogic.replicate(organism));
             }
-            replicateLogic.detractConsumptionForReplication(organism, replicateLogic.computeConsumptionForReplication(organism));
+            replicateLogic.detractConsumptionForReplication(organism);
         }
     }
 
