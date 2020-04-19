@@ -29,17 +29,14 @@ public class AdvancedEnvironmentImpl extends BasicEnvironmentImpl implements Adv
      * @param temperature
      * temperature of the environment.
      */
-    protected AdvancedEnvironmentImpl(final int xDimension, final int yDimension, final int morningFoodQuantity,
+    public AdvancedEnvironmentImpl(final int xDimension, final int yDimension, final int morningFoodQuantity,
             final int dailyFoodQuantityModification, final Temperature temperature) {
         super(xDimension, yDimension, morningFoodQuantity, dailyFoodQuantityModification);
         this.temperature = temperature;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Temperature getTemperature() {
+    public final Temperature getTemperature() {
         return this.temperature;
     }
 

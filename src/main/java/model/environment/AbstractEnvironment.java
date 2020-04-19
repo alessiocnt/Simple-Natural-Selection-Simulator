@@ -31,20 +31,6 @@ public abstract class AbstractEnvironment implements Environment {
     private final Map<Organism, Position> organisms = new ConcurrentHashMap<>();
 
     /**
-     * @return the environment foods
-     */
-    protected Map<Position, Food> getFoodsMap() {
-        return this.foods;
-    }
-
-    /**
-     * @return the environment organisms
-     */
-    protected Map<Organism, Position> getOrganismsMap() {
-        return this.organisms;
-    }
-    /**
-     * 
      * @param width
      *      environment width
      * @param height
@@ -55,19 +41,13 @@ public abstract class AbstractEnvironment implements Environment {
         this.height = height;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public int getCurrendOrganismQuantity() {
+    public final int getCurrendOrganismQuantity() {
         return this.organisms.keySet().size();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public int getCurrentFoodQuantity() {
+    public final int getCurrentFoodQuantity() {
         return this.foods.values().size();
     }
 
@@ -132,29 +112,20 @@ public abstract class AbstractEnvironment implements Environment {
      */
     protected abstract boolean checkPosition(Position position) throws OutOfEnviromentException;
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void removeOrganism(final Organism organism) {
+    public final void removeOrganism(final Organism organism) {
         Objects.requireNonNull(organism);
         this.organisms.remove(organism);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void removeFood(final Food food) {
+    public final void removeFood(final Food food) {
         Objects.requireNonNull(food);
         this.foods.values().removeIf(f -> f.equals(food));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Iterator<Organism> getOrganisms() {
+    public final Iterator<Organism> getOrganisms() {
         return new ArrayList<Organism>(this.organisms.keySet()).iterator();
     }
 
@@ -167,29 +138,15 @@ public abstract class AbstractEnvironment implements Environment {
         return Optional.ofNullable(this.foods.get(this.organisms.get(organism)));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Optional<Food> getFood(final Position position) {
-        return Optional.ofNullable(this.foods.get(position));
-    }
-
-    /**
-     * @return an Entry of each Food and its position in the environment
-     */
-    @Override
-    public Set<ImmutablePair<Position, Food>> getPositionFoods() {
+    public final Set<ImmutablePair<Position, Food>> getPositionFoods() {
         return this.foods.entrySet().stream()
                 .map(e -> ImmutablePair.of(e.getKey(), e.getValue()))
                 .collect(Collectors.toSet());
     }
 
-    /**
-     * @return an Entry of each Organism and its position in the environment
-     */
     @Override
-    public Set<ImmutablePair<Position, Organism>> getPositionOrganisms() {
+    public final Set<ImmutablePair<Position, Organism>> getPositionOrganisms() {
         return this.organisms.entrySet().stream()
                 .map(e -> ImmutablePair.of(e.getValue(), e.getKey()))
                 .collect(Collectors.toSet());
@@ -203,12 +160,23 @@ public abstract class AbstractEnvironment implements Environment {
         this.foods.clear();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Position getDimension() {
+    public final Position getDimension() {
         return new PositionImpl(this.width, this.height);
+    }
+
+    /**
+     * @return the environment foods
+     */
+    protected final Map<Position, Food> getFoodsMap() {
+        return this.foods;
+    }
+
+    /**
+     * @return the environment organisms
+     */
+    protected final Map<Organism, Position> getOrganismsMap() {
+        return this.organisms;
     }
 
     /**

@@ -21,18 +21,15 @@ public class BasicEnvironmentImpl extends AbstractEnvironment implements BasicEn
      * @param dailyFoodQuantityModification
      * daily food variation.
      */
-    protected BasicEnvironmentImpl(final int xDimension, final int yDimension, final int morningFoodQuantity, final int dailyFoodQuantityModification) {
+    public BasicEnvironmentImpl(final int xDimension, final int yDimension, final int morningFoodQuantity, final int dailyFoodQuantityModification) {
         super(xDimension, yDimension);
         this.morningFoodQuantity = morningFoodQuantity;
         this.dailyFoodQuantityModification = dailyFoodQuantityModification;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public int getMorningFoodQuantity() {
-        return morningFoodQuantity;
+    public final int getMorningFoodQuantity() {
+        return this.morningFoodQuantity;
     }
 
     /**
@@ -50,15 +47,6 @@ public class BasicEnvironmentImpl extends AbstractEnvironment implements BasicEn
     }
 
     /**
-     * A Sting representation of a BasicEnvironment.
-     */
-    @Override
-    public String toString() {
-        return super.toString() + "BasicEnvironmentImpl [morningFoodQuantity=" + morningFoodQuantity + ", dailyFoodQuantityModification="
-                + dailyFoodQuantityModification + "]";
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -68,5 +56,14 @@ public class BasicEnvironmentImpl extends AbstractEnvironment implements BasicEn
             throw new OutOfEnviromentException();
         }
         return true;
+    }
+
+    /**
+     * A Sting representation of a BasicEnvironment.
+     */
+    @Override
+    public String toString() {
+        return super.toString() + "BasicEnvironmentImpl [morningFoodQuantity=" + morningFoodQuantity + ", dailyFoodQuantityModification="
+                + dailyFoodQuantityModification + "]";
     }
 }

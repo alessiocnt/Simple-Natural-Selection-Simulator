@@ -1,5 +1,7 @@
-package model.environment;
+package model.environment.factory;
 
+import model.environment.AdvancedEnvironment;
+import model.environment.BasicEnvironment;
 import model.environment.temperature.Temperature;
 
 /**

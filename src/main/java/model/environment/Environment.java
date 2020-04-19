@@ -89,13 +89,6 @@ public interface Environment {
     Optional<Food> getFood(Organism organism);
 
     /**
-     * @param position
-     *      the position of the food required
-     * @return an optional containing the food or an empty one if the position was empty
-     */
-    Optional<Food> getFood(Position position);
-
-    /**
      * @return an Entry of each Food and its position in the environment
      */
     Set<ImmutablePair<Position, Food>> getPositionFoods();

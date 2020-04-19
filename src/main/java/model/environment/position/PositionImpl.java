@@ -20,51 +20,33 @@ public class PositionImpl implements Position {
         this.position = new Point2D.Double(x, y);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public double getX() {
+    public final double getX() {
         return this.position.getX();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setX(final double x) {
+    public final void setX(final double x) {
         this.setPosition(x, this.position.getY());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public double getY() {
+    public final double getY() {
         return this.position.getY();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setY(final double y) {
+    public final void setY(final double y) {
         this.setPosition(this.position.getX(), y);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Position getPosition() {
+    public final Position getPosition() {
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setPosition(final double x, final double y) {
+    public final void setPosition(final double x, final double y) {
         this.position.setLocation(x, y);
     }
 

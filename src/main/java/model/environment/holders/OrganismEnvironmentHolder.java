@@ -1,4 +1,4 @@
-package model.environment;
+package model.environment.holders;
 
 import model.environment.temperature.Temperature;
 

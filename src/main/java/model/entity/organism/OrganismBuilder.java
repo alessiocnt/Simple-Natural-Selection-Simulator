@@ -3,7 +3,7 @@
  */
 package model.entity.organism;
 
-import model.environment.OrganismEnvironmentHolder;
+import model.environment.holders.OrganismEnvironmentHolder;
 import model.mutation.TraitType;
 import model.mutation.trait.Trait;
 

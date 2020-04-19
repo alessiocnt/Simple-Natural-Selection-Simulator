@@ -16,19 +16,13 @@ public class TemperatureImpl implements Temperature {
         this.value = value;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setValue(final double value) {
+    public final void setValue(final double value) {
         this.value = value;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public double getValue() {
+    public final double getValue() {
         // TODO Auto-generated method stub
         return this.value;
     }

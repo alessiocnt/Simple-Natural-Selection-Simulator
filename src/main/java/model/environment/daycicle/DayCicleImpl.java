@@ -18,11 +18,8 @@ public class DayCicleImpl implements DayCicle {
         this.dayDuration = dayDuration;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void nextTick() {
+    public final void nextTick() {
         elapsedTicks++;
     }
 
