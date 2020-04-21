@@ -8,7 +8,7 @@ import view.View;
 public interface SettingsObserver {
     /**
      * @param view
-     * The currente View reference.
+     * The current View reference.
      */
     void update(View view);
 }

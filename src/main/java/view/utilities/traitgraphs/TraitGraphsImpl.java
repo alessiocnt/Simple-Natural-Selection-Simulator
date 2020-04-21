@@ -21,7 +21,7 @@ public class TraitGraphsImpl implements TraitGraphs {
     public final void load(final Pane root) {
         root.getChildren().clear();
         //Create graphs dinamically based on the current trait.
-        //In this way, if we add new trait, this class not need modifactions.
+        //In this way, if we add new trait, this class not need modifications.
         for (final TraitType trait : TraitType.values()) {
             if (!trait.getRarity().equals(MutationRarity.NOMUTATION)) {
                 final LineChart<Number, Number> lineChart = this.createGraph(trait);

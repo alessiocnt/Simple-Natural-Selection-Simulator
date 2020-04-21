@@ -18,18 +18,18 @@ public class EnvironmentHolder {
     private int foodVariation;
     private int temperature;
 
-    /**
-     * @return the initial dimension of entities.
-     */
-    public int getEntityDimension() {
-        return this.entityDimension;
-    }
-
     private void check(final SetupValues type, final int value) {
         if (!(value >= type.getStart() 
                 && value <= type.getStop())) {
             throw new IllegalArgumentException();
         }
+    }
+
+    /**
+     * @return the initial dimension of entities.
+     */
+    public int getEntityDimension() {
+        return this.entityDimension;
     }
 
     /**

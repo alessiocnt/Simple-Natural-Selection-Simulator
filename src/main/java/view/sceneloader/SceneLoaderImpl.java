@@ -47,7 +47,7 @@ public class SceneLoaderImpl implements SceneLoader {
                 //If the scene isn't in the cache, then create a new one, with the current root.
                 this.loader = new FXMLLoader();
                 this.loader.setLocation(ClassLoader.getSystemResource(sceneType.getFxmlPath()));
-                root = this.createRoot();
+                root = this.loader.load();
                 scene = new Scene(root, (double) this.view.getController().getSettingsHolder().getPrefWindowWidth(),
                         (double) this.view.getController().getSettingsHolder().getPrefWindowHeight());
                 scene.setUserData(this.loader);
@@ -98,10 +98,6 @@ public class SceneLoaderImpl implements SceneLoader {
             default:
                 break;
         }
-    }
-
-    private Region createRoot() throws IOException {
-        return this.loader.load();
     }
 }
 

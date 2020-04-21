@@ -16,6 +16,7 @@ public enum TraitType {
      */
 
     DIMENSION(AffectMovement.YES, MutationRarity.NORMAL, SetupValues.DIMENSION),
+
     /**
      * Food Radar.
      */
@@ -25,6 +26,7 @@ public enum TraitType {
      * Temperature sensibility.
      */
     TEMPERATURESENSIBILITY(AffectMovement.YES, MutationRarity.NOMUTATION, SetupValues.TEMPERATURESENSIBILITY),
+
     /**
      * Children quantity.
      */

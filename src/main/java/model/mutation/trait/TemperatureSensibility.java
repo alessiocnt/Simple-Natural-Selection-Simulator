@@ -24,7 +24,7 @@ public class TemperatureSensibility extends AbstractTrait {
         private static final double PARAMETER = 2;
 
         /*
-         * Utilizzo una parabola, modificandola a seconda della dimensione dell'individuo
+         * I use a parabola, changing it according to the size of the organism.
          * y = ((1/4) * x - 2 - (200/DIMENSION)) ^ 2
          */
         @Override
