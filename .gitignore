@@ -4,7 +4,4 @@ bin/
 out/
 .idea/
 *.log
-*.dolphin
-# Ignored, as Gradle Buildship generates it on import / refresh
-#.classpath
-
+*.directory
