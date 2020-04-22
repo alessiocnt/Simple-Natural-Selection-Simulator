@@ -19,7 +19,7 @@ public interface Environment {
     /**
      * @return the number of organisms inside the Environment
      */
-    int getCurrendOrganismQuantity();
+    int getCurrentOrganismQuantity();
 
     /**
      * @return the quantity of food inside the Environment

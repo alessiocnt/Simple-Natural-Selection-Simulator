@@ -79,7 +79,7 @@ public class TestEnvironment {
     @Test
     public void testAddOrganism() {
         final int expected = 5;
-        assertEquals(expected, this.environment.getCurrendOrganismQuantity());
+        assertEquals(expected, this.environment.getCurrentOrganismQuantity());
     }
 
     /**
@@ -99,7 +99,7 @@ public class TestEnvironment {
         this.environment.removeFood(this.food);
         this.environment.removeOrganism(this.organism);
         assertEquals(4, this.environment.getCurrentFoodQuantity());
-        assertEquals(4, this.environment.getCurrendOrganismQuantity());
+        assertEquals(4, this.environment.getCurrentOrganismQuantity());
     }
 
     /**
@@ -109,7 +109,7 @@ public class TestEnvironment {
     public void testAddSon() {
         this.environment.addOrganism(this.environment.getOrganisms().next(), this.organismBuilder.build());
         final int expected = 6;
-        assertEquals(expected, this.environment.getCurrendOrganismQuantity());
+        assertEquals(expected, this.environment.getCurrentOrganismQuantity());
     }
 
     /**

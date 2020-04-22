@@ -54,7 +54,7 @@ public class ModelImpl implements Model {
 
     @Override
     public final boolean isSimulationOver() {
-        return this.environment.getCurrendOrganismQuantity() == 0;
+        return this.environment.getCurrentOrganismQuantity() == 0;
     }
 
     @Override

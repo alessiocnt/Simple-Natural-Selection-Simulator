@@ -42,7 +42,7 @@ public abstract class AbstractEnvironment implements Environment {
     }
 
     @Override
-    public final int getCurrendOrganismQuantity() {
+    public final int getCurrentOrganismQuantity() {
         return this.organisms.keySet().size();
     }
 
@@ -185,7 +185,7 @@ public abstract class AbstractEnvironment implements Environment {
     @Override
     public String toString() {
         return "AbstractEnvironment [xDimension=" + width + ", yDimension=" + height + ", currentFoodQuantity="
-                + this.getCurrentFoodQuantity() + ", currentOrganismQuantity=" + this.getCurrendOrganismQuantity() + ", foods=" + foods
+                + this.getCurrentFoodQuantity() + ", currentOrganismQuantity=" + this.getCurrentOrganismQuantity() + ", foods=" + foods
                 + ", organisms=" + organisms + "]";
     }
 
