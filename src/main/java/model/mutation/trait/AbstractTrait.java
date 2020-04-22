@@ -85,9 +85,6 @@ public abstract class AbstractTrait implements Trait {
             return false;
         }
         final AbstractTrait other = (AbstractTrait) obj;
-        if (this.type != other.type || this.value != other.value) {
-            return false;
-        }
-        return true;
+        return !(this.type != other.type || this.value != other.value);
     }
 }
