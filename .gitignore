@@ -1,0 +1,9 @@
+.gradle/
+build/
+bin/
+out/
+.idea/
+*.log
+# Ignored, as Gradle Buildship generates it on import / refresh
+#.classpath
+
