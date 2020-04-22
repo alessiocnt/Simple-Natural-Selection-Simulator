@@ -4,6 +4,7 @@ bin/
 out/
 .idea/
 *.log
+*.directory
 # Ignored, as Gradle Buildship generates it on import / refresh
 #.classpath
 
