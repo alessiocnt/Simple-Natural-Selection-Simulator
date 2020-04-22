@@ -160,10 +160,10 @@ public class SimulationController extends AbstractSceneController implements Sim
     @Override
     public final void simulationOver() {
         Platform.runLater(() -> {
-            final Alert a = new Alert(AlertType.INFORMATION);
-            a.setTitle("INFO");
-            a.setContentText("The simulation is over, everyone is dead.");
-            a.show();
+            final Alert overAlert = new Alert(AlertType.INFORMATION);
+            overAlert.setTitle("INFO");
+            overAlert.setContentText("The simulation is over, everyone is dead.");
+            overAlert.show();
         });
     }
 }

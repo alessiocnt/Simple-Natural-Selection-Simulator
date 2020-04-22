@@ -44,8 +44,8 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
         this.graphics = graphics;
         this.environmentX = environmentX;
         this.environmentY = environmentY;
-        this.xAxisScaleFactor = getXScaleFactor();
-        this.yAxisScaleFactor = getYScaleFactor();
+        this.xAxisScaleFactor = this.getXScaleFactor();
+        this.yAxisScaleFactor = this.getYScaleFactor();
     }
 
     private double getXScaleFactor() {
@@ -77,8 +77,8 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
             this.graphics.setFill(getOrganismColor(entry.getValue()));
             this.graphics.fillOval(entry.getKey().getX() * this.xAxisScaleFactor, 
                     entry.getKey().getY() * this.yAxisScaleFactor,
-                    this.xAxisScaleFactor *  getOrganismDimension(entry.getValue()),
-                    this.yAxisScaleFactor * getOrganismDimension(entry.getValue()));
+                    this.xAxisScaleFactor *  this.getOrganismDimension(entry.getValue()),
+                    this.yAxisScaleFactor * this.getOrganismDimension(entry.getValue()));
         }
     }
 
@@ -96,8 +96,8 @@ public class SimulationViewLogicsImpl implements SimulationViewLogics {
     public final void setCanvasDimension(final double width, final double height) {
         this.canvasWidth = width;
         this.canvasHeight = height;
-        this.xAxisScaleFactor = getXScaleFactor();
-        this.yAxisScaleFactor = getYScaleFactor();
+        this.xAxisScaleFactor = this.getXScaleFactor();
+        this.yAxisScaleFactor = this.getYScaleFactor();
     }
 
     @Override

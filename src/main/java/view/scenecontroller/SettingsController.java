@@ -33,7 +33,7 @@ public class SettingsController extends AbstractSceneController {
     @FXML
     public void initialize() {
         this.observers.clear();
-        this.observers.addAll(List.of(new DayDurationObserver(this.dayDurComboBox)));
+        this.observers.add(new DayDurationObserver(this.dayDurComboBox));
     }
 
     @FXML
@@ -43,7 +43,7 @@ public class SettingsController extends AbstractSceneController {
 
     @FXML
     private void saveSettings() {
-        this.observers.forEach((observer) -> observer.update(this.getView()));
+        this.observers.forEach(observer -> observer.update(this.getView()));
         this.getView().getSceneFactory().openSimulation();
     }
 }

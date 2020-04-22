@@ -42,7 +42,7 @@ public class ControllerImpl implements Controller {
         final AdvancedEnvironment environment = this.model.getEnvironment();
         dayCicle.nextTick();
         // Updates the environment food
-        updateEnvironmentFood(dayCicle.getCurrentDayMoment(), environment);
+        this.updateEnvironmentFood(dayCicle.getCurrentDayMoment(), environment);
         final Iterator<Organism> organisms = environment.getOrganisms();
         while (organisms.hasNext()) {
             this.model.getActionController().getActions().get(dayCicle.getCurrentDayMoment()).perform(organisms.next());
@@ -120,12 +120,12 @@ public class ControllerImpl implements Controller {
 
         @Override
         public void run() {
-            while (this.running && !model.isSimulationOver()) {
+            while (this.running && !ControllerImpl.this.model.isSimulationOver()) {
                 final long startTime = System.currentTimeMillis();
-                update();
-                render();
+                this.update();
+                this.render();
                 final int elapsedTime = (int) (System.currentTimeMillis() - startTime);
-                waitForNextFrame(settings.getDayDuration(), elapsedTime);
+                this.waitForNextFrame(ControllerImpl.this.settings.getDayDuration(), elapsedTime);
                 synchronized (this.mutex) {
                     try {
                         if (!this.running) {
@@ -140,13 +140,13 @@ public class ControllerImpl implements Controller {
 
         private void update() {
             ControllerImpl.this.update(dayCicle);
-            if (model.isSimulationOver()) {
-                view.setSimulationOver();
+            if (ControllerImpl.this.model.isSimulationOver()) {
+                ControllerImpl.this.view.setSimulationOver();
             }
         }
 
         private void render() {
-            view.render(model.getFoods(), model.getOrganisms());
+            ControllerImpl.this.view.render(ControllerImpl.this.model.getFoods(), ControllerImpl.this.model.getOrganisms());
         }
 
         private void waitForNextFrame(final DayDuration dayDuration, final int elapsed) {

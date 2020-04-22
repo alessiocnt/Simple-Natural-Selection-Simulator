@@ -3,8 +3,7 @@
  */
 package model.entity.organism;
 
-import java.util.EnumMap;
-
+import java.util.Map;
 import model.entity.Entity;
 import model.environment.holders.OrganismEnvironmentHolder;
 import model.mutation.TraitType;
@@ -17,9 +16,9 @@ import model.mutation.trait.Trait;
 public interface Organism extends Entity {
 
     /**
-     * @return an EnumMap containing all organism's traits
+     * @return a Map containing all organism's traits
      */
-    EnumMap<TraitType, Trait> getTraits();
+    Map<TraitType, Trait> getTraits();
 
     /**
      * @return an OrganismEnvironmentHolder containing all the information that an organism knows about the environment

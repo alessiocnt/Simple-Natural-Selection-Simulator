@@ -35,8 +35,8 @@ public class OrganismBuilderImpl implements OrganismBuilder {
     }
 
     @Override
-    public final OrganismBuilderImpl setTrait(final TraitType type, final Trait trait) {
-        this.traits.put(type, trait);
+    public final OrganismBuilderImpl setTrait(final Trait trait) {
+        this.traits.put(trait.getType(), trait);
         return this;
     }
 

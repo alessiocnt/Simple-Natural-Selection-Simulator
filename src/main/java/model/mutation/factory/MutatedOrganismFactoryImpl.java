@@ -27,18 +27,18 @@ public class MutatedOrganismFactoryImpl implements MutatedOrganismFactory {
         Objects.requireNonNull(organism);
         final Map<TraitType, Trait> traits = organism.getTraits();
         final Map<TraitType, Trait> mutatedTraits = traits.entrySet().stream()
-                                    .filter((entrySet) -> !entrySet.getValue().getType().getRarity().equals(MutationRarity.NOMUTATION))
-                                    .collect(Collectors.toMap((entrySet) -> entrySet.getKey(),
-                                                              (entrySet) -> this.getMutatedTrait(entrySet.getKey(), entrySet.getValue().getValue())));
+                                    .filter(entrySet -> !entrySet.getValue().getType().getRarity().equals(MutationRarity.NOMUTATION))
+                                    .collect(Collectors.toMap(entrySet -> entrySet.getKey(),
+                                                              entrySet -> this.getMutatedTrait(entrySet.getKey(), entrySet.getValue().getValue())));
         //Child has the same energy of dad.
         final OrganismBuilder organismBuilder = new OrganismBuilderImpl(new EnergyImpl(organism.getEnergy().getEnergy()))
                                                     .setEnvironmentKnowledge(organism.getEnvironmentKnowledge());
         //Insert mutate trait.
-        mutatedTraits.entrySet().forEach((entrySet) -> organismBuilder.setTrait(entrySet.getKey(), entrySet.getValue()));
+        mutatedTraits.entrySet().forEach(entrySet -> organismBuilder.setTrait(entrySet.getValue()));
         //Insert also not mutable trait in children, copying value from dad.
         traits.entrySet().stream()
-            .filter((x) -> x.getKey().getRarity().equals(MutationRarity.NOMUTATION))
-            .forEach((x) -> organismBuilder.setTrait(x.getKey(), x.getValue()));
+            .filter(x -> x.getKey().getRarity().equals(MutationRarity.NOMUTATION))
+            .forEach(x -> organismBuilder.setTrait(x.getValue()));
         return organismBuilder.build();
     }
 

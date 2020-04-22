@@ -27,12 +27,6 @@ public final class SettingsImpl implements Settings {
     }
 
     @Override
-    public double getScaleFactor() {
-        return Math.min(this.selectedRes.getKey() / this.prefRes.getKey(),
-                this.selectedRes.getValue() / this.prefRes.getValue());
-    }
-
-    @Override
     public DayDuration getDayDuration() {
         return this.dayDuration;
     }

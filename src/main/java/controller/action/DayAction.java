@@ -41,20 +41,20 @@ public class DayAction extends AbstractAction {
 
     @Override
     public final void perform(final Organism organism) {
-        if (!tryToRemoveOrganism(organism)) {
+        if (!this.tryToRemoveOrganism(organism)) {
             try {
                 Direction movementDirection;
                 Set<Food> reachableFood;
                 for (int i = 0; i < organism.getTraits().get(TraitType.SPEED).getValue(); i++) {
-                    movementDirection = moveLogic.getRandomDirection();
-                    environment.moveOrganism(organism, movementDirection.getXVariation(), movementDirection.getYVariation());
+                    movementDirection = this.moveLogic.getRandomDirection();
+                    this.environment.moveOrganism(organism, movementDirection.getXVariation(), movementDirection.getYVariation());
                     reachableFood = environment.getNearbyFoods(organism);
-                    if (eatLogic.canEat(organism, reachableFood)) {
-                        eatLogic.eat(organism, reachableFood);
+                    if (this.eatLogic.canEat(organism, reachableFood)) {
+                        this.eatLogic.eat(organism, reachableFood);
                         reachableFood.forEach(f -> environment.removeFood(f));
                     }
                 }
-                moveLogic.detractConsumptionForMovement(organism);
+                this.moveLogic.detractConsumptionForMovement(organism);
             } catch (OutOfEnviromentException e) {
 //          Purposely left blank. If an organism tries to get outside the environment it will not move.
 //                System.out.println(e.getMessage() + " " + organism);
@@ -68,8 +68,8 @@ public class DayAction extends AbstractAction {
      *         False instead.
      */
     private boolean isEnergyEnoughtToMove(final Organism organism) {
-        return Energy.greater(organism.getEnergy(), moveLogic.computeConsumptionForMovement(organism))
-                || organism.getEnergy().equals(moveLogic.computeConsumptionForMovement(organism));
+        return Energy.greater(organism.getEnergy(), this.moveLogic.computeConsumptionForMovement(organism))
+                || organism.getEnergy().equals(this.moveLogic.computeConsumptionForMovement(organism));
     }
 
     /**
@@ -78,8 +78,8 @@ public class DayAction extends AbstractAction {
      *         False instead.
      */
     private boolean tryToRemoveOrganism(final Organism organism) {
-        if (!isEnergyEnoughtToMove(organism)) {
-            environment.removeOrganism(organism);
+        if (!this.isEnergyEnoughtToMove(organism)) {
+            this.environment.removeOrganism(organism);
             return true;
         }
         return false;

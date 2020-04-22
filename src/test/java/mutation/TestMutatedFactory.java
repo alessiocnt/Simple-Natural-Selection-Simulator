@@ -54,7 +54,7 @@ public class TestMutatedFactory {
         //Set all the trait for the builder.
         traits.entrySet()
             .stream()
-            .forEach((entrySet) -> builder.setTrait(entrySet.getKey(), entrySet.getValue()));
+            .forEach(entrySet -> builder.setTrait(entrySet.getValue()));
         this.organism = builder.build();
         this.factory = new MutatedOrganismFactoryImpl();
     }

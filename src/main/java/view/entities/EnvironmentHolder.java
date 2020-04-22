@@ -10,7 +10,7 @@ import settings.SetupValues;
  * setting up the environment.
  *
  */
-public class EnvironmentHolder {
+public final class EnvironmentHolder {
     private int entityDimension;
     private int entitySpeed;
     private int entityQuantity;
@@ -123,10 +123,10 @@ public class EnvironmentHolder {
     }
 
     @Override
-    public final String toString() {
+    public String toString() {
         return List.of(this.entityDimension, this.entitySpeed, this.entityQuantity, this.foodQuantity, this.foodVariation, this.temperature)
                 .stream()
-                .map((x) -> x.toString())
+                .map(x -> x.toString())
                 .collect(Collectors.joining(",", "[", "]"));
     }
 }

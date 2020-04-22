@@ -22,8 +22,8 @@ public class DimensionObserver implements SetupObserver {
     public DimensionObserver(final ComboBox<Integer> combobox) {
         this.combobox = combobox;
         this.combobox.getItems().addAll(Stream.iterate(SetupValues.DIMENSION.getStart(),
-                                        (i) -> i != SetupValues.DIMENSION.getStop() + 1,
-                                        (i) -> i + 1)
+                                        i -> i != SetupValues.DIMENSION.getStop() + 1,
+                                        i -> i + 1)
                                         .collect(Collectors.toList()));
         this.combobox.getSelectionModel().select(SetupValues.DIMENSION.getDefault());
     }

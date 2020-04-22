@@ -11,6 +11,7 @@ public final class DimensionConverter {
 
     private DimensionConverter() {
     }
+
     /**
      * Convert Dimension to Energy. 
      * @param organismDimension 

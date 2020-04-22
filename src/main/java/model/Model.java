@@ -1,9 +1,7 @@
 package model;
 
 import java.util.Set;
-
 import org.apache.commons.lang3.tuple.ImmutablePair;
-
 import controller.action.ActionController;
 import model.entity.food.Food;
 import model.entity.food.FoodBuilder;

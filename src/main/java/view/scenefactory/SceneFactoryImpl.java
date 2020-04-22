@@ -13,6 +13,7 @@ public class SceneFactoryImpl implements SceneFactory {
 
     private final Stage stage;
     private final SceneLoader sceneLoader;
+
     /**
      * @param view
      * current view

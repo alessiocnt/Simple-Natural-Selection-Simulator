@@ -48,8 +48,8 @@ class TestEntity {
         final EnvironmentFactory factory = new EnvironmentFactoryImpl();
         final AdvancedEnvironment environment = factory.createAdvancedEnviroment(100, 100, 10, 0, new TemperatureImpl(TEMPERATURE));
         final OrganismBuilder organismBuilder = new OrganismBuilderImpl(INITIALENERGY);
-        organismBuilder.setTrait(TraitType.SPEED, speed);
-        organismBuilder.setTrait(TraitType.DIMENSION, dimension);
+        organismBuilder.setTrait(speed);
+        organismBuilder.setTrait(dimension);
         organismBuilder.setEnvironmentKnowledge(environment);
         environment.addOrganism(organismBuilder.build());
         final Organism organism = environment.getOrganisms().next();

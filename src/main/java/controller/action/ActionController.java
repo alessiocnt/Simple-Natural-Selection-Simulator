@@ -3,7 +3,7 @@
  */
 package controller.action;
 
-import java.util.EnumMap;
+import java.util.Map;
 
 import model.environment.daycicle.DayPeriod;
 
@@ -16,5 +16,5 @@ public interface ActionController {
     /**
      * @return an EnumMap containing all the Actions
      */
-    EnumMap<DayPeriod, Action> getActions();
+    Map<DayPeriod, Action> getActions();
 }

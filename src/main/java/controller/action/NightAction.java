@@ -31,11 +31,11 @@ public class NightAction extends AbstractAction {
 
     @Override
     public final void perform(final Organism organism) {
-        if (!tryToRemoveOrganism(organism)) {
-            for (int i = 0; i < replicateLogic.getNumberOfChild(organism); i++) {
-                environment.addOrganism(organism, replicateLogic.replicate(organism));
+        if (!this.tryToRemoveOrganism(organism)) {
+            for (int i = 0; i < this.replicateLogic.getNumberOfChild(organism); i++) {
+                this.environment.addOrganism(organism, this.replicateLogic.replicate(organism));
             }
-            replicateLogic.detractConsumptionForReplication(organism);
+            this.replicateLogic.detractConsumptionForReplication(organism);
         }
     }
 
@@ -45,8 +45,8 @@ public class NightAction extends AbstractAction {
      *         False instead.
      */
     private boolean isEnergyEnoughtToReplicate(final Organism organism) {
-        return Energy.greater(organism.getEnergy(), replicateLogic.computeConsumptionForReplication(organism))
-                || organism.getEnergy().equals(replicateLogic.computeConsumptionForReplication(organism));
+        return Energy.greater(organism.getEnergy(), this.replicateLogic.computeConsumptionForReplication(organism))
+                || organism.getEnergy().equals(this.replicateLogic.computeConsumptionForReplication(organism));
     }
 
     /**
@@ -55,8 +55,8 @@ public class NightAction extends AbstractAction {
      *         False instead.
      */
     private boolean tryToRemoveOrganism(final Organism organism) {
-        if (!isEnergyEnoughtToReplicate(organism)) {
-            environment.removeOrganism(organism);
+        if (!this.isEnergyEnoughtToReplicate(organism)) {
+            this.environment.removeOrganism(organism);
             return true;
         }
         return false;

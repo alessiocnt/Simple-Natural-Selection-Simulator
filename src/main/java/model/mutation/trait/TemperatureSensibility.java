@@ -31,7 +31,7 @@ public class TemperatureSensibility extends AbstractTrait {
         public final int getConsumption(final Organism organism) {
             final double environmentTemp = organism.getEnvironmentKnowledge().getTemperature().getValue();
             final int organismDim = organism.getTraits().get(TraitType.DIMENSION).getValue();
-            return (int) (Math.pow(((double) 1 / 4) * environmentTemp - Sensibility.PARAMETER - ((double) Sensibility.NUMERATOR / organismDim), 2));
+            return (int) Math.pow(((double) 1 / 4) * environmentTemp - Sensibility.PARAMETER - ((double) Sensibility.NUMERATOR / organismDim), 2);
         }
     }
 

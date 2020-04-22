@@ -22,8 +22,8 @@ public class EntityQuantityObserver implements SetupObserver {
     public EntityQuantityObserver(final ComboBox<Integer> combobox) {
         this.combobox = combobox;
         this.combobox.getItems().addAll(Stream.iterate(SetupValues.INITIALQUANTITY.getStart(),
-                                        (i) -> i != SetupValues.INITIALQUANTITY.getStop() + 1,
-                                        (i) -> i + 1)
+                                        i -> i != SetupValues.INITIALQUANTITY.getStop() + 1,
+                                        i -> i + 1)
                                         .collect(Collectors.toList()));
         this.combobox.getSelectionModel().select(SetupValues.INITIALQUANTITY.getDefault());
     }

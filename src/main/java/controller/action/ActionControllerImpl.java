@@ -4,6 +4,7 @@
 package controller.action;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 import model.environment.AdvancedEnvironment;
 import model.environment.daycicle.DayPeriod;
@@ -14,7 +15,7 @@ import model.environment.daycicle.DayPeriod;
  */
 public class ActionControllerImpl implements ActionController {
 
-    private final EnumMap<DayPeriod, Action> actions;
+    private final Map<DayPeriod, Action> actions;
 
     /**
      * @param environment the simulation Environment
@@ -26,7 +27,7 @@ public class ActionControllerImpl implements ActionController {
     }
 
     @Override
-    public final EnumMap<DayPeriod, Action> getActions() {
+    public final Map<DayPeriod, Action> getActions() {
         return this.actions;
     }
 

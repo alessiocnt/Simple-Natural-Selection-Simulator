@@ -3,8 +3,7 @@
  */
 package model.entity.organism;
 
-import java.util.EnumMap;
-
+import java.util.Map;
 import model.entity.Energy;
 import model.environment.holders.OrganismEnvironmentHolder;
 import model.entity.AbstractEntity;
@@ -17,7 +16,7 @@ import model.mutation.trait.Trait;
  */
 public class OrganismImpl extends AbstractEntity implements Organism {
 
-    private final EnumMap<TraitType, Trait> traits;
+    private final Map<TraitType, Trait> traits;
     private final OrganismEnvironmentHolder environmentKnowledge;
 
     /**
@@ -28,14 +27,14 @@ public class OrganismImpl extends AbstractEntity implements Organism {
      * @param environmentKnowledge
      * organism knowledges about the environment.
      */
-    protected OrganismImpl(final Energy energy, final EnumMap<TraitType, Trait> traits, final OrganismEnvironmentHolder environmentKnowledge) {
+    protected OrganismImpl(final Energy energy, final Map<TraitType, Trait> traits, final OrganismEnvironmentHolder environmentKnowledge) {
         super(energy);
         this.traits = traits;
         this.environmentKnowledge = environmentKnowledge;
     }
 
     @Override
-    public final EnumMap<TraitType, Trait> getTraits() {
+    public final Map<TraitType, Trait> getTraits() {
         return this.traits;
     }
 

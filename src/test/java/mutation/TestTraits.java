@@ -61,7 +61,7 @@ public class TestTraits {
         //Set all the trait for the builder.
         this.traits.entrySet()
             .stream()
-            .forEach((entrySet) -> builder.setTrait(entrySet.getKey(), entrySet.getValue()));
+            .forEach(entrySet -> builder.setTrait(entrySet.getValue()));
         this.organism = builder.build();
     }
 

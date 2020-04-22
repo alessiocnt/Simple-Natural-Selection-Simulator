@@ -1,7 +1,7 @@
 package model.mutation;
 
 /**
- * Enumeration for describe witch trait affect movement in term of
+ * Enumeration for describe which trait affect movement in term of
  * energy consuption.
  *
  */

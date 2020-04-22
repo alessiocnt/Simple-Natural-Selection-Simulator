@@ -7,7 +7,7 @@ import model.environment.BasicEnvironmentImpl;
 import model.environment.temperature.Temperature;
 
 /**
- * Basic environment factory.
+ * Environment factory.
  */
 public class EnvironmentFactoryImpl implements EnvironmentFactory {
 

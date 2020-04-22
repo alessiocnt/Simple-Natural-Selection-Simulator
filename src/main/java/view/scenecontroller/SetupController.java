@@ -73,7 +73,7 @@ public class SetupController extends AbstractSceneController {
     private void startSimulation() {
         final EnvironmentHolder holder = new EnvironmentHolder();
         //Imposto l'holder attraverso tutti gli observer
-        this.observers.forEach((observer) -> observer.update(holder));
+        this.observers.forEach(observer -> observer.update(holder));
         this.getView().getController().setEnvironmentInitialValues(holder);
         this.getSceneFactory().openSimulation();
     }

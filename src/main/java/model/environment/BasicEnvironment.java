@@ -2,7 +2,7 @@ package model.environment;
 
 
 /**
- * Represents a simple enviroment where every morning the quantity of spawned food will be modified by a constant amount.
+ * Represents a simple environment where every morning the quantity of spawned food will be modified by a constant amount.
  */
 public interface BasicEnvironment extends Environment {
 

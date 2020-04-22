@@ -1,9 +1,7 @@
 package model;
 
 import java.util.Set;
-
 import org.apache.commons.lang3.tuple.ImmutablePair;
-
 import controller.action.ActionController;
 import controller.action.ActionControllerImpl;
 import model.entity.food.Food;
@@ -17,7 +15,6 @@ import model.environment.factory.EnvironmentFactoryImpl;
 import model.environment.holders.OrganismEnvironmentHolder;
 import model.environment.position.Position;
 import model.environment.temperature.TemperatureImpl;
-import model.mutation.TraitType;
 import model.mutation.trait.ChildrenQuantity;
 import model.mutation.trait.Dimension;
 import model.mutation.trait.FoodRadar;
@@ -82,17 +79,17 @@ public class ModelImpl implements Model {
         final int height = 100;
         this.environment = new EnvironmentFactoryImpl()
                 .createAdvancedEnviroment(width, height, holder.getFoodQuantity(), holder.getFoodVariation(), new TemperatureImpl(holder.getTemperature()));
-        initEnvironment(holder.getEntityQuantity(), holder.getEntitySpeed(), holder.getEntityDimension());
+        this.initEnvironment(holder.getEntityQuantity(), holder.getEntitySpeed(), holder.getEntityDimension());
         this.actionController = new ActionControllerImpl(this.environment);
     }
 
     private void initEnvironment(final int entityQuantity, final int entitySpeed, final int entityDimension) {
         final OrganismBuilder organismBuilder = new OrganismBuilderImpl(DimensionConverter.toEnergy(entityDimension));
-        organismBuilder.setTrait(TraitType.SPEED, new Speed(entitySpeed));
-        organismBuilder.setTrait(TraitType.DIMENSION, new Dimension(entityDimension));
-        organismBuilder.setTrait(TraitType.CHILDRENQUANTITY, new ChildrenQuantity(SetupValues.CHILDRENQUANTITY.getDefault()));
-        organismBuilder.setTrait(TraitType.FOODRADAR, new FoodRadar(SetupValues.FOODRADAR.getDefault()));
-        organismBuilder.setTrait(TraitType.TEMPERATURESENSIBILITY, new TemperatureSensibility());
+        organismBuilder.setTrait(new Speed(entitySpeed));
+        organismBuilder.setTrait(new Dimension(entityDimension));
+        organismBuilder.setTrait(new ChildrenQuantity(SetupValues.CHILDRENQUANTITY.getDefault()));
+        organismBuilder.setTrait(new FoodRadar(SetupValues.FOODRADAR.getDefault()));
+        organismBuilder.setTrait(new TemperatureSensibility());
         for (int i = 0; i < this.environment.getMorningFoodQuantity(); i++) {
             this.environment.addFood(this.foodBuilder.build());
         }

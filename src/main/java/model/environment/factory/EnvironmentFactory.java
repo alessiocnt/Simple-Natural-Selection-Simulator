@@ -5,7 +5,7 @@ import model.environment.BasicEnvironment;
 import model.environment.temperature.Temperature;
 
 /**
- * Models a factory for a BasicEnvironment.
+ * Models a factory for the Environment.
  */
 public interface EnvironmentFactory {
 

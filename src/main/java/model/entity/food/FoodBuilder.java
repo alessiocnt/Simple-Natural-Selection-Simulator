@@ -19,6 +19,7 @@ public interface FoodBuilder {
      *      the FoodBuilder
      */
     FoodBuilder setEnergy(Energy energy);
+
     /**
      * @return an instance of OrganismImpl if all the fields are not null
      * @throws IllegalArgumentException instead

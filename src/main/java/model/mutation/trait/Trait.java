@@ -14,6 +14,7 @@ public interface Trait  {
      * 
      */
     int getValue();
+
     /**
      * @return the food consumption of the trait.
      * @param organism

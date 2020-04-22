@@ -4,7 +4,6 @@
 package model.entity.organism;
 
 import model.environment.holders.OrganismEnvironmentHolder;
-import model.mutation.TraitType;
 import model.mutation.trait.Trait;
 
 /**
@@ -14,21 +13,19 @@ import model.mutation.trait.Trait;
 public interface OrganismBuilder {
 
     /**
-     * @param type the type of mutation
      * @param trait the proper trait that must be associated to the organism
-     * @return an OrganismBuilderImpl
+     * @return an OrganismBuilder
      */
-    OrganismBuilderImpl setTrait(TraitType type, Trait trait);
+    OrganismBuilder setTrait(Trait trait);
 
     /**
      * @param environmentKnowledge organism knowledges an organism has about the environment
-     * @return an OrganismBuilderImpl
+     * @return an OrganismBuilder
      */
-    OrganismBuilderImpl setEnvironmentKnowledge(OrganismEnvironmentHolder environmentKnowledge);
+    OrganismBuilder setEnvironmentKnowledge(OrganismEnvironmentHolder environmentKnowledge);
 
     /**
      * @return an instance of OrganismImpl if all the fields are not null
-     * @throws IllegalArgumentException instead
      */
     Organism build();
 }

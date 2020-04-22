@@ -26,7 +26,7 @@ public class ReplicateLogicsImpl implements ReplicateLogics {
 
     @Override
     public final Organism replicate(final Organism organism) {
-        return duplicationFactory.createMutated(organism);
+        return this.duplicationFactory.createMutated(organism);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class ReplicateLogicsImpl implements ReplicateLogics {
 
     @Override
     public final void detractConsumptionForReplication(final Organism organism) {
-        Energy energyToDetract = computeConsumptionForReplication(organism);
+        final Energy energyToDetract = computeConsumptionForReplication(organism);
         organism.getEnergy().detractEnergy(energyToDetract);
     }
 }

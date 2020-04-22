@@ -27,7 +27,6 @@ import model.environment.AdvancedEnvironment;
 import model.environment.factory.EnvironmentFactory;
 import model.environment.factory.EnvironmentFactoryImpl;
 import model.environment.temperature.TemperatureImpl;
-import model.mutation.TraitType;
 import model.mutation.trait.ChildrenQuantity;
 import model.mutation.trait.Dimension;
 import model.mutation.trait.Speed;
@@ -58,9 +57,9 @@ class TestAction {
 
     // Setting up an organism with basic traits.
     private Organism createOrganism() {
-        organismBuilder.setTrait(TraitType.SPEED, speed);
-        organismBuilder.setTrait(TraitType.DIMENSION, dimension);
-        organismBuilder.setTrait(TraitType.CHILDRENQUANTITY, children);
+        organismBuilder.setTrait(speed);
+        organismBuilder.setTrait(dimension);
+        organismBuilder.setTrait(children);
         organismBuilder.setEnvironmentKnowledge(environment);
         this.environment.addOrganism(organismBuilder.build());
         return environment.getOrganisms().next();

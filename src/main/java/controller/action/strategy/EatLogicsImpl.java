@@ -21,12 +21,12 @@ public class EatLogicsImpl implements EatLogics {
     @Override
     public final void eat(final Organism organism, final Set<Food> foods) {
         foods.forEach(f -> organism.getEnergy().addEnergy(f.getEnergy()));
-        adjustEnergyLevel(organism);
+        this.adjustEnergyLevel(organism);
     }
 
     @Override
     public final boolean canEat(final Organism organism, final Set<Food> foods) {
-        return !organism.getEnergy().equals(calculateOrganismMaxEnergy(organism.getTraits().get(TraitType.DIMENSION)))
+        return !organism.getEnergy().equals(this.calculateOrganismMaxEnergy(organism.getTraits().get(TraitType.DIMENSION)))
                 && !foods.isEmpty();
     }
 
@@ -41,8 +41,8 @@ public class EatLogicsImpl implements EatLogics {
      * Adjust Organism's energy level due to its maximum energy level.
      */
     private void adjustEnergyLevel(final Organism organism) {
-        if (Energy.greater(organism.getEnergy(), calculateOrganismMaxEnergy(organism.getTraits().get(TraitType.DIMENSION)))) {
-            organism.setEnergy(calculateOrganismMaxEnergy(organism.getTraits().get(TraitType.DIMENSION)));
+        if (Energy.greater(organism.getEnergy(), this.calculateOrganismMaxEnergy(organism.getTraits().get(TraitType.DIMENSION)))) {
+            organism.setEnergy(this.calculateOrganismMaxEnergy(organism.getTraits().get(TraitType.DIMENSION)));
         }
     }
 }

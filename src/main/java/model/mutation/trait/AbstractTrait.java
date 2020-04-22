@@ -2,7 +2,6 @@ package model.mutation.trait;
 
 
 import java.util.Objects;
-
 import model.entity.Energy;
 import model.entity.EnergyImpl;
 import model.entity.organism.Organism;
@@ -49,13 +48,46 @@ public abstract class AbstractTrait implements Trait {
         return new EnergyImpl(this.foodConsumption.getConsumption(organism));
     }
 
+    /**
+     * String representation of a trait.
+     */
     @Override
-    public final String toString() {
+    public String toString() {
         return "Value: " + this.getValue() + ", Rarity: " + this.type.getRarity();
     }
 
     @Override
     public final TraitType getType() {
         return this.type;
+    }
+
+    /**
+     * General HashCode for trait.
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((type == null) ? 0 : type.hashCode());
+        result = prime * result + value;
+        return result;
+    }
+
+    /**
+     * General equals for trait.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+        final AbstractTrait other = (AbstractTrait) obj;
+        if (this.type != other.type || this.value != other.value) {
+            return false;
+        }
+        return true;
     }
 }
