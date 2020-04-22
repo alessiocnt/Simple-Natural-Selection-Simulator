@@ -47,7 +47,9 @@ public class BasicEnvironmentImpl extends AbstractEnvironment implements BasicEn
     }
 
     /**
-     * {@inheritDoc}
+     * The position is valid only if it's inside the Environment.
+     * @param position 
+     *      The position that will be checked.
      */
     @Override
     protected boolean checkPosition(final Position position) throws OutOfEnviromentException {

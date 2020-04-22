@@ -33,11 +33,6 @@ public interface Position {
     void setY(double y);
 
     /**
-     * @return the Position in a 2D space.
-     */
-    Position getPosition();
-
-    /**
      * @param x
      *        the x value of the position to set.
      * @param y

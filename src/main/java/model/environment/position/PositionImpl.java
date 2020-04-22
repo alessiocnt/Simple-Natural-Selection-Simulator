@@ -41,11 +41,6 @@ public class PositionImpl implements Position {
     }
 
     @Override
-    public final Position getPosition() {
-        return this;
-    }
-
-    @Override
     public final void setPosition(final double x, final double y) {
         this.position.setLocation(x, y);
     }
