@@ -14,7 +14,9 @@ Cibandosi essi acquistano una quantità di energia.
 Le entità possono procreare.
 L'entità figlia avrà le stesse caratteristiche del padre più una eventuale mutazione (casuale). 
 La simulazione procede fino a quando tutte le creature si estinguono oppure infinitamente se le condizioni della popolazione e dell'ambiente lo permettono.
-
+<br>
+Doc and full relation available [here](relazioneSNSS.pdf)
+<br>
 #### Mutazioni degli individui OBBLIGATORIE: ####
 
 * Aumento/diminuzione della dimensione (un individuo di dimensione maggiore potrà immagazzinare una quantità di cibo maggiore, ma sarà più lento)
@@ -58,3 +60,8 @@ La simulazione procede fino a quando tutte le creature si estinguono oppure infi
 * Alessio Conti: Gestione delle entità di base,  gestione movimenti, aggiornamento simulazione. 
 * Andrea Giulianelli: Gestione delle mutazioni dell'individuo, menu di avvio della simulazione.
 * Simone Ceredi: Gestione dell'ambiente, gestione ciclo giornata, aggiornamento simulazione.
+
+#### Contatti ####
+Andrea: andrea.giulianelli4@studio.unibo.it <br>
+Simone: simone.ceredi@studio.unibo.it <br>
+Alessio: alessio.conti3@studio.unibo.it
